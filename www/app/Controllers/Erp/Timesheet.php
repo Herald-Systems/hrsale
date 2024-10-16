@@ -16,6 +16,7 @@
  */
 namespace App\Controllers\Erp;
 use App\Controllers\BaseController;
+use App\Models\DepartmentModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\HTTP\Files\UploadedFile;
@@ -61,6 +62,7 @@ class Timesheet extends BaseController {
 		$RolesModel = new RolesModel();
 		$UsersModel = new UsersModel();
 		$SystemModel = new SystemModel();
+		$DepartmentModel = new DepartmentModel();
 		//$AssetsModel = new AssetsModel();
 		$session = \Config\Services::session();
 		$usession = $session->get('sup_username');
@@ -84,7 +86,7 @@ class Timesheet extends BaseController {
 		$data['title'] = lang('Dashboard.left_attendance').' | '.$xin_system['application_name'];
 		$data['path_url'] = 'timesheet_attendance';
 		$data['breadcrumbs'] = lang('Dashboard.left_attendance');
-
+        $data['departments'] = $DepartmentModel->where('status',1)->orderBy('created_at','DESC')->get();
 		$data['subview'] = view('erp/timesheet/timesheet_attendance', $data);
 		return view('erp/layout/layout_main', $data); //page load
 	}
@@ -130,6 +132,7 @@ class Timesheet extends BaseController {
 		$RolesModel = new RolesModel();
 		$UsersModel = new UsersModel();
 		$SystemModel = new SystemModel();
+		$departmentsModel = new DepartmentModel();
 		$request = \Config\Services::request();
 		$session = \Config\Services::session();
 		
@@ -154,6 +157,7 @@ class Timesheet extends BaseController {
 		$data['title'] = lang('Dashboard.left_update_attendance').' | '.$xin_system['application_name'];
 		$data['path_url'] = 'timesheet_update';
 		$data['breadcrumbs'] = lang('Dashboard.left_update_attendance').$user_id;
+		$data['departments'] = $departments;
 
 		$data['subview'] = view('erp/timesheet/timesheet_update', $data);
 		return view('erp/layout/layout_main', $data); //page load
@@ -296,6 +300,7 @@ class Timesheet extends BaseController {
 		$UsersModel = new UsersModel();
 		$SystemModel = new SystemModel();
 		$TimesheetModel = new TimesheetModel();
+		$departmentModel = new DepartmentModel();
 		$ShiftModel = new ShiftModel();
 		$MainModel = new MainModel();
 		$StaffdetailsModel = new StaffdetailsModel();
@@ -307,6 +312,7 @@ class Timesheet extends BaseController {
 		}
 		$data = array();
 		$attendance_date = date('Y-m-d');
+        $departmentName = '';
 		foreach($get_data as $r) {
 			
 			//
@@ -315,6 +321,18 @@ class Timesheet extends BaseController {
 			// get user info
 			//$iuser_info = $UsersModel->where('user_id', $r['user_id'])->first();
 			$user_detail = $StaffdetailsModel->where('user_id', $r['user_id'])->first();
+
+            $filter = $this->request->getGet('department_id');
+            if (isset($filter)) {
+                if ($user_detail['department_id'] != $filter) {
+                    continue;
+                }
+            }
+
+            $department = $departmentModel->where('department_id', $user_detail['department_id'])->first();
+            if (!is_null($department) && array_key_exists('department_name', $department)) {
+                $departmentName = $department['department_name'];
+            }
 			// shift info
 			$office_shift = $ShiftModel->where('office_shift_id',$user_detail['office_shift_id'])->first();
 			if($day == 'Monday') {
@@ -547,6 +565,7 @@ class Timesheet extends BaseController {
 			$Trest = '';
 			$data[] = array(
 				$links,
+                $departmentName,
 				$attendance_date,
 				$status,
 				$fclock_in,

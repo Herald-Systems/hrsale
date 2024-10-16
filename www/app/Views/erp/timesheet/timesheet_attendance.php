@@ -6,6 +6,7 @@ use App\Models\TimesheetModel;
 $MainModel = new MainModel();
 $UsersModel = new UsersModel();
 $TimesheetModel = new TimesheetModel();
+$departmentsModel = new \App\Models\DepartmentModel();
 
 $session = \Config\Services::session();
 $usession = $session->get('sup_username');
@@ -69,12 +70,33 @@ if($user['user_type'] == 'staff'){
       </h5>
     </div>
   </div>
-  <div class="card-body">
+    <div class="row m-b-1">
+
+        <div class="col-md-12">
+
+            <?php  $departments = $departmentsModel->orderBy('created_at','DESC')->findAll(); ?>
+        <div class="card-body">
+            <div class="form-group col-md-4">
+                <label for="first_name">
+                    <?= lang('Dashboard.left_department');?>
+                </label>
+                <select class="form-control" name="department_id" id="department_id"  data-placeholder="<?= lang('Dashboard.left_department');?>">
+                    <option value="" ></option>
+                                        <?php foreach($departments as $department) {?>
+                                            <option value="<?= $department['department_id']?>">
+                                                <?= $department['department_name'] ?>
+                                            </option>
+                                        <?php } ?>
+                </select>
+            </div>
+
+            <hr />
     <div class="box-datatable table-responsive">
       <table class="datatables-demo table table-striped table-bordered" id="xin_table">
         <thead>
           <tr>
             <th style="width:120px;"><?= lang('Dashboard.dashboard_employee');?></th>
+            <th style="width:100px;"><?= lang('Dashboard.left_department');?></th>
             <th style="width:100px;"><?= lang('Main.xin_e_details_date');?></th>
             <th style="width:100px;"><?= lang('Main.dashboard_xin_status');?></th>
             <th style="width:100px;"><?= lang('Attendance.dashboard_clock_in');?></th>
@@ -87,4 +109,6 @@ if($user['user_type'] == 'staff'){
       </table>
     </div>
   </div>
+        </div>
+    </div>
 </div>
