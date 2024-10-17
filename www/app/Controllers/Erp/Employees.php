@@ -179,7 +179,7 @@ class Employees extends BaseController {
 		$encrypter = \Config\Services::encrypter($config);
 		$RolesModel = new RolesModel();
 		$SystemModel = new SystemModel();
-		$CountryModel = new CountryModel();
+		$departmentModel = new DepartmentModel();
 		$DesignationModel = new DesignationModel();
 		$StaffdetailsModel = new StaffdetailsModel();
 		$user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
@@ -217,11 +217,20 @@ class Employees extends BaseController {
 				$gender = lang('Main.xin_gender_female');
 			}
 			$role_name = $role['role_name'];
-			$country_info = $CountryModel->where('country_id', $r['country'])->first();
 			$name = $r['first_name'].' '.$r['last_name'];
 			//designation
 			$employee_detail = $StaffdetailsModel->where('user_id', $r['user_id'])->first();
-			$idesignations = $DesignationModel->where('designation_id',$employee_detail['designation_id'])->first();
+
+              $filter = $this->request->getGet('department_id');
+              if (isset($filter)) {
+                  if ($employee_detail['department_id'] != $filter) {
+                      continue;
+                  }
+              }
+
+            $department = $departmentModel->where('department_id', $employee_detail['department_id'])->first();
+
+              $idesignations = $DesignationModel->where('designation_id',$employee_detail['designation_id'])->first();
 			$uname = '<div class="d-inline-block align-middle">
 				<img src="'.staff_profile_photo($r['user_id']).'" alt="user image" class="img-radius align-top m-r-15" style="width:40px;">
 				<div class="d-inline-block">
@@ -239,10 +248,11 @@ class Employees extends BaseController {
 									 			  				
 			$data[] = array(
 				$links,
+                $employee_detail['employee_id'],
+                $department['department_name'],
 				$idesignations['designation_name'],
 				$r['contact_number'],
 				$gender,
-				$country_info['country_name'],
 				$role_name,
 				$status
 			);

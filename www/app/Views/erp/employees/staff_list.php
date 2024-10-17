@@ -355,15 +355,30 @@ $employee_id = generate_random_employeeid();
     </div>
   </div>
   <div class="card-body">
+      <div class="form-group col-md-4">
+          <label for="department_filter">
+              <?= lang('Dashboard.left_department');?>
+          </label>
+          <select class="form-control" name="department_filter" id="department_filter"   data-placeholder="<?= lang('Dashboard.left_department');?>">
+              <option value="" ></option>
+              <?php foreach($departments as $department) {?>
+                  <option value="<?= $department['department_id']?>">
+                      <?= $department['department_name'] ?>
+                  </option>
+              <?php } ?>
+          </select>
+      </div>
+
+      <hr />
     <div class="box-datatable table-responsive">
       <table class="datatables-demo table table-striped table-bordered" id="xin_table">
         <thead>
           <tr>
             <th><?= lang('Main.xin_name');?></th>
+            <th><?= lang('Employees.dashboard_employee_id');?></th>
+            <th><?= lang('Dashboard.left_department');?></th>
             <th><?= lang('Dashboard.left_designation');?></th>
-            <th><?= lang('Main.xin_contact_number');?></th>
             <th><?= lang('Main.xin_employee_gender');?></th>
-            <th><?= lang('Main.xin_country');?></th>
             <th><?= lang('Main.xin_employee_role');?></th>
             <th><?= lang('Main.dashboard_xin_status');?></th>
           </tr>
