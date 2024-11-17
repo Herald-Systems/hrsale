@@ -32,17 +32,17 @@ $user_info = $UsersModel->where('user_id', $username['sup_user_id'])->first();
 	<meta name="author" content="TIMEHRM" />
 
 	<!-- Favicon icon -->
-	<link rel="icon" href="<?= base_url();?>/public/assets/images/favicon.svg" type="image/x-icon">
+	<link rel="icon" href="<?= base_url();?>/assets/images/favicon.svg" type="image/x-icon">
 
 	<!-- font css -->
-	<link rel="stylesheet" href="<?= base_url();?>/public/assets/fonts/font-awsome-pro/css/pro.min.css">
-	<link rel="stylesheet" href="<?= base_url();?>/public/assets/fonts/feather.css">
-	<link rel="stylesheet" href="<?= base_url();?>/public/assets/fonts/fontawesome.css">
+	<link rel="stylesheet" href="<?= base_url();?>/assets/fonts/font-awsome-pro/css/pro.min.css">
+	<link rel="stylesheet" href="<?= base_url();?>/assets/fonts/feather.css">
+	<link rel="stylesheet" href="<?= base_url();?>/assets/fonts/fontawesome.css">
 
 	<!-- vendor css -->
-	<link rel="stylesheet" href="<?= base_url();?>/public/assets/css/style.css">
-	<link rel="stylesheet" href="<?= base_url();?>/public/assets/css/customizer.css">
-    <link rel="stylesheet" href="<?= base_url('public/assets/plugins/toastr/toastr.css');?>">
+	<link rel="stylesheet" href="<?= base_url();?>/assets/css/style.css">
+	<link rel="stylesheet" href="<?= base_url();?>/assets/css/customizer.css">
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/toastr/toastr.css');?>">
 
 </head>
 
@@ -55,7 +55,7 @@ $user_info = $UsersModel->where('user_id', $username['sup_user_id'])->first();
 			<div class="row align-items-center text-center">
 				<div class="col-md-12">
 					<div class="card-body">
-						<img src="<?= base_url();?>/public/assets/images/logo-dark.svg" alt="" class="img-fluid mb-4">
+						<img src="<?= base_url();?>/assets/images/logo-dark.svg" alt="" class="img-fluid mb-4">
 						<h4 class="mb-3 f-w-400">Reset your password</h4>
                         <?php $attributes = array('class' => 'form', 'name' => 'erp_form', 'id' => 'hrm-form', 'autocomplete' => 'off');?>
 						<?php $hidden = array('user_id' => 0);?>
@@ -78,15 +78,15 @@ $user_info = $UsersModel->where('user_id', $username['sup_user_id'])->first();
 </div>
 
 <!-- Required Js --> 
-<script src="<?= base_url('public/assets/js/vendor-all.min.js');?>"></script> 
-<script src="<?= base_url('public/assets/js/plugins/bootstrap.min.js');?>"></script> 
-<script src="<?= base_url('public/assets/js/plugins/feather.min.js');?>"></script> 
-<script src="<?= base_url('public/assets/js/pcoded.min.js');?>"></script> 
-<script src="<?= base_url();?>/public/assets/plugins/toastr/toastr.js"></script> 
-<script src="<?= base_url();?>/public/assets/plugins/sweetalert2/sweetalert2@10.js"></script>
-<link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/ladda/ladda.css">
-<script src="<?= base_url();?>/public/assets/plugins/spin/spin.js"></script> 
-<script src="<?= base_url();?>/public/assets/plugins/ladda/ladda.js"></script> 
+<script src="<?= base_url('assets/js/vendor-all.min.js');?>"></script>
+<script src="<?= base_url('assets/js/plugins/bootstrap.min.js');?>"></script>
+<script src="<?= base_url('assets/js/plugins/feather.min.js');?>"></script>
+<script src="<?= base_url('assets/js/pcoded.min.js');?>"></script>
+<script src="<?= base_url();?>/assets/plugins/toastr/toastr.js"></script>
+<script src="<?= base_url();?>/assets/plugins/sweetalert2/sweetalert2@10.js"></script>
+<link rel="stylesheet" href="<?= base_url();?>/assets/plugins/ladda/ladda.css">
+<script src="<?= base_url();?>/assets/plugins/spin/spin.js"></script>
+<script src="<?= base_url();?>/assets/plugins/ladda/ladda.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	Ladda.bind('button[type=submit]');

@@ -550,7 +550,7 @@ class Timesheet extends BaseController {
 			
 			
 			$staff_name = '<div class="d-inline-block align-middle">
-				<img src="'.base_url().'/public/uploads/users/thumb/'.$r['profile_photo'].'" alt="user image" class="img-radius align-top m-r-15" style="width:40px;">
+				<img src="'.base_url().'/uploads/users/thumb/'.$r['profile_photo'].'" alt="user image" class="img-radius align-top m-r-15" style="width:40px;">
 				<div class="d-inline-block">
 					<h6 class="m-b-0">'.$employee_name.'</h6>
 					<p class="m-b-0">'.$r['email'].'</p>
@@ -628,7 +628,7 @@ class Timesheet extends BaseController {
 			$iuser = $UsersModel->where('user_id', $r['employee_id'])->first();
 			$uname = $iuser['first_name'].' '.$iuser['last_name'];
 			$fname = '<div class="d-inline-block align-middle">
-				<img src="'.base_url().'/public/uploads/users/thumb/'.$iuser['profile_photo'].'" alt="user image" class="img-radius align-top m-r-15" style="width:40px;">
+				<img src="'.base_url().'/uploads/users/thumb/'.$iuser['profile_photo'].'" alt="user image" class="img-radius align-top m-r-15" style="width:40px;">
 				<div class="d-inline-block">
 					<h6 class="m-b-0">'.$uname.'</h6>
 					<p class="m-b-0">'.$iuser['email'].'</p>
@@ -697,7 +697,7 @@ class Timesheet extends BaseController {
 				$iuser = $UsersModel->where('user_id', $r['staff_id'])->first();
 				$uname = $iuser['first_name'].' '.$iuser['last_name'];
 				$fname = '<div class="d-inline-block align-middle">
-					<img src="'.base_url().'/public/uploads/users/thumb/'.$iuser['profile_photo'].'" alt="user image" class="img-radius align-top m-r-15" style="width:40px;">
+					<img src="'.base_url().'/uploads/users/thumb/'.$iuser['profile_photo'].'" alt="user image" class="img-radius align-top m-r-15" style="width:40px;">
 					<div class="d-inline-block">
 						<h6 class="m-b-0">'.$uname.'</h6>
 						<p class="m-b-0">'.$iuser['email'].'</p>

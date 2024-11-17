@@ -130,7 +130,7 @@ $result = $AssetsModel->where('assets_id', $assets_id)->first();
             <?php if($result['asset_image']!='' || $result['asset_image']!='no-file'){?>
             <?php
                   $imageProperties = [
-                    'src'    => base_url().'/public/uploads/asset_image/'.$result['asset_image'],
+                    'src'    => base_url().'/uploads/asset_image/'.$result['asset_image'],
                     'alt'    => $result['name'],
                     'class'  => 'd-block ui-w-50 rounded-circle',
                     'width'  => '50',
@@ -404,7 +404,7 @@ $result = $AssetsModel->where('assets_id', $assets_id)->first(); ?>
         <td style="display: table-cell;"><?php if($result['asset_image']!='' && $result['asset_image']!='no file') {?>
           <?php
 			  $imageProperties = [
-				'src'    => base_url().'/public/uploads/asset_image/'.$result['asset_image'],
+				'src'    => base_url().'/uploads/asset_image/'.$result['asset_image'],
 				'alt'    => $result['name'],
 				'class'  => 'd-block ui-w-50',
 				'width'  => '50',

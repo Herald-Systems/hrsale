@@ -2,7 +2,7 @@
 use App\Models\SystemModel;
 $SystemModel = new SystemModel();
 $xin_system = $SystemModel->where('setting_id', 1)->first();
-$favicon = base_url().'/public/uploads/logo/favicon/'.$xin_system['favicon'];
+$favicon = base_url().'/uploads/logo/favicon/'.$xin_system['favicon'];
 $session = \Config\Services::session($config);
 $request = \Config\Services::request();
 $username = $session->get('sup_username');
@@ -32,14 +32,14 @@ $username = $session->get('sup_username');
 <link rel="icon" type="image/x-icon" href="<?= $favicon;?>">
 
 <!-- font css -->
-<link rel="stylesheet" href="<?= base_url('public/assets/fonts/font-awsome-pro/css/pro.min.css');?>">
-<link rel="stylesheet" href="<?= base_url('public/assets/fonts/feather.css');?>">
-<link rel="stylesheet" href="<?= base_url('public/assets/fonts/fontawesome.css');?>">
+<link rel="stylesheet" href="<?= base_url('assets/fonts/font-awsome-pro/css/pro.min.css');?>">
+<link rel="stylesheet" href="<?= base_url('assets/fonts/feather.css');?>">
+<link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome.css');?>">
 
 <!-- vendor css -->
-<link rel="stylesheet" href="<?= base_url('public/assets/css/style.css');?>">
-<link rel="stylesheet" href="<?= base_url('public/assets/css/customizer.css');?>">
-<link rel="stylesheet" href="<?= base_url('public/assets/plugins/toastr/toastr.css');?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/style.css');?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/customizer.css');?>">
+<link rel="stylesheet" href="<?= base_url('assets/plugins/toastr/toastr.css');?>">
 </head>
 
 <!-- [ auth-signin ] start -->
@@ -59,7 +59,7 @@ $username = $session->get('sup_username');
     <?php } ?>
     <div class="card">
       <div class="row align-items-stretch text-center">
-        <div class="col-md-6 img-card-side"> <img src="<?= base_url('public/assets/images/auth/'.$xin_system['auth_background'].'.jpg');?>" alt="" class="img-fluid"> </div>
+        <div class="col-md-6 img-card-side"> <img src="<?= base_url('assets/images/auth/'.$xin_system['auth_background'].'.jpg');?>" alt="" class="img-fluid"> </div>
         <div class="col-md-6">
           <div class="card-body">
             <div class="text-left">
@@ -109,15 +109,15 @@ $username = $session->get('sup_username');
 <!-- [ auth-sign ] end --> 
 
 <!-- Required Js --> 
-<script src="<?= base_url('public/assets/js/vendor-all.min.js');?>"></script> 
-<script src="<?= base_url('public/assets/js/plugins/bootstrap.min.js');?>"></script> 
-<script src="<?= base_url('public/assets/js/plugins/feather.min.js');?>"></script> 
-<script src="<?= base_url('public/assets/js/pcoded.min.js');?>"></script> 
-<script src="<?= base_url();?>/public/assets/plugins/toastr/toastr.js"></script> 
-<script src="<?= base_url();?>/public/assets/plugins/sweetalert2/sweetalert2@10.js"></script>
-<link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/ladda/ladda.css">
-<script src="<?= base_url();?>/public/assets/plugins/spin/spin.js"></script> 
-<script src="<?= base_url();?>/public/assets/plugins/ladda/ladda.js"></script> 
+<script src="<?= base_url('assets/js/vendor-all.min.js');?>"></script>
+<script src="<?= base_url('assets/js/plugins/bootstrap.min.js');?>"></script>
+<script src="<?= base_url('assets/js/plugins/feather.min.js');?>"></script>
+<script src="<?= base_url('assets/js/pcoded.min.js');?>"></script>
+<script src="<?= base_url();?>/assets/plugins/toastr/toastr.js"></script>
+<script src="<?= base_url();?>/assets/plugins/sweetalert2/sweetalert2@10.js"></script>
+<link rel="stylesheet" href="<?= base_url();?>/assets/plugins/ladda/ladda.css">
+<script src="<?= base_url();?>/assets/plugins/spin/spin.js"></script>
+<script src="<?= base_url();?>/assets/plugins/ladda/ladda.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	Ladda.bind('button[type=submit]');
@@ -131,7 +131,7 @@ $(document).ready(function(){
 <script type="text/javascript">
 var desk_url = '<?php echo site_url('erp/desk'); ?>';
 var processing_request = '<?= lang('Login.xin_processing_request');?>';</script></script> 
-<script type="text/javascript" src="<?= base_url();?>/public/module_scripts/ci_erp_login.js"></script>
+<script type="text/javascript" src="<?= base_url();?>/module_scripts/ci_erp_login.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 $(".login-as").click(function(){

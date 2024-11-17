@@ -51,7 +51,7 @@ $ci_erp_settings = $SystemModel->where('setting_id', 1)->first();
                                         <table class="table table-responsive invoice-table table-borderless">
                                             <tbody>
                                                 <tr>
-                                                    <td><a href="#!"><img class="img-fluid" width="171" height="30" src="<?= base_url();?>/public/uploads/logo/other/<?= $ci_erp_settings['other_logo'];?>" alt=""></a>
+                                                    <td><a href="#!"><img class="img-fluid" width="171" height="30" src="<?= base_url();?>/uploads/logo/other/<?= $ci_erp_settings['other_logo'];?>" alt=""></a>
                                                     </td>
                                                 </tr>
                                             </tbody>

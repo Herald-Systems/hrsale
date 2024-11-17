@@ -26,7 +26,7 @@ if($result['is_active'] == 1){
 <?php if($result['profile_photo']!='' || $result['profile_photo']!='no-file'){?>
 <?php
       $imageProperties = [
-        'src'    => base_url().'/public/uploads/clients/thumb/'.$result['profile_photo'],
+        'src'    => base_url().'/uploads/clients/thumb/'.$result['profile_photo'],
         'alt'    => $result['company_name'],
         'class'  => 'd-block img-radius img-fluid wid-80',
         'width'  => '50',
@@ -49,7 +49,7 @@ if($result['is_active'] == 1){
             <?php if($result['profile_photo']!='' || $result['profile_photo']!='no-file'){?>
             <?php
 				  $imageProperties = [
-					'src'    => base_url().'/public/uploads/clients/thumb/'.$result['profile_photo'],
+					'src'    => base_url().'/uploads/clients/thumb/'.$result['profile_photo'],
 					'alt'    => $result['company_name'],
 					'class'  => 'd-block img-radius img-fluid wid-80',
 					'width'  => '50',

@@ -14,7 +14,28 @@ if($request->getGet('data') === 'add_attendance' && $request->getGet('field_id')
 $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 ?>
 
-<div class="modal-header">
+    <div class="modal fade" id="permissionsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Enable Location Permissions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your location permissions are currently blocked. Please follow the instructions below to enable
+                        them:</p>
+                    <ol>
+                        <li>Click the lock icon next to the URL in your browser.</li>
+                        <li>Find the "Location" setting.</li>
+                        <li>Change it to "Allow" for this site.</li>
+                        <li>Refresh the page and try again.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-header">
   <h5 class="modal-title">
     <?= lang('Attendance.xin_add_attendance');?>
     <span class="font-weight-light">
@@ -29,7 +50,11 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 <?php $hidden = array('_method' => 'ADD');?>
 <?php echo form_open('erp/timesheet/add_attendance', $attributes, $hidden);?>
 <div class="modal-body">
-  <div class="row">
+    <div class="alert alert-danger d-none" id="location-alert">
+        <p class="alert-message"></p>
+        <button class="btn btn-outline-danger" type="button" onclick="getLocation()">Get Location</button>
+    </div>
+  <div class="row" id="locationForm">
     <div class="col-md-12">
       <?php if($user_info['user_type'] == 'company'){?>
       <?php $staff_info = $UsersModel->where('company_id', $usession['sup_user_id'])->where('user_type','staff')->findAll();?>
@@ -37,7 +62,7 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
         <div class="col-md-12">
           <div class="form-group">
             <label for="first_name">
-              <?= lang('Dashboard.dashboard_employee');?> <span class="text-danger">*</span>
+              <?= lang('Dashboard.dashboard_employee');?> <span class="text-danger">*</span>....
             </label>
             <select class="form-control" name="employee_id" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.dashboard_employee');?>">
               <?php foreach($staff_info as $staff) {?>
@@ -89,6 +114,7 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
       </div>
     </div>
   </div>
+
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-light" data-dismiss="modal">
@@ -98,9 +124,58 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
   <?= lang('Main.xin_save');?>
   </button>
 </div>
-<?php echo form_close(); ?> 
+<?php echo form_close(); ?>
 <script type="text/javascript">
+
+    const handleLocationFailed = (message) => {
+        document.getElementById('locationForm').classList.add('d-none')
+        const element = document.getElementById('location-alert');
+        element.classList.remove('d-none')
+        element.querySelector('p').innerHTML = message;
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`);
+
+                // document.getElementById('lat').value = position.coords.latitude;
+                // document.getElementById('lng').value = position.coords.longitude;
+            }, showError);
+        } else {
+
+            document.getElementById("location").innerText = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showError(error) {
+        debugger
+
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                handleLocationFailed("User denied the request for Geolocation.");
+                showModal();
+                break;
+            case error.POSITION_UNAVAILABLE:
+                handleLocationFailed("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                handleLocationFailed("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                handleLocationFailed("An unknown error occurred.");
+                break;
+        }
+    }
+
+    const showModal = () => {
+        const permissionsModal = new bootstrap.Modal(document.getElementById('permissionsModal'));
+        permissionsModal.show();
+    }
  $(document).ready(function(){
+
+     getLocation();
+
 							
 		// Clock
 		$('.timepicker_m').bootstrapMaterialDatePicker({

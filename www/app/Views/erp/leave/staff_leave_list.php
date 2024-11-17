@@ -518,7 +518,6 @@ $departments = $DepartmentsModel->findAll();
                                     </div>
                                     <hr />
                                     <div class="row">
-
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="declaration">

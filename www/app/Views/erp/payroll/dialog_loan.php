@@ -329,7 +329,7 @@ $result = $AwardsModel->where('award_id', $award_id)->first();
       <tr>
         <th><?= lang('Main.xin_attachment');?></th>
         <td style="display: table-cell;"><?php if($result['award_photo']!='' && $result['award_photo']!='no file') {?>
-          <img src="<?php echo base_url().'/public/uploads/awards/'.$result['award_photo'];?>" width="70px" id="u_file">&nbsp; <a href="<?php echo site_url()?>download?type=awards&filename=<?php echo uencode($result['award_photo']);?>">
+          <img src="<?php echo base_url().'/uploads/awards/'.$result['award_photo'];?>" width="70px" id="u_file">&nbsp; <a href="<?php echo site_url()?>download?type=awards&filename=<?php echo uencode($result['award_photo']);?>">
           <?= lang('Main.xin_download');?>
           </a>
           <?php } ?></td>

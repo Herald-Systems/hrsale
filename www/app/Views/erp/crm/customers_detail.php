@@ -26,7 +26,7 @@ if($result['is_active'] == 1){
   <?php if($result['profile_photo']!='' || $result['profile_photo']!='no-file'){?>
   <?php
       $imageProperties = [
-        'src'    => base_url().'/public/uploads/users/thumb/'.$result['profile_photo'],
+        'src'    => base_url().'/uploads/users/thumb/'.$result['profile_photo'],
         'alt'    => $result['company_name'],
         'class'  => 'd-block ui-w-100 rounded-circle',
         'width'  => '50',
