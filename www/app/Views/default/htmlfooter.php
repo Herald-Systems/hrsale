@@ -19,40 +19,40 @@ $user_info = $UsersModel->where('user_id', $session['sup_user_id'])->first();
 <!-- Core scripts -->
 
 <!-- Required Js -->
-    <script src="<?= base_url();?>/public/assets/js/vendor-all.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/bootstrap.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/feather.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/pcoded.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/clipboard.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/uikit.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/dataTables.bootstrap4.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/select2.full.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/plugins/toastr/toastr.js"></script>
-	<script src="<?= base_url();?>/public/assets/plugins/sweetalert2/sweetalert2@10.js"></script>
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/ladda/ladda.css">
-    <script src="<?= base_url();?>/public/assets/plugins/spin/spin.js"></script>
-    <script src="<?= base_url();?>/public/assets/plugins/ladda/ladda.js"></script>
-    <script src="<?= base_url();?>/public/assets/plugins/moment/moment.js"></script>
-    <script src="<?php echo base_url();?>/public/assets/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js"></script>
+    <script src="<?= base_url();?>/assets/js/vendor-all.min.js"></script>
+    <script src="<?= base_url();?>/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/feather.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/pcoded.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/clipboard.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/uikit.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/select2.full.min.js"></script>
+    <script src="<?= base_url();?>/assets/plugins/toastr/toastr.js"></script>
+	<script src="<?= base_url();?>/assets/plugins/sweetalert2/sweetalert2@10.js"></script>
+    <link rel="stylesheet" href="<?= base_url();?>/assets/plugins/ladda/ladda.css">
+    <script src="<?= base_url();?>/assets/plugins/spin/spin.js"></script>
+    <script src="<?= base_url();?>/assets/plugins/ladda/ladda.js"></script>
+    <script src="<?= base_url();?>/assets/plugins/moment/moment.js"></script>
+    <script src="<?php echo base_url();?>/assets/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js"></script>
 
-    <script src="<?= base_url();?>/public/assets/plugins/colorpicker/bootstrap-colorpicker.js"></script>
-    <link href="<?= base_url();?>/public/assets/plugins/colorpicker/bootstrap-colorpicker.css" rel="stylesheet">
-    <script src="<?= base_url();?>/public/assets/js/plugins/jquery.bootstrap.wizard.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/jquery.barrating.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="<?= base_url();?>/assets/plugins/colorpicker/bootstrap-colorpicker.js"></script>
+    <link href="<?= base_url();?>/assets/plugins/colorpicker/bootstrap-colorpicker.css" rel="stylesheet">
+    <script src="<?= base_url();?>/assets/js/plugins/jquery.bootstrap.wizard.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/jquery.barrating.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/isotope.pkgd.min.js"></script>
 
-    <script src="<?= base_url();?>/public/assets/js/plugins/jquery.barrating.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/jquery.barrating.min.js"></script>
     <?php if($router->controllerName() == '\App\Controllers\Erp\Todos' || $router->methodName() == 'training_details' || $router->methodName() == 'ticket_details'){?>
-    <script src="<?= base_url();?>/public/assets/js/pages/todo.js"></script>
+    <script src="<?= base_url();?>/assets/js/pages/todo.js"></script>
     <?php } ?>
     <?php if($router->methodName() == 'events_calendar' || $router->methodName() == 'meetings_calendar' || $router->methodName() == 'leave_calendar' || $router->methodName() == 'invoice_calendar' || $router->methodName() == 'projects_calendar' || $router->methodName() == 'tasks_calendar' || $router->methodName() == 'goals_calendar' || $router->methodName() == 'training_calendar' || $router->methodName() == 'travel_calendar' || $router->methodName() == 'holidays_calendar' || $router->controllerName() == '\App\Controllers\Erp\Dashboard' || $router->methodName() =='erp_calendar' || $router->methodName() =='client_invoice_calendar' || $router->methodName() =='estimates_calendar'){?>
-    <script src="<?= base_url();?>/public/assets/js/plugins/moment.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/fullcalendar.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/moment.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/fullcalendar.min.js"></script>
     <?php } ?>
     <?php if($router->methodName() =='goal_details' || $router->methodName() =='task_details' || $router->methodName() =='project_details'){?>
-    <script type="text/javascript" src="<?= base_url();?>/public/assets/plugins/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <script type="text/javascript" src="<?= base_url();?>/assets/plugins/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
     <script type="text/javascript">
 	$(document).ready(function(){	
 		$("#range_grid").ionRangeSlider({

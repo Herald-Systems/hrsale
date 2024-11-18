@@ -140,7 +140,7 @@ $company_types = $ConstantsModel->where('type','company_type')->orderBy('constan
                 <div class="col-xl-2 col-lg-4 col-sm-4">
                     <div class="form-check form-check-inline">
                         <input type="radio" name="auth_background" class="form-check-input" id="2815767" value="2815767" <?php if($xin_system['auth_background']=='2815767'):?> checked="checked" <?php endif;?>>
-                        <label class="form-check-label" for="2815767"><a href="<?= base_url();?>/public/assets/images/auth/2815767.jpg" data-lightbox="roadtrip"><img src="<?= base_url();?>/public/assets/images/auth/2815767.jpg" for="2815767" class="img-fluid m-b-10 img-thumbnail bg-white" alt=""></a></label>
+                        <label class="form-check-label" for="2815767"><a href="<?= base_url();?>/assets/images/auth/2815767.jpg" data-lightbox="roadtrip"><img src="<?= base_url();?>/public/assets/images/auth/2815767.jpg" for="2815767" class="img-fluid m-b-10 img-thumbnail bg-white" alt=""></a></label>
                     </div>
                 </div>
                 <div class="col-xl-2 col-lg-4 col-sm-4">

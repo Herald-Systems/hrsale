@@ -87,7 +87,7 @@ $_payment_method = $ConstantsModel->where('type','payment_method')->where('const
                     <table class="table table-responsive invoice-table table-borderless">
                       <tbody>
                         <tr>
-                          <td><a href="#!"><img class="img-fluid" width="171" height="30" src="<?= base_url();?>/public/uploads/logo/other/<?= $ci_erp_settings['other_logo'];?>" alt="<?= $xin_system['company_name'];?>"></a></td>
+                          <td><a href="#!"><img class="img-fluid" width="171" height="30" src="<?= base_url();?>/uploads/logo/other/<?= $ci_erp_settings['other_logo'];?>" alt="<?= $xin_system['company_name'];?>"></a></td>
                         </tr>
                         <tr>
                           <td><?= $xin_system['company_name'];?></td>

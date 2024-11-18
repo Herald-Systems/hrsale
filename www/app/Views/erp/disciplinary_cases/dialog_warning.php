@@ -200,7 +200,7 @@ $result = $WarningModel->where('warning_id', $warning_id)->first();
       <tr>
         <th><?= lang('Main.xin_attachment');?></th>
         <td style="display: table-cell;"><?php if($result['attachment']!='' && $result['attachment']!='no file') {?>
-          <img src="<?php echo base_url().'/public/uploads/warning/'.$result['attachment'];?>" width="70px" id="u_file">&nbsp; <a href="<?= site_url()?>download?type=warning&filename=<?php echo uencode($result['attachment']);?>">
+          <img src="<?php echo base_url().'/uploads/warning/'.$result['attachment'];?>" width="70px" id="u_file">&nbsp; <a href="<?= site_url()?>download?type=warning&filename=<?php echo uencode($result['attachment']);?>">
           <?= lang('Main.xin_download');?>
           </a>
           <?php } ?></td>

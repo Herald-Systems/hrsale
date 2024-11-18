@@ -27,14 +27,14 @@ $ci_erp_settings = $SystemModel->where('setting_id', 1)->first();
 $session_lang = $session->lang;
 if(!empty($session_lang)):
 	$lang_code = $LanguageModel->where('language_code', $session_lang)->first();
-	$flg_icn = '<img src="'.base_url().'/public/uploads/languages_flag/'.$lang_code['language_flag'].'">';
+	$flg_icn = '<img src="'.base_url().'/uploads/languages_flag/'.$lang_code['language_flag'].'">';
 	$lg_code = $session_lang;
 elseif($xin_system['default_language']!=''):
 	$lg_code = $xin_system['default_language'];
 	$lang_code = $LanguageModel->where('language_code', $xin_system['default_language'])->first();
-	$flg_icn = '<img src="'.base_url().'/public/uploads/languages_flag/'.$lang_code['language_flag'].'">';
+	$flg_icn = '<img src="'.base_url().'/uploads/languages_flag/'.$lang_code['language_flag'].'">';
 else:
-	$flg_icn = '<img src="'.base_url().'/public/uploads/languages_flag/gb.gif">';	
+	$flg_icn = '<img src="'.base_url().'/uploads/languages_flag/gb.gif">';
 endif;
 if($user['user_type'] == 'super_user'){
 	$bg_option = 'bg-dark';
@@ -51,7 +51,7 @@ if($user['user_type'] == 'super_user'){
        <?php if($user['user_type'] == 'super_user' || $user['user_type'] == 'company' || $user['user_type'] == 'customer' || $user['user_type'] == 'staff'){ ?>
         <div class="m-header d-flex align-items-center">
             <a href="<?= site_url('erp/desk');?>" class="b-brand">
-                <img src="<?= base_url();?>/public/uploads/logo/<?= $ci_erp_settings['logo'];?>" alt="" class="logo logo-lg" height="40" width="138">
+                <img src="<?= base_url();?>/uploads/logo/<?= $ci_erp_settings['logo'];?>" alt="" class="logo logo-lg" height="40" width="138">
             </a>
         </div>
         <?php } ?>
@@ -200,7 +200,7 @@ if($user['user_type'] == 'super_user'){
                     <div class="dropdown-menu dropdown-menu-right pc-h-dropdown">
                         <?php foreach($language as $lang):?>
                         <a href="<?= site_url('erp/set-language/');?><?= $lang['language_code'];?>" class="dropdown-item">
-                            <img src="<?= base_url();?>/public/uploads/languages_flag/<?= $lang['language_flag'];?>" width="16" height="11" />
+                            <img src="<?= base_url();?>/uploads/languages_flag/<?= $lang['language_flag'];?>" width="16" height="11" />
                             <span><?= $lang['language_name'];?></span>
                         </a>
                         <?php endforeach;?>

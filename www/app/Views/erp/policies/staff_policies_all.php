@@ -57,7 +57,7 @@ $data = array();
                 <?php if($r['attachment']!='' || $r['attachment']!='no-file'){?>
 				<?php
                       $imageProperties = [
-                        'src'    => base_url().'/public/uploads/policy/'.$r['attachment'],
+                        'src'    => base_url().'/uploads/policy/'.$r['attachment'],
                         'alt'    => $r['title'],
                         'class'  => 'd-block ui-w-50',
                         'width'  => '100',

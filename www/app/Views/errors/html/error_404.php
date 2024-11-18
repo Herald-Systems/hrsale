@@ -13,22 +13,22 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
 
   <!-- Core stylesheets -->
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/bootstrap.css" class="theme-settings-bootstrap-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/appwork.css" class="theme-settings-appwork-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/theme-corporate.css" class="theme-settings-theme-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/colors.css" class="theme-settings-colors-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/uikit.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/bootstrap.css" class="theme-settings-bootstrap-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/appwork.css" class="theme-settings-appwork-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/theme-corporate.css" class="theme-settings-theme-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/colors.css" class="theme-settings-colors-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/uikit.css">
 
-  <script src="<?= base_url();?>/public/module_scripts/assets/vendor/js/material-ripple.js"></script>
-  <script src="<?= base_url();?>/public/module_scripts/assets/vendor/js/layout-helpers.js"></script>
+  <script src="<?= base_url();?>/module_scripts/assets/vendor/js/material-ripple.js"></script>
+  <script src="<?= base_url();?>/module_scripts/assets/vendor/js/layout-helpers.js"></script>
 
   <!-- Theme settings -->
   <!-- This file MUST be included after core stylesheets and layout-helpers.js in the <head> section -->
-  <script src="<?= base_url();?>/public/module_scripts/assets/vendor/js/theme-settings.js"></script>
+  <script src="<?= base_url();?>/module_scripts/assets/vendor/js/theme-settings.js"></script>
   <script>
     window.themeSettings = new ThemeSettings({
-      cssPath: '<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/',
-      themesPath: '<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/'
+      cssPath: '<?= base_url();?>/module_scripts/assets/vendor/css/rtl/',
+      themesPath: '<?= base_url();?>/module_scripts/assets/vendor/css/rtl/'
     });
   </script>
 
@@ -36,7 +36,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!-- Page -->
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/css/error.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/css/error.css">
 </head>
 
 <body class="bg-primary">
@@ -66,8 +66,8 @@
   </div>
 
   <!-- Core scripts -->
-  <script src="<?= base_url();?>/public/module_scripts/assets/vendor/libs/popper/popper.js"></script>
-  <script src="<?= base_url();?>/public/module_scripts/assets/vendor/js/bootstrap.js"></script>
+  <script src="<?= base_url();?>/module_scripts/assets/vendor/libs/popper/popper.js"></script>
+  <script src="<?= base_url();?>/module_scripts/assets/vendor/js/bootstrap.js"></script>
 </body>
 </html>
 
@@ -89,22 +89,22 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
 
   <!-- Icon fonts -->
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/fonts/fontawesome.css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/fonts/ionicons.css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/fonts/linearicons.css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/fonts/pe-icon-7-stroke.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/fonts/fontawesome.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/fonts/ionicons.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/fonts/linearicons.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/fonts/pe-icon-7-stroke.css">
 
   <!-- Core stylesheets -->
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/bootstrap.css" class="theme-settings-bootstrap-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/appwork.css" class="theme-settings-appwork-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/theme-corporate.css" class="theme-settings-theme-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/colors.css" class="theme-settings-colors-css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/rtl/uikit.css">
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/css/demo.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/bootstrap.css" class="theme-settings-bootstrap-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/appwork.css" class="theme-settings-appwork-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/theme-corporate.css" class="theme-settings-theme-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/colors.css" class="theme-settings-colors-css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/rtl/uikit.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/css/demo.css">
   <!-- Libs -->
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
   <!-- Page -->
-  <link rel="stylesheet" href="<?= base_url();?>/public/module_scripts/assets/vendor/css/pages/authentication.css">
+  <link rel="stylesheet" href="<?= base_url();?>/module_scripts/assets/vendor/css/pages/authentication.css">
 </head>
 
 <body>

@@ -158,22 +158,22 @@ if( !function_exists('staff_profile_photo') ){
 		if($user_info['user_type'] != 'customer'){
 			if($user_info['profile_photo'] == '' || $user_info['profile_photo'] == 'no'){
 				if($user_info['gender']==1) {
-					$user_img = base_url().'/public/uploads/users/default/default_profile.jpg';
+					$user_img = base_url().'/uploads/users/default/default_profile.jpg';
 				} else {
-					$user_img = base_url().'/public/uploads/users/default/default_profile.jpg';
+					$user_img = base_url().'/uploads/users/default/default_profile.jpg';
 				}
 			} else {
-				$user_img = base_url().'/public/uploads/users/thumb/'.$user_info['profile_photo'];
+				$user_img = base_url().'/uploads/users/thumb/'.$user_info['profile_photo'];
 			}
 		} else {
 			if($user_info['profile_photo'] == '' || $user_info['profile_photo'] == 'no'){
 				if($user_info['gender']==1) {
-					$user_img = base_url().'/public/uploads/users/default/default_profile.jpg';
+					$user_img = base_url().'/uploads/users/default/default_profile.jpg';
 				} else {
-					$user_img = base_url().'/public/uploads/users/default/default_profile.jpg';
+					$user_img = base_url().'/uploads/users/default/default_profile.jpg';
 				}
 			} else {
-				$user_img = base_url().'/public/uploads/clients/thumb/'.$user_info['profile_photo'];
+				$user_img = base_url().'/uploads/clients/thumb/'.$user_info['profile_photo'];
 			}
 		}
 		return $user_img;

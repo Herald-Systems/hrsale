@@ -381,7 +381,7 @@ $employee_id = generate_random_employeeid();
             <div class="col text-left pb-3">
               <?= $status;?>
             </div>
-            <div class="col"><img class="img-radius img-fluid wid-80" src="<?= base_url().'/public/uploads/users/thumb/'.$r['profile_photo'];?>" alt="<?= $r['first_name'].' '.$r['last_name'];?>"></div>
+            <div class="col"><img class="img-radius img-fluid wid-80" src="<?= base_url().'/uploads/users/thumb/'.$r['profile_photo'];?>" alt="<?= $r['first_name'].' '.$r['last_name'];?>"></div>
             <div class="col text-right pb-3">
               <?php if(in_array('staff4',staff_role_resource()) || in_array('staff5',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
               <div class="dropdown"> <a class="drp-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-more-horizontal"></i></a>

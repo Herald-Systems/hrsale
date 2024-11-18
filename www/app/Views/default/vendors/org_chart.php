@@ -27,25 +27,25 @@ $main_department = $DepartmentModel->where('company_id', $company_id)->where('de
 $get_animate = '';
 ?>
 
-<link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/orgchart/css/jquery.orgchart.css">
-<link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/orgchart/css/style.css">
-<!--<link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/orgchart/css/jquery.orgchart2.css">-->
+<link rel="stylesheet" href="<?= base_url();?>/assets/plugins/orgchart/css/jquery.orgchart.css">
+<link rel="stylesheet" href="<?= base_url();?>/assets/plugins/orgchart/css/style.css">
+<!--<link rel="stylesheet" href="<?= base_url();?>/assets/plugins/orgchart/css/jquery.orgchart2.css">-->
   <div id="chart-container"></div>
 
-  <script type="text/javascript" src="<?= base_url();?>/public/assets/plugins/orgchart/js/html2canvas.min.js"></script>
-  <script type="text/javascript" src="<?= base_url();?>/public/assets/plugins/orgchart/js/jquery.orgchart.js"></script>
+  <script type="text/javascript" src="<?= base_url();?>/assets/plugins/orgchart/js/html2canvas.min.js"></script>
+  <script type="text/javascript" src="<?= base_url();?>/assets/plugins/orgchart/js/jquery.orgchart.js"></script>
   <script type="text/javascript">
    $(function() {
 
     var datascource = {
-      'profile': '<?= base_url();?>/public/uploads/users/thumb/<?= $user_chart['profile_photo'];?>',
+      'profile': '<?= base_url();?>/uploads/users/thumb/<?= $user_chart['profile_photo'];?>',
 	  'name': '<?= $user_chart['first_name'].' '.$user_chart['last_name'];?>',
       'title': '<?= $user_chart['company_name'];?>',
       'children': [
 	  <?php foreach($main_department as $idepartment){?>
 	  <?php $idep_head = $UsersModel->where('user_id', $idepartment['department_head'])->first(); ?>
         {
-			'profile': '<?= base_url();?>/public/uploads/users/thumb/<?= $idep_head['profile_photo'];?>',
+			'profile': '<?= base_url();?>/uploads/users/thumb/<?= $idep_head['profile_photo'];?>',
 			'name': '<?= $idep_head['first_name'].' '.$idep_head['last_name'];?>',
 			'title': '<?= $idepartment['department_name'];?>',
 		<?php $subdesign = $DesignationModel->where('department_id', $idepartment['department_id'])->first(); ?>
@@ -57,7 +57,7 @@ $get_animate = '';
 			<?php if($iuser_count > 0){?>
 			<?php $iuser = $UsersModel->where('user_id', $sdesign['user_id'])->first(); ?>
             {
-				'profile': '<?= base_url();?>/public/uploads/users/thumb/<?= $iuser['profile_photo'];?>',
+				'profile': '<?= base_url();?>/uploads/users/thumb/<?= $iuser['profile_photo'];?>',
 				'name': '<?= $iuser['first_name'].' '.$iuser['last_name'];?>',
 				'title': '<?= $edesignation['designation_name'];?>' },
 			<?php } ?>

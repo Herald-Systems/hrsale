@@ -142,7 +142,7 @@ $ci_erp_settings = $SystemModel->where('setting_id', 1)->first();
       <div>
         <div class="card" id="printTable">
           <div class="card-header">
-            <h5><img class="img-fluid" width="171" height="30" src="<?= base_url();?>/public/uploads/logo/other/<?= $ci_erp_settings['other_logo'];?>" alt=""></h5>
+            <h5><img class="img-fluid" width="171" height="30" src="<?= base_url();?>/uploads/logo/other/<?= $ci_erp_settings['other_logo'];?>" alt=""></h5>
           </div>
           <div class="card-body pb-0">
             <div class="media user-about-block align-items-center mt-0 mb-3">

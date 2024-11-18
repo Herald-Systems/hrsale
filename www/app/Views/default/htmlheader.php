@@ -9,7 +9,7 @@ $UsersModel = new UsersModel();
 
 $xin_system = $SystemModel->where('setting_id', 1)->first();
 $router = service('router'); 
-$favicon = base_url().'/public/uploads/logo/favicon/'.$xin_system['favicon'];
+$favicon = base_url().'/uploads/logo/favicon/'.$xin_system['favicon'];
 
 $session = \Config\Services::session();
 $router = service('router');
@@ -38,49 +38,49 @@ $user_info = $UsersModel->where('user_id', $user_id)->first();
     <meta name="author" content="erp" />
 
     <!-- Favicon icon -->
-    <link rel="icon" href="<?= base_url();?>/public/uploads/logo/favicon/<?= $xin_system['favicon'];?>" type="image/x-icon">
+    <link rel="icon" href="<?= base_url();?>/uploads/logo/favicon/<?= $xin_system['favicon'];?>" type="image/x-icon">
 
     <!-- font css -->
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/fonts/font-awsome-pro/css/pro.min.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/fonts/feather.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/fonts/fontawesome.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/fonts/font-awsome-pro/css/pro.min.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/fonts/feather.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/fonts/fontawesome.css">
 
     <!-- vendor css -->
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/style.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/customizer.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/customizer.css">
     
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/layout-modern.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/select2.min.css">
-    <link rel="stylesheet" href="<?= base_url('public/assets/plugins/toastr/toastr.css');?>">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/jquery-ui/jquery-ui.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.css">
-    <!--<link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/bootstrap-datepicker3.min.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/bootstrap-timepicker.min.css">-->
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/layout-modern.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/toastr/toastr.css');?>">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/plugins/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.css">
+    <!--<link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/bootstrap-timepicker.min.css">-->
     <?php //if($router->controllerName() =='\App\Controllers\Erp\Roles') { ?>
-        <?php /*?><link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/kendo/kendo.common.min.css">
-        <link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/kendo/kendo.default.min.css"><?php */?>
+        <?php /*?><link rel="stylesheet" href="<?= base_url();?>/assets/plugins/kendo/kendo.common.min.css">
+        <link rel="stylesheet" href="<?= base_url();?>/assets/plugins/kendo/kendo.default.min.css"><?php */?>
         <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.1.330/styles/kendo.bootstrap-v4.min.css">
         <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.1.330/styles/kendo.rtl.min.css">
     <?php //} ?>
     <?php if($router->methodName() =='goal_details' || $router->methodName() =='task_details' || $router->methodName() =='project_details'){?>
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/ion.rangeSlider/css/ion.rangeSlider.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/plugins/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/plugins/ion.rangeSlider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/plugins/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css">
     <?php } ?>
-   <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/bars-movie.css"> 
-   <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/css-stars.css">
-   <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/bars-1to10.css">
+   <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/bars-movie.css">
+   <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/css-stars.css">
+   <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/bars-1to10.css">
    <!-- rangeslider css -->
-	<link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/bootstrap-slider.min.css">
+	<link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/bootstrap-slider.min.css">
     <?php if($user_info['user_type'] == 'customer'){?>
-	<link rel="stylesheet" href="<?= base_url();?>/public/assets/css/layout-advance.css">
+	<link rel="stylesheet" href="<?= base_url();?>/assets/css/layout-advance.css">
     <?php } ?>
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/fullcalendar.min.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/fullcalendar.min.css">
     <?php if($router->methodName() =='tasks_scrum_board' || $router->methodName() =='projects_scrum_board') { ?>
-    <link rel="stylesheet" href="<?php echo base_url();?>/public/assets/plugins/dragula/dragula.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>/assets/plugins/dragula/dragula.css">
     <?php } ?>
     <?php if($router->controllerName() =='\App\Controllers\Erp\Settings' && $router->methodName() =='index') { ?>
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/ekko-lightbox.css">
-    <link rel="stylesheet" href="<?= base_url();?>/public/assets/css/plugins/lightbox.min.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/ekko-lightbox.css">
+    <link rel="stylesheet" href="<?= base_url();?>/assets/css/plugins/lightbox.min.css">
     <?php } ?>
 </head>

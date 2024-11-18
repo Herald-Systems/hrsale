@@ -63,7 +63,7 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
         <?php if($result['attachment']!='' || $result['attachment']!='no-file'){?>
         <?php
 			  $imageProperties = [
-				'src'    => base_url().'/public/uploads/policy/'.$result['attachment'],
+				'src'    => base_url().'/uploads/policy/'.$result['attachment'],
 				'alt'    => $result['title'],
 				'class'  => 'd-block ui-w-50',
 				'width'  => '50',

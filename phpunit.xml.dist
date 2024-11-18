@@ -45,7 +45,7 @@
 		<const name="CONFIGPATH" value="./app/Config/"/>
 
 		<!-- Directory containing the front controller (index.php) -->
-		<const name="PUBLICPATH" value="./public/"/>
+		<const name="PUBLICPATH" value="./"/>
 
 		<!-- Database configuration -->
 <!--	<env name="database.tests.hostname" value="localhost"/>  -->
