@@ -193,11 +193,11 @@ $user_info = $UsersModel->where('user_id', $session['sup_user_id'])->first();
     <?php endif;?>
     <?php if($router->controllerName() == '\App\Controllers\Erp\Dashboard' || $router->methodName() == 'helpdesk_dashboard' || $router->methodName() == 'projects_dashboard' || $router->methodName() == 'timesheet_dashboard' || $router->methodName() == 'invoice_dashboard' || $router->methodName() == 'leave_status' || $router->methodName() == 'tasks_summary' || $router->methodName() == 'corehr_dashboard' || $router->methodName() == 'staff_dashboard' || $router->methodName() == 'client_details' || $router->methodName() == 'recruitment_dashboard' || $router->methodName() == 'tickets_page' || $router->methodName() == 'recruitment_dashboard' || $router->controllerName() == '\App\Controllers\Erp\Leave' || $router->methodName() == 'project_invoices' || $router->methodName() == 'jobs'){?>
     
-    <script src="<?= base_url();?>/public/assets/js/plugins/apexcharts.min.js"></script>
-    <script src="<?= base_url();?>/public/assets/js/plugins/jquery.peity.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/apexcharts.min.js"></script>
+    <script src="<?= base_url();?>/assets/js/plugins/jquery.peity.min.js"></script>
     <?php } ?>
     <?php if($router->methodName() =='tasks_scrum_board' || $router->methodName() =='projects_scrum_board') { ?>
-    <script src="<?php echo base_url();?>/public/assets/plugins/dragula/dragula.js"></script>
+    <script src="<?php echo base_url();?>/assets/plugins/dragula/dragula.js"></script>
     <?php } ?>
     
     <script type="text/javascript">
@@ -217,26 +217,26 @@ $user_info = $UsersModel->where('user_id', $session['sup_user_id'])->first();
 	<script type="text/javascript">var processing_request = '<?= lang('Login.xin_processing_request');?>';</script>
 	<script type="text/javascript">var request_submitted = '<?= lang('Dashboard.xin_hr_request_submitted');?>';</script>
     
-    <script type="text/javascript" src="<?php echo base_url();?>/public/assets/plugins/kendo/kendo.all.min.js"></script>
-    <script src="<?php echo base_url();?>/public/assets/plugins/kendo/kendo.timezones.min.js"></script>
-	<script type="text/javascript" src="<?= base_url().'/public/module_scripts/'.$path_url.'.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>/assets/plugins/kendo/kendo.all.min.js"></script>
+    <script src="<?php echo base_url();?>/assets/plugins/kendo/kendo.timezones.min.js"></script>
+	<script type="text/javascript" src="<?= base_url().'/module_scripts/'.$path_url.'.js'; ?>"></script>
     <?php if($router->controllerName() == '\App\Controllers\Erp\Dashboard') { ?>
     	<?php if($user_info['user_type'] == 'staff'){ ?>
 			<?php if($xin_system['is_ssl_available'] == 1){ ?>
-            <script type="text/javascript" src="<?= base_url().'/public/module_scripts/staff/set_clocking_ssl.js'; ?>"></script>
+            <script type="text/javascript" src="<?= base_url().'/module_scripts/staff/set_clocking_ssl.js'; ?>"></script>
             <?php } else {?>
-            <script type="text/javascript" src="<?= base_url().'/public/module_scripts/staff/set_clocking_non_ssl.js'; ?>"></script>
+            <script type="text/javascript" src="<?= base_url().'/module_scripts/staff/set_clocking_non_ssl.js'; ?>"></script>
             <?php } ?>
         <?php } ?>
     <?php } ?>
     <?php if($router->controllerName() =='\App\Controllers\Erp\Settings' && $router->methodName() =='index') { ?>
-    <script src="<?php echo base_url();?>/public/assets/js/plugins/ekko-lightbox.min.js"></script>
-    <script src="<?php echo base_url();?>/public/assets/js/plugins/lightbox.min.js"></script>
-    <script src="<?php echo base_url();?>/public/assets/js/pages/ac-lightbox.js"></script>
+    <script src="<?php echo base_url();?>/assets/js/plugins/ekko-lightbox.min.js"></script>
+    <script src="<?php echo base_url();?>/assets/js/plugins/lightbox.min.js"></script>
+    <script src="<?php echo base_url();?>/assets/js/pages/ac-lightbox.js"></script>
     <?php } ?>
     
     <?php if($router->methodName() =='leave_status' || $router->methodName() =='invoice_dashboard' || $router->methodName() =='tickets_page' || $router->methodName() == 'recruitment_dashboard' || $router->methodName() == 'tasks_summary' || $router->methodName() == 'projects_dashboard' || $router->controllerName() == '\App\Controllers\Erp\Dashboard' || $router->controllerName() == '\App\Controllers\Erp\Leave' || $router->methodName() == 'project_invoices' || $router->methodName() == 'jobs') { ?>
-    <script type="text/javascript" src="<?= base_url().'/public/module_scripts/dashboard/leave_status.js'; ?>"></script>
+    <script type="text/javascript" src="<?= base_url().'/module_scripts/dashboard/leave_status.js'; ?>"></script>
     <?php } ?>
     <script>
 		$(".editor").kendoEditor({
@@ -247,7 +247,7 @@ $user_info = $UsersModel->where('user_id', $session['sup_user_id'])->first();
 		});
         </script>
     <?php if($router->controllerName() == '\App\Controllers\Erp\Roles'){?>
-    <?php /*?><script type="text/javascript" src="<?= base_url();?>/public/assets/plugins/kendo/kendo.all.min.js"></script><?php */?>
+    <?php /*?><script type="text/javascript" src="<?= base_url();?>/assets/plugins/kendo/kendo.all.min.js"></script><?php */?>
 	
     <?= view('erp/staff_roles/role_values');?>
     <?php } ?>
