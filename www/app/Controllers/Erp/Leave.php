@@ -213,10 +213,14 @@ class Leave extends BaseController {
 			elseif($r['status']==3): $status = '<span class="badge badge-light-danger">'.lang('Main.xin_rejected').'</span>';
 			else: $status = '<span class="badge badge-light-warning">'.lang('Main.xin_pending').'</span>'; endif;
 			$combhr = $edit.$view.$delete;
+            $return = '';
+            if ($r['status']==2) {
+                $return = '<span data-toggle="tooltip" data-placement="top" data-state="primary" title="Return"><button type="button" class="btn icon-btn btn-sm btn-light-primary waves-effect waves-light" data-toggle="modal" data-target=".return-modal" data-record-id="'. uencode($r['leave_id']) . '"><i class="feather icon-rotate-ccw"></i></button></span>';
+            }
 			$icname = '
 				'.$uname.'
 				<div class="overlay-edit">
-					'.$combhr.'
+					'.$combhr.$return.'
 				</div>';
 			$data[] = array(
 				$icname,
@@ -266,10 +270,10 @@ class Leave extends BaseController {
 						'required' => lang('Main.xin_error_field_text')
 					]
 				],
-				'reason' => [
+				'declaration' => [
 					'rules'  => 'required',
 					'errors' => [
-						'required' => lang('Main.xin_error_field_text')
+						'required' => 'Please agree to the declaration'
 					]
 				],
 			];
@@ -278,7 +282,7 @@ class Leave extends BaseController {
                     "leave_type" => $validation->getError('leave_type'),
 					"start_date" => $validation->getError('start_date'),
 					"end_date" => $validation->getError('end_date'),
-					"reason" => $validation->getError('reason')
+					"declaration" => $validation->getError('declaration')
                 ];
 				foreach($ruleErrors as $err){
 					$Return['error'] = $err;
@@ -391,7 +395,34 @@ class Leave extends BaseController {
 						'created_at'  => date('d-m-Y h:i:s'),
 					];	
 				}
-				$LeaveModel = new LeaveModel();
+                $data['declaration'] = $this->request->getPost('declaration',FILTER_SANITIZE_STRING);
+                $data['department_id'] = $this->request->getPost('department_id',FILTER_SANITIZE_STRING);
+                $data['days'] = $this->request->getPost('days',FILTER_SANITIZE_STRING);
+                $data['resumption_date'] = $this->request->getPost('resumption_date',FILTER_SANITIZE_STRING);
+                $data['medical_certificate'] = $this->request->getPost('medical_certificate',FILTER_SANITIZE_STRING);
+                $data['advance_pay'] = $this->request->getPost('advance_pay',FILTER_SANITIZE_STRING);
+                $data['supporting_document'] = $this->request->getPost('supporting_document',FILTER_SANITIZE_STRING);
+                $data['require_leave_fare'] = $this->request->getPost('require_leave_fare',FILTER_SANITIZE_STRING);
+                $data['to_be_spent_in'] = $this->request->getPost('to_be_spent_in',FILTER_SANITIZE_STRING);
+                $data['leave_address_mail'] = $this->request->getPost('leave_address_mail',FILTER_SANITIZE_STRING);
+                $data['travel_departure_from'] = $this->request->getPost('travel_departure_from',FILTER_SANITIZE_STRING);
+                $data['travel_departure_to'] = $this->request->getPost('travel_departure_to',FILTER_SANITIZE_STRING);
+                $data['travel_departure_mode'] = $this->request->getPost('travel_departure_mode',FILTER_SANITIZE_STRING);
+                $data['travel_departure_company'] = $this->request->getPost('travel_departure_company',FILTER_SANITIZE_STRING);
+                $data['travel_returning_from'] = $this->request->getPost('travel_returning_from',FILTER_SANITIZE_STRING);
+                $data['travel_returning_to'] = $this->request->getPost('travel_returning_to',FILTER_SANITIZE_STRING);
+                $data['travel_returning_mode'] = $this->request->getPost('travel_returning_mode',FILTER_SANITIZE_STRING);
+                $data['travel_returning_company'] = $this->request->getPost('travel_returning_company',FILTER_SANITIZE_STRING);
+                $data['is_travelling_time_required'] = $this->request->getPost('is_travelling_time_required',FILTER_SANITIZE_STRING);
+                $data['travelling_time_remarks'] = $this->request->getPost('travelling_time_remarks',FILTER_SANITIZE_STRING);
+
+//                print_r($data);
+
+//                $Return['error'] = $data;
+//                $this->output($Return);
+
+//                die();
+                $LeaveModel = new LeaveModel();
 				$EmailtemplatesModel = new EmailtemplatesModel();
 				$result = $LeaveModel->insert($data);	
 				$Return['csrf_hash'] = csrf_hash();	

@@ -213,7 +213,7 @@ $departments = $DepartmentsModel->findAll();
                                                     Department <span
                                                             class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-control" name="department" data-plugin="select_hrm"
+                                                <select class="form-control" name="department_id" data-plugin="select_hrm"
                                                         data-placeholder="Department">
                                                     <option value=""></option>
                                                     <?php foreach ($departments as $department): ?>
@@ -284,14 +284,14 @@ $departments = $DepartmentsModel->findAll();
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="end_date">
+                                                <label for="days">
                                                     No. of Days Leave <span
                                                             class="text-danger">*</span>
                                                 </label>
                                                 <div class="input-group">
                                                     <input class="form-control"
                                                            placeholder="No. of Days Leave"
-                                                           name="resumption_date" type="number" min="0" value="">
+                                                           name="days" type="number" min="0" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -349,9 +349,9 @@ $departments = $DepartmentsModel->findAll();
                                             <div class="form-group mt-4">
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input input-primary"
-                                                           name="medical_certificate" id="medical_certificate"
+                                                           name="require_leave_fare" id="require_leave_fare"
                                                            value="1">
-                                                    <label class="custom-control-label" for="medical_certificate">
+                                                    <label class="custom-control-label" for="require_leave_fare">
                                                         Do You Require a Leave Fare? <br/> (Recreation and Furlough
                                                         Leave
                                                         Only)
@@ -391,46 +391,46 @@ $departments = $DepartmentsModel->findAll();
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="departure_from">
+                                                <label for="travel_departure_from">
                                                     From
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="From"
-                                                       id="departure_from"
-                                                       name="departure_from"/>
+                                                       id="travel_departure_from"
+                                                       name="travel_departure_from"/>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="departure_to">
+                                                <label for="travel_departure_to">
                                                     To
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="To"
-                                                       id="departure_to"
-                                                       name="departure_to"/>
+                                                       id="travel_departure_to"
+                                                       name="travel_departure_to"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="departure_from">
+                                                <label for="travel_departure_mode">
                                                     Mode of Travel
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="Mode of Travel"
-                                                       id="departure_from"
-                                                       name="departure_from"/>
+                                                       id="travel_departure_mode"
+                                                       name="travel_departure_mode"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="name_of_company">
+                                                <label for="travel_departure_company">
                                                     Name of Company
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="Name of Company"
-                                                       id="name_of_company"
-                                                       name="name_of_company"/>
+                                                       id="travel_departure_company"
+                                                       name="travel_departure_company"/>
                                             </div>
                                         </div>
                                     </div>
@@ -445,46 +445,46 @@ $departments = $DepartmentsModel->findAll();
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="departure_from">
+                                                <label for="travel_returning_from">
                                                     From
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="From"
-                                                       id="departure_from"
-                                                       name="departure_from"/>
+                                                       id="travel_returning_from"
+                                                       name="travel_returning_from"/>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="departure_to">
+                                                <label for="travel_returning_to">
                                                     To
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="To"
-                                                       id="departure_to"
-                                                       name="departure_to"/>
+                                                       id="travel_returning_to"
+                                                       name="travel_returning_to"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="departure_from">
+                                                <label for="travel_returning_mode">
                                                     Mode of Travel
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="Mode of Travel"
-                                                       id="departure_from"
-                                                       name="departure_from"/>
+                                                       id="travel_returning_mode"
+                                                       name="travel_returning_mode"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="name_of_company">
+                                                <label for="travel_returning_company">
                                                     Name of Company
                                                 </label>
                                                 <input class="form-control"
                                                        placeholder="Name of Company"
-                                                       id="name_of_company"
-                                                       name="name_of_company"/>
+                                                       id="travel_returning_company"
+                                                       name="travel_returning_company"/>
                                             </div>
                                         </div>
                                     </div>
@@ -507,12 +507,13 @@ $departments = $DepartmentsModel->findAll();
                                         </div>
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <label for="description">
+                                                <label for="travelling_time_remarks">
                                                     If Yes, Please Give Details
                                                 </label>
                                                 <textarea class="form-control textarea"
                                                           placeholder="If Yes, Please Give Details "
-                                                          name="remarks" rows="1"></textarea>
+                                                          id="travelling_time_remarks"
+                                                          name="travelling_time_remarks" rows="1"></textarea>
                                             </div>
                                         </div>
                                     </div>
