@@ -563,13 +563,22 @@ class Timesheet extends BaseController {
 				</div>
 			';
 			$Trest = '';
+
+            $clock_in_location = '';
+            $clock_out_location = '';
+
+//            'employee_id', $r['user_id']
+            if ($attendance['employee_id'] = $r['user_id']) {
+                $clock_in_location = $attendance['clock_in_latitude'] . ', ' . $attendance['clock_in_longitude'];
+                $clock_out_location = $attendance['clock_out_latitude'] . ', ' . $attendance['clock_out_longitude'];
+            }
 			$data[] = array(
 				$links,
                 $departmentName,
 				$attendance_date,
 				$status,
-				$fclock_in . '<br /> '.$attendance['clock_in_latitude'] . ', ' . $attendance['clock_in_longitude']. '<br /> '. $attendance['clock_in_location'],
-				$fclock_out . '<br /> '.$attendance['clock_out_latitude'] . ', ' . $attendance['clock_out_longitude'],
+				$fclock_in . '<br /> '.$clock_in_location,
+				$fclock_out . '<br /> '.$clock_out_location,
 				$total_time_l,
 				$total_time_e,
 				$total_work,
