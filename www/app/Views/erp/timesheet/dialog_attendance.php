@@ -14,27 +14,6 @@ if($request->getGet('data') === 'add_attendance' && $request->getGet('field_id')
 $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 ?>
 
-    <div class="modal fade" id="permissionsModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Enable Location Permissions</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Your location permissions are currently blocked. Please follow the instructions below to enable
-                        them:</p>
-                    <ol>
-                        <li>Click the lock icon next to the URL in your browser.</li>
-                        <li>Find the "Location" setting.</li>
-                        <li>Change it to "Allow" for this site.</li>
-                        <li>Refresh the page and try again.</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal-header">
   <h5 class="modal-title">
     <?= lang('Attendance.xin_add_attendance');?>
@@ -51,7 +30,7 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 <?php echo form_open('erp/timesheet/add_attendance', $attributes, $hidden);?>
 <div class="modal-body">
     <div class="alert alert-danger d-none" id="location-alert">
-        <p class="alert-message"></p>
+        <div class="alert-message"></div>
         <button class="btn btn-outline-danger" type="button" onclick="getLocation()">Get Location</button>
     </div>
   <div class="row" id="locationForm">
@@ -88,6 +67,20 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
           </div>
         </div>
       </div>
+        <input type="text" class="d-none" id="lat" name="lat">
+        <input type="text" class="d-none" id="lng" name="lng">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="location">
+                        Location <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Location" name="location" type="text">
+                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-map-pin"></i></span></div>
+                    </div>
+                </div>
+            </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -100,6 +93,7 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
             </div>
           </div>
         </div>
+
         <div class="col-md-6">
           <div class="form-group">
             <label for="clock_out">
@@ -131,7 +125,7 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
         document.getElementById('locationForm').classList.add('d-none')
         const element = document.getElementById('location-alert');
         element.classList.remove('d-none')
-        element.querySelector('p').innerHTML = message;
+        element.querySelector('div').innerHTML = `<p>${message}</p>`;
     }
 
     function getLocation() {
@@ -139,8 +133,8 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
             navigator.geolocation.getCurrentPosition((position) => {
                 console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`);
 
-                // document.getElementById('lat').value = position.coords.latitude;
-                // document.getElementById('lng').value = position.coords.longitude;
+                document.getElementById('lat').value = position.coords.latitude;
+                document.getElementById('lng').value = position.coords.longitude;
             }, showError);
         } else {
 
@@ -153,17 +147,26 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 
         switch (error.code) {
             case error.PERMISSION_DENIED:
-                handleLocationFailed("User denied the request for Geolocation.");
-                showModal();
+                handleLocationFailed(`<div>
+
+                    <p>Your location permissions are currently blocked. Please follow the instructions below to enable
+                        them:</p>
+                    <ol>
+                        <li>Click the lock icon next to the URL in your browser.</li>
+                        <li>Find the "Location" setting.</li>
+                        <li>Change it to "Allow" for this site.</li>
+                        <li>Refresh the page and try again.</li>
+                    </ol>
+            </div>`);
                 break;
             case error.POSITION_UNAVAILABLE:
-                handleLocationFailed("Location information is unavailable.");
+                handleLocationFailed(`<p>Location information is unavailable.</p>`);
                 break;
             case error.TIMEOUT:
-                handleLocationFailed("The request to get user location timed out.");
+                handleLocationFailed(`<p>The request to get user location timed out.</p>`);
                 break;
             case error.UNKNOWN_ERROR:
-                handleLocationFailed("An unknown error occurred.");
+                handleLocationFailed(`<p>An unknown error occurred.</p>`);
                 break;
         }
     }

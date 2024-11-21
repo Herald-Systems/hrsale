@@ -284,7 +284,7 @@ $ci_erp_settings = $SystemModel->where('setting_id', 1)->first();
 						
                         ?>
                       <tr>
-                        <td width="300"><?= $fclock_in;?></td>
+                        <td width="300"><?= $fclock_in;?>...</td>
                         <td width="360"><?= $fclock_out;?></td>
                         <td><?= $r['total_work'];?></td>
                       </tr>

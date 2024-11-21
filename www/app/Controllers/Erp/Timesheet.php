@@ -568,8 +568,8 @@ class Timesheet extends BaseController {
                 $departmentName,
 				$attendance_date,
 				$status,
-				$fclock_in,
-				$fclock_out,
+				$fclock_in . '<br /> '.$attendance['clock_in_latitude'] . ', ' . $attendance['clock_in_longitude']. '<br /> '. $attendance['clock_in_location'],
+				$fclock_out . '<br /> '.$attendance['clock_out_latitude'] . ', ' . $attendance['clock_out_longitude'],
 				$total_time_l,
 				$total_time_e,
 				$total_work,
@@ -752,12 +752,18 @@ class Timesheet extends BaseController {
 			$Return['csrf_hash'] = csrf_hash();
 			// set rules
 			$rules = [
-				'attendance_date_m' => [
-					'rules'  => 'required',
-					'errors' => [
-						'required' => lang('Success.xin_attendance_date_field_error')
-					]
-				],
+                'attendance_date_m' => [
+                    'rules'  => 'required',
+                    'errors' => [
+                        'required' => lang('Success.xin_attendance_date_field_error')
+                    ]
+                ],
+                'location' => [
+                    'rules'  => 'required',
+                    'errors' => [
+                        'required' => "Location is required"
+                    ]
+                ],
 				'clock_in_m' => [
 					'rules'  => 'required',
 					'errors' => [
@@ -771,10 +777,11 @@ class Timesheet extends BaseController {
 					]
 				]
 			];
-			
+
 			if(!$this->validate($rules)){
 				$ruleErrors = [
 					"attendance_date_m" => $validation->getError('attendance_date_m'),
+					"location" => $validation->getError('location'),
 					"clock_in_m" => $validation->getError('clock_in_m'),
 					"clock_out_m" => $validation->getError('clock_out_m')
                 ];
@@ -813,14 +820,15 @@ class Timesheet extends BaseController {
 					'employee_id'  => $employee_id,
 					'attendance_date'  => $attendance_date,
 					'clock_in'  => $clock_in2,
-					'clock_in_ip_address' => 1,
+					'clock_in_ip_address' => $this->request->getIPAddress(),
 					'clock_out'  => $clock_out2,
-					'clock_out_ip_address'  => 1,
+					'clock_out_ip_address'  => $this->request->getIPAddress(),
 					'clock_in_out'  => 0,
-					'clock_in_latitude' => 1,
-					'clock_in_longitude'  => 1,
-					'clock_out_latitude'  => 1,
-					'clock_out_longitude'  => 1,
+					'clock_in_latitude' => $this->request->getPost('lat',FILTER_SANITIZE_STRING),
+					'clock_in_longitude'  => $this->request->getPost('lng',FILTER_SANITIZE_STRING),
+					'clock_out_latitude'  => $this->request->getPost('lat',FILTER_SANITIZE_STRING),
+					'clock_out_longitude'  => $this->request->getPost('lng',FILTER_SANITIZE_STRING),
+                    'clock_in_location' => $this->request->getPost('location',FILTER_SANITIZE_STRING),
 					'time_late'  => $clock_in2,
 					'early_leaving'  => $clock_out2,
 					'overtime' => $clock_out2,
