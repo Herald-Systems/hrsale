@@ -568,7 +568,7 @@ class Timesheet extends BaseController {
             $clock_out_location = '';
 
 //            'employee_id', $r['user_id']
-            if ($attendance['employee_id'] = $r['user_id']) {
+            if (isset($attendance) && ($attendance['employee_id'] == $r['user_id'])) {
                 $clock_in_location = $attendance['clock_in_latitude'] . ', ' . $attendance['clock_in_longitude'];
                 $clock_out_location = $attendance['clock_out_latitude'] . ', ' . $attendance['clock_out_longitude'];
             }
