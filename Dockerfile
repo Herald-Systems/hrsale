@@ -44,14 +44,6 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 
-database.default.hostname=localhost
-database.default.database=ci4
-database.default.username=root
-database.default.password=FzBReYoGP71eLMR4Vajh
-database.default.DBDriver=MySQLi
-database.default.DBPrefix=
-
-
 # Copy the rest of the application files
 COPY www/ /var/www/html/
 COPY php-config/php.ini /usr/local/etc/php/conf.d/php.ini

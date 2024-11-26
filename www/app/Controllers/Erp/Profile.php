@@ -51,8 +51,9 @@ class Profile extends BaseController {
 	}
 	// update record
 	public function update_profile() {
-			
-		$validation =  \Config\Services::validation();
+
+        global $config;
+        $validation =  \Config\Services::validation();
 		$session = \Config\Services::session($config);
 		$request = \Config\Services::request();
 		$usession = $session->get('sup_username');	
@@ -181,8 +182,9 @@ class Profile extends BaseController {
 	
 	// update record
 	public function update_profile_photo() {
-			
-		$validation =  \Config\Services::validation();
+
+        global $config;
+        $validation =  \Config\Services::validation();
 		$session = \Config\Services::session($config);
 		$request = \Config\Services::request();
 		$usession = $session->get('sup_username');
