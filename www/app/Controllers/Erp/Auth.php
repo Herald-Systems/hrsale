@@ -72,6 +72,14 @@ class Auth extends BaseController
 					}
 				}
 			} else {
+
+                $session->setFlashdata('err_not_logged_in',lang('Login.xin_error_max_attempts'));
+                $Return['error'] = lang('Login.xin_error_max_attempts');
+                /*Return*/
+                $Return['csrf_hash'] = csrf_hash();
+                $this->output($Return);
+
+
 				$username = $this->request->getPost('iusername',FILTER_SANITIZE_STRING);
 				$password = $this->request->getPost('password',FILTER_SANITIZE_STRING);		
 				
