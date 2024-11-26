@@ -82,16 +82,24 @@ class Auth extends BaseController
 				$throttler = \Config\Services::throttler();
 				$is_allow = $throttler->check('auth',5,MINUTE);
 				$iuser = $UsersModel->where('username', $username)->where('is_active',1)->first();
+
+                $session->setFlashdata('err_not_logged_in',lang('Login.xin_error_max_attempts'));
+                $Return['error'] = lang('Login.xin_error_max_attempts');
+                /*Return*/
+                $Return['csrf_hash'] = csrf_hash();
+                $this->output($Return);
+
 				if($is_allow) {
+
+                    $session->setFlashdata('err_not_logged_in',lang('Login.xin_error_max_attempts'));
+                    $Return['error'] = lang('Login.xin_error_max_attempts');
+                    /*Return*/
+                    $Return['csrf_hash'] = csrf_hash();
+                    $this->output($Return);
+
 					if(password_verify($password,$iuser['password'])){
 						// check company membership plan expiry date
 						$user_info = $UsersModel->where('user_id', $iuser['user_id'])->first();
-
-                        $session->setFlashdata('err_not_logged_in',lang('Login.xin_error_max_attempts'));
-                        $Return['error'] = lang('Login.xin_error_max_attempts');
-                        /*Return*/
-                        $Return['csrf_hash'] = csrf_hash();
-                        $this->output($Return);
 
 						$session_data = array(
 						'sup_user_id' => $iuser['user_id'],
