@@ -47,7 +47,6 @@ class PayslipBatchController extends BaseController
                 return redirect()->to('/erp/system-settings#payslips')->with('success', 'Payslip batch created successfully.');
             }
         } else {
-            die(var_dump($this->validator->getErrors()));
             return redirect()->to('/erp/system-settings#payslips')->withInput()->with('error', 'Payslip batch creation failed.');
 
         }

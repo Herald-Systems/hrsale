@@ -301,9 +301,9 @@ $routes->get('erp/projects-grid/', 'Projects::projects_grid', ['namespace' => 'A
 $routes->get('erp/my-projects-list/', 'Projects::projects_client', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
 $routes->get('erp/project-details/(:segment)', 'Projects::client_project_details', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
 
-//$routes->get('erp/payslip_batches', 'PayslipBatchController::index', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
-//$routes->get('erp/payslip_batch/view/(:num)', 'PayslipBatchController::view/$1', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
-//$routes->get('erp/payslip_batch/create', 'PayslipBatchController::create', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
+$routes->get('erp/payslip_batches', 'PayslipBatchController::index', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
+$routes->get('erp/payslip_batch/view/(:num)', 'PayslipBatchController::view/$1', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
+$routes->get('erp/payslip_batch/create', 'PayslipBatchController::create', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
 $routes->post('erp/payslip_batch/create', 'PayslipBatchController::create', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
 
 
