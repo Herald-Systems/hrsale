@@ -14,6 +14,12 @@ app.conf.update(
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Use dotenv to load environment variables if necessary
+from dotenv import load_dotenv
+
+# Load environment variables from .env file if present
+load_dotenv()
+
 current_directory = os.getcwd()
 
 @app.task(name="process_tasks")
