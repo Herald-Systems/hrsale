@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\PayslipBatchModel;
 use App\Models\RolesModel;
 use App\Models\UsersModel;
 use App\Models\ShiftModel;
@@ -20,6 +22,9 @@ $DepartmentModel = new DepartmentModel();
 $DesignationModel = new DesignationModel();
 $StaffdetailsModel = new StaffdetailsModel();
 
+$payslipBatchModel = new PayslipBatchModel();
+
+
 $session = \Config\Services::session();
 $usession = $session->get('sup_username');
 $request = \Config\Services::request();
@@ -29,6 +34,8 @@ $user_id = $usession['sup_user_id'];
 $segment_id = uencode($user_id);
 $result = $UsersModel->where('user_id', $user_id)->first();
 $employee_detail = $StaffdetailsModel->where('user_id', $result['user_id'])->first();
+
+$playslips = $payslipBatchModel->findAll();
 
 $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 if($user_info['user_type'] == 'staff'){
@@ -412,6 +419,16 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
                                     <th>File</th>
                                 </tr>
                                 </thead>
+                                <tbody>
+                                <?php foreach ($playslips as $payslip): ?>
+                                    <tr>
+                                        <td><?= $payslip['pay_date'] ?></td>
+                                        <td><?= $payslip['processed_at'] ?></td>
+                                        <td><a href="<?= base_url('writable/uploads/' . $payslip['id'].'/'.$employee_detail['employee_id'].'.pdf')  ?>"
+                                               target="_blank">View</a></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>

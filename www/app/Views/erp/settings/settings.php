@@ -376,6 +376,7 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
                             <thead>
                             <tr>
                                 <th>Pay Date</th>
+                                <th>Processed At</th>
                                 <th>File</th>
                             </tr>
                             </thead>
@@ -383,7 +384,8 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
                             <?php foreach ($playslips as $payslip): ?>
                                 <tr>
                                     <td><?= $payslip['pay_date'] ?></td>
-                                    <td><a href="<?= base_url('uploads/' . $payslip['file'])  ?>"
+                                    <td><?= $payslip['processed_at'] ?></td>
+                                    <td><a href="<?= base_url('writable/uploads/' . $payslip['file'])  ?>"
                                            target="_blank">View</a></td>
                                 </tr>
                             <?php endforeach; ?>
