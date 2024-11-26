@@ -1,0 +1,14 @@
+[Unit]
+Description=Celery Worker Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/html/worker
+ExecStartPre=/var/www/html/worker/venv/bin/celery --app=worker purge -f
+ExecStart=/var/www/html/worker/venv/bin/celery --app=worker worker --loglevel=INFO --logfile=/var/www/html/worker/logs/celery_worker.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

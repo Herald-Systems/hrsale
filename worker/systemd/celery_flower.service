@@ -1,0 +1,15 @@
+[Unit]
+Description=Flower Celery Monitoring Tool
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+ExecStart=/var/www/html/worker/venv/bin/celery --app=worker flower --port=5555 --broker=redis://localhost:6379/0
+WorkingDirectory=/var/www/html/worker
+Restart=always
+Environment=PATH=/var/www/html/worker/venv/bin:$PATH
+Environment=VIRTUAL_ENV=/var/www/html/worker/venv
+
+[Install]
+WantedBy=multi-user.target

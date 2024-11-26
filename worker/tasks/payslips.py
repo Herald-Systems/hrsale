@@ -111,34 +111,6 @@ def extract_dynamic_text_from_pdf(source_file):
         logger.error(f"Error during PDF text extraction from {source_file}: {e}")
 
 
-@app.task(name="process_tasks")
-def process_tasks():
-    print('Processing tasks')
-
-    try:
-        tasks = fetch_tasks()
-
-        for task in tasks:
-
-            task_id, file_path = task
-            logger.info(f"Processing task {task_id} with file path: {file_path}")
-
-            prefix = "https://espahrp.echadconsultants.com/writable/uploads/"
-            output_folder = os.path.join("/var/www/html/www/writable/uploads", str(task_id))
-
-            # Ensure the output directory exists
-            os.makedirs(output_folder, exist_ok=True)
-
-            input_file_url = f"{prefix}{file_path}"
-            logger.info(f"Splitting file {input_file_url} into {output_folder}")
-
-            try:
-                split_file_by_page(input_file_url, output_folder)
-            except Exception as e:
-                logger.error(f"Error processing file {input_file_url} for task {task_id}: {e}", exc_info=True)
-
-    except Exception as e:
-        logger.error(f"Error fetching or processing tasks: {e}", exc_info=True)
 
 
 

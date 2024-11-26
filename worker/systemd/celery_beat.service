@@ -1,0 +1,13 @@
+[Unit]
+Description=Celery Beat Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/html/worker
+ExecStart=/var/www/html/worker/venv/bin/celery --app=worker beat --loglevel=INFO --logfile=/var/www/html/worker/logs/celery_beat.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
