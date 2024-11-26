@@ -1,5 +1,6 @@
 import json
 import os
+import time
 from io import BytesIO
 import logging
 
@@ -35,6 +36,18 @@ def fetch_tasks():
     except pymysql.MySQLError as e:
         logger.error(f"Database error: {e}")
         return []
+
+def mark_task_as_processed(task_id):
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    try:
+        conn = connect_to_db()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE ci_payslip_batches SET processed = 1, processed_at = %s WHERE id = %s", (timestamp, task_id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+    except pymysql.MySQLError as e:
+        logger.error(f"Failed to update task {task_id} as processed: {e}")
 
 
 def split_file_by_page(source_file, output_folder):

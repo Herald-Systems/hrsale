@@ -1,7 +1,7 @@
 import logging, os
 from celery import Celery
 
-from tasks.payslips import fetch_tasks, split_file_by_page
+from tasks.payslips import fetch_tasks, split_file_by_page, mark_task_as_processed
 
 # Create a Celery application instance
 app = Celery('tasks', broker='redis://localhost:6379/0')
@@ -35,6 +35,8 @@ def process_tasks():
 
             try:
                 split_file_by_page(input_file_url, output_folder)
+
+                mark_task_as_processed(task_id)
             except Exception as e:
                 logger.error(f"Error processing file {input_file_url} for task {task_id}: {e}", exc_info=True)
     except Exception as e:
@@ -44,7 +46,7 @@ def process_tasks():
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(
-        60.0,
+        300.0,
         process_tasks.s(),
-        name='add every 1 minute'
+        name='add every 5 minutes'
     )
