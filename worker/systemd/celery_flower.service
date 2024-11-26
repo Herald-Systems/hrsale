@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=www-data
 Group=www-data
-ExecStart=/var/www/html/worker/venv/bin/celery --app=worker flower --port=5555 --broker=redis://localhost:6379/0
+ExecStart=/var/www/html/worker/venv/bin/celery --app=tasks flower --port=5555 --broker=redis://localhost:6379/0
 WorkingDirectory=/var/www/html/worker
 Restart=always
 Environment=PATH=/var/www/html/worker/venv/bin:$PATH
