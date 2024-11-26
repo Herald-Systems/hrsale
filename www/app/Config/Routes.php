@@ -300,6 +300,13 @@ $routes->get('erp/projects-grid/', 'Projects::projects_grid', ['namespace' => 'A
 // projects||Clients
 $routes->get('erp/my-projects-list/', 'Projects::projects_client', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
 $routes->get('erp/project-details/(:segment)', 'Projects::client_project_details', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
+
+$routes->get('erp/payslip_batches', 'PayslipBatchController::index');
+$routes->get('erp/payslip_batch/view/(:num)', 'PayslipBatchController::view/$1');
+$routes->get('erp/payslip_batch/create', 'PayslipBatchController::create');
+$routes->post('erp/payslip_batch/create', 'PayslipBatchController::create');
+
+
 /***************************************************************************************************************/
 /***************************************************************************************************************/
 /**

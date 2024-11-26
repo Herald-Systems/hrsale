@@ -5,6 +5,7 @@
 ?>
 <?php
 
+use App\Models\PayslipBatchModel;
 use App\Models\UsersModel;
 use App\Models\LanguageModel;
 use App\Models\SystemModel;
@@ -17,6 +18,8 @@ $CountryModel = new CountryModel();
 $UsersModel = new UsersModel();
 $ConstantsModel = new ConstantsModel();
 
+$payslipBatchModel = new PayslipBatchModel();
+
 $session = \Config\Services::session();
 $usession = $session->get('sup_username');
 $request = \Config\Services::request();
@@ -26,6 +29,8 @@ $user = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 $currency = $ConstantsModel->where('type', 'currency_type')->orderBy('constants_id', 'ASC')->findAll();
 $language = $LanguageModel->where('is_active', 1)->orderBy('language_id', 'ASC')->findAll();
 $xin_system = $SystemModel->where('setting_id', 1)->first();
+$playslips = $payslipBatchModel->findAll();
+
 /////
 $all_countries = $CountryModel->orderBy('country_id', 'ASC')->findAll();
 $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('constants_id', 'ASC')->findAll();
@@ -364,43 +369,50 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
                         </h5>
                     </div>
                     <div class="card-body">
-                        <table class="table ">
+                        <table class="table border-bottom mb-4 ">
                             <thead>
                             <tr>
-                                <th>Date</th>
+                                <th>Pay Date</th>
                                 <th>File</th>
                             </tr>
                             </thead>
                             <tbody>
-
+                            <?php foreach ($playslips as $payslip): ?>
+                                <tr>
+                                    <td><?= $payslip['pay_date'] ?></td>
+                                    <td><a href="<?= base_url() . '/public/uploads/payslips/' . $payslip['file'] ?>"
+                                           target="_blank">View</a></td>
+                                </tr>
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <?php $attributes = array('name' => 'payslips', 'id' => 'payslips', 'autocomplete' => 'off'); ?>
+                        <?php $attributes = array('name' => 'payslips', 'id' => 'payslips', 'autocomplete' => 'off', 'enctype' => "multipart/form-data", 'method' => "post"); ?>
                         <?php $hidden = array(); ?>
-                        <?= form_open('erp/settings/payslips', $attributes, $hidden); ?>
+                        <?= form_open_multipart('erp/payslip_batch/create', $attributes, $hidden); ?>
                         <div class="bg-white">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">
-                                            Date
+                                            Pay Date
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control"
                                                placeholder="Date"
                                                name="date" type="date"
-                                                id="date">
+                                               id="date">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-4">
                                     <label for="logo">
-                                        File
-                                        <span class="text-danger">*</span> </label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="favicon" accept="application/pdf">
-                                        <label class="custom-file-label"><?= lang('Main.xin_choose_file'); ?></label>
+                                        File <span class="text-danger">*</span>
+                                    </label>
 
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input"
+                                               name="file" accept="application/pdf">
+                                        <label class="custom-file-label"><?= lang('Main.xin_choose_file'); ?></label>
                                     </div>
                                 </div>
                             </div>

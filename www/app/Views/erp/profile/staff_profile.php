@@ -169,9 +169,18 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
               <li class="nav-item"> <a class="nav-link" id="pills-statutory-tab" data-toggle="pill" href="#pills-statutory" role="tab" aria-controls="pills-statutory" aria-selected="false">
                 <?= lang('Employees.xin_satatutory_deductions');?>
                 </a> </li>
-              <li class="nav-item"> <a class="nav-link" id="pills-reimbursements-tab" data-toggle="pill" href="#pills-reimbursements" role="tab" aria-controls="pills-reimbursements" aria-selected="false">
-                <?= lang('Employees.xin_reimbursements');?>
-                </a> </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-reimbursements-tab" data-toggle="pill" href="#pills-reimbursements"
+                       role="tab" aria-controls="pills-reimbursements" aria-selected="false">
+                        <?= lang('Employees.xin_reimbursements');?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-payslips-tab" data-toggle="pill" href="#pills-payslips"
+                       role="tab" aria-controls="pills-payslips" aria-selected="false">
+                        Payslips
+                    </a>
+                </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
               <div class="tab-pane fade active show" id="pills-contract" role="tabpanel" aria-labelledby="pills-contract-tab">
@@ -368,26 +377,45 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="pills-reimbursements" role="tabpanel" aria-labelledby="pills-reimbursements-tab">
-                <div class="card-body">
-                  <h5 class="mt-1 mb-3 pb-3 border-bottom">
-                    <?= lang('Main.xin_list_all');?>
-                    <?= lang('Employees.xin_reimbursements');?>
-                  </h5>
-                  <div class="box-datatable table-responsive">
-                    <table class="table table-striped table-bordered dataTable" id="xin_table_all_other_payments" style="width:100%;">
-                      <thead>
-                        <tr>
-                          <th><?= lang('Dashboard.xin_title');?></th>
-                          <th><?= lang('Invoices.xin_amount');?></th>
-                          <th><?= lang('Employees.xin_reimbursements_option');?></th>
-                          <th><?= lang('Employees.xin_amount_option');?></th>
-                        </tr>
-                      </thead>
-                    </table>
-                  </div>
+                <div class="tab-pane fade" id="pills-reimbursements" role="tabpanel" aria-labelledby="pills-reimbursements-tab">
+                    <div class="card-body">
+                        <h5 class="mt-1 mb-3 pb-3 border-bottom">
+                            <?= lang('Main.xin_list_all');?>
+                            <?= lang('Employees.xin_reimbursements');?>
+                        </h5>
+                        <div class="box-datatable table-responsive">
+                            <table class="table table-striped table-bordered dataTable" id="xin_table_all_other_payments" style="width:100%;">
+                                <thead>
+                                <tr>
+                                    <th><?= lang('Dashboard.xin_title');?></th>
+                                    <th><?= lang('Invoices.xin_amount');?></th>
+                                    <th><?= lang('Employees.xin_reimbursements_option');?></th>
+                                    <th><?= lang('Employees.xin_amount_option');?></th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+                <div class="tab-pane fade" id="pills-payslips" role="tabpanel" aria-labelledby="pills-payslips-tab">
+                    <div class="card-body">
+                        <h5 class="mt-1 mb-3 pb-3 border-bottom">
+                            <?= lang('Main.xin_list_all');?>
+                            Payslips
+                        </h5>
+                        <div class="box-datatable table-responsive">
+                            <table class="table table-striped table-bordered dataTable" id="xin_table_all_other_payments" style="width:100%;">
+                                <thead>
+                                <tr>
+                                    <th>Pay Date</th>
+                                    <th>File</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
