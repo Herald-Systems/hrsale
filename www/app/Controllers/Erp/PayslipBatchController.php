@@ -36,12 +36,17 @@ class PayslipBatchController extends BaseController
             $file = $this->request->getFile('file');
 
             if ($file->isValid() && !$file->hasMoved()) {
-                $file->move(WRITEPATH . 'uploads');
+                $newName = $file->getRandomName();
+                $file->move(WRITEPATH . 'uploads', $newName);
+
+                // Generate the URL
+                $filePath = WRITEPATH . 'uploads/' . $newName;
+                $fileUrl = base_url('uploads/' . $newName);
 
                 $model = new PayslipBatchModel();
                 $model->save([
                     'pay_date' => $this->request->getPost('pay_date'),
-                    'file'     => $file->getName(),
+                    'file'     => $filePath,
                 ]);
 
                 return redirect()->to('/erp/system-settings#payslips')->with('success', 'Payslip batch created successfully.');
