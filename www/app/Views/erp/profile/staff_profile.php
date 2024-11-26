@@ -416,6 +416,7 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
                                 <thead>
                                 <tr>
                                     <th>Pay Date</th>
+                                    <th>Processed At</th>
                                     <th>File</th>
                                 </tr>
                                 </thead>
