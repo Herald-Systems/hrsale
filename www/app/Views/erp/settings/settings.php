@@ -108,13 +108,16 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
             </div>
             <div class="nav flex-column nav-pills list-group list-group-flush list-pills" id="user-set-tab"
                  role="tablist" aria-orientation="vertical">
-                <a class="nav-link list-group-item list-group-item-action active" id="account-settings-tab"
+
+                <a class="nav-link list-group-item list-group-item-action" id="account-settings-tab"
                    data-toggle="pill" href="#account-settings" role="tab" aria-controls="account-settings"
                    aria-selected="true">
-                    <span class="f-w-500"><i class="feather icon-disc m-r-10 h5 "></i>
+                    <span class="f-w-500">
+                        <i class="feather icon-disc m-r-10 h5 "></i>
                         <?= lang('Main.xin_system'); ?>
                     </span>
-                    <span class="float-right"><i class="feather icon-chevron-right"></i>
+                    <span class="float-right">
+                        <i class="feather icon-chevron-right"></i>
                     </span>
                 </a>
                 <a class="nav-link list-group-item list-group-item-action" id="payslips-tab"
@@ -152,7 +155,7 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
     </div>
     <div class="col-lg-9">
         <div class="tab-content" id="user-set-tabContent">
-            <div class="tab-pane fade show active" id="account-settings" role="tabpanel"
+            <div class="tab-pane fade show" id="account-settings" role="tabpanel"
                  aria-labelledby="account-settings-tab">
                 <div class="card">
                     <div class="card-header">
@@ -359,7 +362,7 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
                 </div>
             </div>
 
-            <div class="tab-pane fade show active" id="payslips" role="tabpanel"
+            <div class="tab-pane fade show" id="payslips" role="tabpanel"
                  aria-labelledby="account-settings-tab">
                 <div class="card">
                     <div class="card-header">
@@ -393,14 +396,14 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label">
+                                        <label class="form-label" for="pay_date">
                                             Pay Date
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control"
                                                placeholder="Date"
-                                               name="date" type="date"
-                                               id="date">
+                                               name="pay_date" type="date"
+                                               id="pay_date">
                                     </div>
                                 </div>
 
@@ -828,3 +831,28 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
         </div>
     </div>
     <?php } ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var hash = window.location.hash;
+
+            if (hash) {
+                var tabPane = document.querySelector(hash);
+                if (tabPane) {
+                    var tabNav = document.querySelector(`[href="${hash}"]`);
+                    if (tabNav) {
+                        // Activate the tab
+                        var tabInstance = new bootstrap.Tab(tabNav);
+                        tabInstance.show();
+                    }
+                }
+            }
+
+            // Update URL hash without page scroll
+            document.querySelectorAll('.nav-link').forEach(function (tabLink) {
+                tabLink.addEventListener('shown.bs.tab', function (event) {
+                    history.replaceState(null, null, event.target.getAttribute('href'));
+                });
+            });
+        });
+    </script>
