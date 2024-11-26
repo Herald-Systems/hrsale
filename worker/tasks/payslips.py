@@ -70,7 +70,14 @@ def split_file_by_page(source_file, output_folder):
         for page_number in range(pdf_document.page_count):
             page = pdf_document.load_page(page_number)
             output_file = os.path.join(output_folder, f"page_{page_number + 1}.pdf")
-            page.save(output_file)
+
+            # Create a new document and insert the page
+            single_page_doc = fitz.open()
+            single_page_doc.insert_pdf(pdf_document, from_page=page_number, to_page=page_number)
+
+            # Save the single-page document
+            single_page_doc.save(output_file)
+            single_page_doc.close()
 
             extract_dynamic_text_from_pdf(output_file)
 
