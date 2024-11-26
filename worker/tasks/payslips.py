@@ -114,6 +114,7 @@ def extract_dynamic_text_from_pdf(source_file):
         extracted_data = [data for data in extracted_data if data not in labels_to_remove]
         extracted_data = [data for data in extracted_data if 'PUBC' not in data and 'PS15' not in data]
 
+        print(extracted_data)
         full_string = extracted_data[2].split()
         split_string = full_string.split(" ", 1)
 
