@@ -51,6 +51,7 @@ $routes->match(['get', 'post'],'erp/languages/language_status/', 'Languages::lan
 //7: System||Settings|| STD
 $routes->get('erp/currency-converter/', 'Settings::currency_converter', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
 //STD
+$routes->post('erp/profile/update_profile_photo', 'Profile::update_profile_photo', ['namespace' => 'App\Controllers\Erp']);
 $routes->get('erp/system-settings/', 'Settings::index', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin']);
 $routes->match(['get', 'post'],'erp/settings/system_info/', 'Settings::system_info', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin',]);
 $routes->match(['get', 'post'],'erp/settings/add_logo/', 'Settings::add_logo', ['namespace' => 'App\Controllers\Erp','filter' => 'checklogin',]);
