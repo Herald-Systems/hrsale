@@ -207,11 +207,17 @@ class Profile extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('file');
 				$file_name = $avatar->getRandomName();
-				$avatar->move('uploads/users/', $file_name);
-
-				$image->withFile(filesrc($file_name))
-				->fit(100, 100, 'center')
-				->save('uploads/users/thumb/'.$file_name);
+                // Move the file
+                if ($avatar->move('uploads/users/', $file_name)) {
+                    // Generate thumbnail
+                    $image->withFile('uploads/users/' . $file_name)
+                        ->fit(100, 100, 'center')
+                        ->save('uploads/users/thumb/' . $file_name);
+                } else {
+                    // Handle the error
+                    // You can throw an exception or handle the error as needed
+                    throw new \RuntimeException('File upload failed.');
+                }
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
