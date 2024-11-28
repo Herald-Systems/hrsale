@@ -1110,3 +1110,28 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
   </div>
   <!-- [] end --> 
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var hash = window.location.hash;
+
+        if (hash) {
+            var tabPane = document.querySelector(hash);
+            if (tabPane) {
+                var tabNav = document.querySelector(`[href="${hash}"]`);
+                if (tabNav) {
+                    // Activate the tab
+                    var tabInstance = new bootstrap.Tab(tabNav);
+                    tabInstance.show();
+                }
+            }
+        }
+
+        // Update URL hash without page scroll
+        document.querySelectorAll('.nav-link').forEach(function (tabLink) {
+            tabLink.addEventListener('shown.bs.tab', function (event) {
+                history.replaceState(null, null, event.target.getAttribute('href'));
+            });
+        });
+    });
+</script>
