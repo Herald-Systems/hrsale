@@ -205,10 +205,10 @@ class Profile extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('file');
 				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/users/');
-//				$image->withFile(filesrc($file_name))
-//				->fit(100, 100, 'center')
-//				->save('public/uploads/users/thumb/'.$file_name);
+				$avatar->move('uploads/users/');
+				$image->withFile(filesrc($file_name))
+				->fit(100, 100, 'center')
+				->save('uploads/users/thumb/'.$file_name);
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
