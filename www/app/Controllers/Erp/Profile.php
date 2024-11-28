@@ -210,7 +210,7 @@ class Profile extends BaseController {
                 // Move the file
                 if ($avatar->move('uploads/users/', $file_name)) {
                     // Generate thumbnail
-                    $image->withFile('uploads/users/' . $file_name)
+                    $image->withFile('/www/public/uploads/users/' . $file_name)
                         ->fit(100, 100, 'center')
                         ->save('uploads/users/thumb/' . $file_name);
                 } else {
