@@ -173,7 +173,7 @@ class Awards extends BaseController {
 				// upload file
 				$award_picture = $this->request->getFile('award_picture');
 				$file_name = $award_picture->getName();
-				$award_picture->move('public/uploads/awards/');
+				$award_picture->move('uploads/awards/');
 				
 				$award_type_id = $this->request->getPost('award_type_id',FILTER_SANITIZE_STRING);
 				$award_date = $this->request->getPost('award_date',FILTER_SANITIZE_STRING);
@@ -315,7 +315,7 @@ class Awards extends BaseController {
 				if ($validated) {
 					$award_picture = $this->request->getFile('award_picture');
 					$file_name = $award_picture->getName();
-					$award_picture->move('public/uploads/awards/');
+					$award_picture->move('uploads/awards/');
 				}
 				
 				$award_type_id = $this->request->getPost('award_type_id',FILTER_SANITIZE_STRING);

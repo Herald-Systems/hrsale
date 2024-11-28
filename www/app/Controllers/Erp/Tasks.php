@@ -1080,7 +1080,7 @@ class Tasks extends BaseController {
 				// upload file
 				$attachment = $this->request->getFile('attachment_file');
 				$file_name = $attachment->getName();
-				$attachment->move('public/uploads/task_files/');
+				$attachment->move('uploads/task_files/');
 				
 				$file_title = $this->request->getPost('file_name',FILTER_SANITIZE_STRING);
 				$id = udecode($this->request->getPost('token',FILTER_SANITIZE_STRING));

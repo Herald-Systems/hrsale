@@ -694,7 +694,7 @@ class Finance extends BaseController {
 				// upload file
 				$attachment = $this->request->getFile('attachment');
 				$file_name = $attachment->getName();
-				$attachment->move('public/uploads/transactions/');
+				$attachment->move('uploads/transactions/');
 				
 				$account_id = $this->request->getPost('account_id',FILTER_SANITIZE_STRING);
 				$amount = $this->request->getPost('amount',FILTER_SANITIZE_STRING);
@@ -826,7 +826,7 @@ class Finance extends BaseController {
 				// upload file
 				$attachment = $this->request->getFile('attachment');
 				$file_name = $attachment->getName();
-				$attachment->move('public/uploads/transactions/');
+				$attachment->move('uploads/transactions/');
 				
 				$account_id = $this->request->getPost('account_id',FILTER_SANITIZE_STRING);
 				$amount = $this->request->getPost('amount',FILTER_SANITIZE_STRING);
@@ -960,7 +960,7 @@ class Finance extends BaseController {
 				if ($validated) {
 					$attachment = $this->request->getFile('attachment');
 					$file_name = $attachment->getName();
-					$attachment->move('public/uploads/transactions/');
+					$attachment->move('uploads/transactions/');
 				}
 				
 				$account_id = $this->request->getPost('account_id',FILTER_SANITIZE_STRING);
@@ -1096,7 +1096,7 @@ class Finance extends BaseController {
 				if ($validated) {
 					$attachment = $this->request->getFile('attachment');
 					$file_name = $attachment->getName();
-					$attachment->move('public/uploads/transactions/');
+					$attachment->move('uploads/transactions/');
 				}
 				
 				$account_id = $this->request->getPost('account_id',FILTER_SANITIZE_STRING);

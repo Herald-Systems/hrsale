@@ -142,10 +142,10 @@ class Languages extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('language_flag');
 				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/languages_flag/temp/');
+				$avatar->move('uploads/languages_flag/temp/');
 				$image->withFile(langfilesrc($file_name))
 				->fit(16, 11, 'center')
-				->save('public/uploads/languages_flag/'.$file_name);
+				->save('uploads/languages_flag/'.$file_name);
 			}
 			if($Return['error']!=''){
 				$this->output($Return);

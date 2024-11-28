@@ -238,7 +238,7 @@ class Settings extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('logo_file');
 				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/logo/');
+				$avatar->move('uploads/logo/');
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
@@ -286,7 +286,7 @@ class Settings extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('favicon');
 				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/logo/favicon/');
+				$avatar->move('uploads/logo/favicon/');
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
@@ -334,7 +334,7 @@ class Settings extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('frontend_logo');
 				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/logo/frontend/');
+				$avatar->move('uploads/logo/frontend/');
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
@@ -382,7 +382,7 @@ class Settings extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('other_logo');
 				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/logo/other/');
+				$avatar->move('uploads/logo/other/');
 			}
 			if($Return['error']!=''){
 				$this->output($Return);

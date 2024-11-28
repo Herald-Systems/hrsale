@@ -664,13 +664,20 @@ class Employees extends BaseController {
 			if (!$validated) {
 				$Return['error'] = lang('Employees.xin_staff_picture_field_error');
 			} else {
-				
-				$user_image = $this->request->getFile('file');
-				$file_name = $user_image->getName();
-				$user_image->move('public/uploads/users/');
-				$image->withFile(filesrc($file_name))
-				->fit(100, 100, 'center')
-				->save('public/uploads/users/thumb/'.$file_name);
+
+                $avatar = $this->request->getFile('file');
+                $file_name = $avatar->getRandomName();
+                // Move the file
+                if ($avatar->move('uploads/users/', $file_name)) {
+                    // Generate thumbnail
+                    $image->withFile('/var/www/html/www/public/uploads/users/' . $file_name)
+                        ->fit(100, 100, 'center')
+                        ->save('uploads/users/thumb/' . $file_name);
+                } else {
+                    // Handle the error
+                    // You can throw an exception or handle the error as needed
+                    throw new \RuntimeException('File upload failed.');
+                }
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
@@ -1525,7 +1532,7 @@ class Employees extends BaseController {
 				// upload file
 				$document_file = $this->request->getFile('document_file');
 				$file_name = $document_file->getName();
-				$document_file->move('public/uploads/documents/');
+				$document_file->move('uploads/documents/');
 				
 				$document_name = $this->request->getPost('document_name',FILTER_SANITIZE_STRING);
 				$document_type = $this->request->getPost('document_type',FILTER_SANITIZE_STRING);
@@ -1616,7 +1623,7 @@ class Employees extends BaseController {
 				if ($validated) {
 					$document_file = $this->request->getFile('document_file');
 					$file_name = $document_file->getName();
-					$document_file->move('public/uploads/documents/');
+					$document_file->move('uploads/documents/');
 				}
 				
 				$document_name = $this->request->getPost('document_name',FILTER_SANITIZE_STRING);
@@ -2435,12 +2442,19 @@ class Employees extends BaseController {
 			if (!$validated) {
 				$Return['error'] = lang('Main.xin_error_profile_picture_field');
 			} else {
-				$avatar = $this->request->getFile('file');
-				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/users/');
-				$image->withFile(filesrc($file_name))
-				->fit(100, 100, 'center')
-				->save('public/uploads/users/thumb/'.$file_name);
+                $avatar = $this->request->getFile('file');
+                $file_name = $avatar->getRandomName();
+                // Move the file
+                if ($avatar->move('uploads/users/', $file_name)) {
+                    // Generate thumbnail
+                    $image->withFile('/var/www/html/www/public/uploads/users/' . $file_name)
+                        ->fit(100, 100, 'center')
+                        ->save('uploads/users/thumb/' . $file_name);
+                } else {
+                    // Handle the error
+                    // You can throw an exception or handle the error as needed
+                    throw new \RuntimeException('File upload failed.');
+                }
 			}
 			if($Return['error']!=''){
 				$this->output($Return);

@@ -1034,7 +1034,7 @@ class Recruitment extends BaseController {
 				// upload file
 				$file_cv = $this->request->getFile('file_cv');
 				$file_name = $file_cv->getName();
-				$file_cv->move('public/uploads/candidates/');
+				$file_cv->move('uploads/candidates/');
 				
 				$cover_letter = $this->request->getPost('cover_letter',FILTER_SANITIZE_STRING);
 				$id = udecode($this->request->getPost('token',FILTER_SANITIZE_STRING));

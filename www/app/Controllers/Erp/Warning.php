@@ -133,7 +133,7 @@ class Warning extends BaseController {
 				// upload file
 				$attachment = $this->request->getFile('attachment');
 				$file_name = $attachment->getName();
-				$attachment->move('public/uploads/warning/');
+				$attachment->move('uploads/warning/');
 				
 				$warning_type = $this->request->getPost('warning_type',FILTER_SANITIZE_STRING);
 				$subject = $this->request->getPost('subject',FILTER_SANITIZE_STRING);

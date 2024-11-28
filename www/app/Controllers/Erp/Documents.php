@@ -281,7 +281,7 @@ class Documents extends BaseController {
 				// upload file
 				$document_file = $this->request->getFile('document_file');
 				$file_name = $document_file->getName();
-				$document_file->move('public/uploads/system_documents/');
+				$document_file->move('uploads/system_documents/');
 				
 				$department_id = $this->request->getPost('department_id',FILTER_SANITIZE_STRING);
 				$document_name = $this->request->getPost('document_name',FILTER_SANITIZE_STRING);
@@ -385,7 +385,7 @@ class Documents extends BaseController {
 				// upload file
 				$document_file = $this->request->getFile('document_file');
 				$file_name = $document_file->getName();
-				$document_file->move('public/uploads/official_documents/');
+				$document_file->move('uploads/official_documents/');
 				
 				$license_name = $this->request->getPost('license_name',FILTER_SANITIZE_STRING);
 				$document_type = $this->request->getPost('document_type',FILTER_SANITIZE_STRING);
@@ -493,7 +493,7 @@ class Documents extends BaseController {
 				if ($validated) {
 					$document_file = $this->request->getFile('document_file');
 					$file_name = $document_file->getName();
-					$document_file->move('public/uploads/official_documents/');
+					$document_file->move('uploads/official_documents/');
 				}
 				
 				$license_name = $this->request->getPost('license_name',FILTER_SANITIZE_STRING);

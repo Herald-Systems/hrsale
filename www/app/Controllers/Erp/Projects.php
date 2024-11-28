@@ -1690,7 +1690,7 @@ class Projects extends BaseController {
 				// upload file
 				$attachment = $this->request->getFile('attachment_file');
 				$file_name = $attachment->getName();
-				$attachment->move('public/uploads/project_files/');
+				$attachment->move('uploads/project_files/');
 				
 				$file_title = $this->request->getPost('file_name',FILTER_SANITIZE_STRING);
 				$id = udecode($this->request->getPost('token',FILTER_SANITIZE_STRING));

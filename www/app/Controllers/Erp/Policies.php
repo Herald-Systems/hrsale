@@ -193,7 +193,7 @@ class Policies extends BaseController {
 				// upload file
 				$attachment = $this->request->getFile('attachment');
 				$file_name = $attachment->getName();
-				$attachment->move('public/uploads/policy/');
+				$attachment->move('uploads/policy/');
 				
 				$title = $this->request->getPost('title',FILTER_SANITIZE_STRING);
 				$description = $this->request->getPost('description',FILTER_SANITIZE_STRING);
@@ -282,7 +282,7 @@ class Policies extends BaseController {
 				if ($validated) {
 					$attachment = $this->request->getFile('attachment');
 					$file_name = $attachment->getName();
-					$attachment->move('public/uploads/policy/');
+					$attachment->move('uploads/policy/');
 					$data = [
 						'title' => $title,
 						'description'  => $description,

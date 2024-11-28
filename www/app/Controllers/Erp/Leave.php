@@ -366,7 +366,7 @@ class Leave extends BaseController {
 				if ($validated) {
 					$attachment = $this->request->getFile('attachment');
 					$file_name = $attachment->getName();
-					$attachment->move('public/uploads/leave/');
+					$attachment->move('uploads/leave/');
 					$data = [
 						'company_id' => $company_id,
 						'employee_id'  => $staff_id,

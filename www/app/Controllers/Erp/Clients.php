@@ -653,12 +653,19 @@ class Clients extends BaseController {
 				$Return['error'] = lang('Employees.xin_staff_picture_field_error');
 			} else {
 				//$image = service('image');
-				$avatar = $this->request->getFile('file');
-				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/clients/');
-				$image->withFile(filecsrc($file_name))
-				->fit(100, 100, 'center')
-				->save('public/uploads/clients/thumb/'.$file_name);
+                $avatar = $this->request->getFile('file');
+                $file_name = $avatar->getRandomName();
+                // Move the file
+                if ($avatar->move('uploads/clients/', $file_name)) {
+                    // Generate thumbnail
+                    $image->withFile('/var/www/html/www/public/uploads/clients/' . $file_name)
+                        ->fit(100, 100, 'center')
+                        ->save('uploads/clients/thumb/' . $file_name);
+                } else {
+                    // Handle the error
+                    // You can throw an exception or handle the error as needed
+                    throw new \RuntimeException('File upload failed.');
+                }
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
@@ -803,14 +810,20 @@ class Clients extends BaseController {
 			if (!$validated) {
 				$Return['error'] = lang('Employees.xin_staff_picture_field_error');
 			} else {
-				
-				$avatar = $this->request->getFile('file');
-				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/clients/');
-				
-				$image->withFile(filecsrc($file_name))
-				->fit(100, 100, 'center')
-				->save('public/uploads/clients/thumb/'.$file_name);
+
+                $avatar = $this->request->getFile('file');
+                $file_name = $avatar->getRandomName();
+                // Move the file
+                if ($avatar->move('uploads/clients/', $file_name)) {
+                    // Generate thumbnail
+                    $image->withFile('/var/www/html/www/public/uploads/clients/' . $file_name)
+                        ->fit(100, 100, 'center')
+                        ->save('uploads/clients/thumb/' . $file_name);
+                } else {
+                    // Handle the error
+                    // You can throw an exception or handle the error as needed
+                    throw new \RuntimeException('File upload failed.');
+                }
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
@@ -1154,12 +1167,19 @@ class Clients extends BaseController {
 			if (!$validated) {
 				$Return['error'] = lang('Main.xin_error_profile_picture_field');
 			} else {
-				$avatar = $this->request->getFile('file');
-				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/clients/');
-				$image->withFile(filesrc($file_name))
-				->fit(100, 100, 'center')
-				->save('public/uploads/clients/thumb/'.$file_name);
+                $avatar = $this->request->getFile('file');
+                $file_name = $avatar->getRandomName();
+                // Move the file
+                if ($avatar->move('uploads/clients/', $file_name)) {
+                    // Generate thumbnail
+                    $image->withFile('/var/www/html/www/public/uploads/clients/' . $file_name)
+                        ->fit(100, 100, 'center')
+                        ->save('uploads/clients/thumb/' . $file_name);
+                } else {
+                    // Handle the error
+                    // You can throw an exception or handle the error as needed
+                    throw new \RuntimeException('File upload failed.');
+                }
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
@@ -1209,12 +1229,19 @@ class Clients extends BaseController {
 			if (!$validated) {
 				$Return['error'] = lang('Main.xin_error_profile_picture_field');
 			} else {
-				$avatar = $this->request->getFile('file');
-				$file_name = $avatar->getName();
-				$avatar->move('public/uploads/clients/');
-				$image->withFile(filesrc($file_name))
-				->fit(100, 100, 'center')
-				->save('public/uploads/clients/thumb/'.$file_name);
+                $avatar = $this->request->getFile('file');
+                $file_name = $avatar->getRandomName();
+                // Move the file
+                if ($avatar->move('uploads/clients/', $file_name)) {
+                    // Generate thumbnail
+                    $image->withFile('/var/www/html/www/public/uploads/clients/' . $file_name)
+                        ->fit(100, 100, 'center')
+                        ->save('uploads/clients/thumb/' . $file_name);
+                } else {
+                    // Handle the error
+                    // You can throw an exception or handle the error as needed
+                    throw new \RuntimeException('File upload failed.');
+                }
 			}
 			if($Return['error']!=''){
 				$this->output($Return);

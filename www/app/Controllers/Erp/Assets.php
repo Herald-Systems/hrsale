@@ -155,7 +155,7 @@ class Assets extends BaseController {
 				// upload file
 				$asset_image = $this->request->getFile('asset_image');
 				$file_name = $asset_image->getName();
-				$asset_image->move('public/uploads/asset_image/');
+				$asset_image->move('uploads/asset_image/');
 				
 				$asset_name = $this->request->getPost('asset_name',FILTER_SANITIZE_STRING);
 				$category_id = $this->request->getPost('category_id',FILTER_SANITIZE_STRING);
@@ -268,7 +268,7 @@ class Assets extends BaseController {
 				if ($validated) {
 					$asset_image = $this->request->getFile('asset_image');
 					$file_name = $asset_image->getName();
-					$asset_image->move('public/uploads/asset_image/');
+					$asset_image->move('uploads/asset_image/');
 				}
 				$asset_name = $this->request->getPost('asset_name',FILTER_SANITIZE_STRING);
 				$category_id = $this->request->getPost('category_id',FILTER_SANITIZE_STRING);
