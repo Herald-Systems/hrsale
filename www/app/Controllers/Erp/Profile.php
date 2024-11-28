@@ -192,7 +192,9 @@ class Profile extends BaseController {
 			$Return = array('result'=>'', 'error'=>'', 'csrf_hash'=>'');
 			$Return['csrf_hash'] = csrf_hash();
 			$image = service('image');
-			// set rules
+
+
+            // set rules
 			$validated = $this->validate([
 				'file' => [
 					'uploaded[file]',
@@ -204,11 +206,12 @@ class Profile extends BaseController {
 				$Return['error'] = lang('Main.xin_error_profile_picture_field');
 			} else {
 				$avatar = $this->request->getFile('file');
-				$file_name = $avatar->getName();
+				$file_name = $avatar->getRandomName();
 				$avatar->move('uploads/users/');
-//				$image->withFile(filesrc($file_name))
-//				->fit(100, 100, 'center')
-//				->save('uploads/users/thumb/'.$file_name);
+
+				$image->withFile(filesrc($file_name))
+				->fit(100, 100, 'center')
+				->save('uploads/users/thumb/'.$file_name);
 			}
 			if($Return['error']!=''){
 				$this->output($Return);
