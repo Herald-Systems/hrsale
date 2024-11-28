@@ -207,7 +207,7 @@ class Profile extends BaseController {
 			} else {
 				$avatar = $this->request->getFile('file');
 				$file_name = $avatar->getRandomName();
-				$avatar->move('uploads/users/');
+				$avatar->move('uploads/users/', $file_name);
 
 				$image->withFile(filesrc($file_name))
 				->fit(100, 100, 'center')
