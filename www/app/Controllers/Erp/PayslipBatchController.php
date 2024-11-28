@@ -52,4 +52,13 @@ class PayslipBatchController extends BaseController
 
         }
     }
+
+    public function delete($id)
+    {
+        $model = new PayslipBatchModel();
+
+        $model->delete($id);
+
+        return redirect()->back()->with('success', 'Payslip batch deleted successfully.');
+    }
 }

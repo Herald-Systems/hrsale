@@ -385,8 +385,11 @@ $company_types = $ConstantsModel->where('type', 'company_type')->orderBy('consta
                                 <tr>
                                     <td><?= $payslip['pay_date'] ?></td>
                                     <td><?= $payslip['processed_at'] ?></td>
-                                    <td><a href="<?= base_url('writable/uploads/' . $payslip['file'])  ?>"
-                                           target="_blank">View</a></td>
+                                    <td>
+                                        <a href="<?= base_url('writable/uploads/' . $payslip['file'])  ?>"
+                                           target="_blank">View</a>
+                                        <a class="btn btn-sm btn-danger" href="<?= base_url('/erp/payslip_batch/delete/' . $payslip['id'])  ?>">Delete</a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
