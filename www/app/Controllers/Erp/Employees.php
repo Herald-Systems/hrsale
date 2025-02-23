@@ -727,8 +727,8 @@ class Employees extends BaseController {
 				'trading_name' => '',
                 'occupancy' => json_encode($this->request->getPost('occupancy')),
                 'resident' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
-                'dependant_declaration_logged' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
-                'number_of_children' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
+                'dependant_declaration_logged' => $this->request->getPost('dependant_declaration_logged',FILTER_SANITIZE_NUMBER_INT),
+                'number_of_children' => $this->request->getPost('number_of_children',FILTER_SANITIZE_NUMBER_INT),
 				'registration_no' => '',
 				'government_tax' => '',
 				'company_type_id'  => 0,
@@ -1771,8 +1771,8 @@ class Employees extends BaseController {
 				'is_active'  => $status,
                 'occupancy' => json_encode($this->request->getPost('occupancy')),
                 'resident' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
-                'dependant_declaration_logged' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
-                'number_of_children' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
+                'dependant_declaration_logged' => $this->request->getPost('dependant_declaration_logged',FILTER_SANITIZE_NUMBER_INT),
+                'number_of_children' => $this->request->getPost('number_of_children',FILTER_SANITIZE_NUMBER_INT),
 			];
 			$result = $UsersModel->update($id, $data);
 			// employee details
