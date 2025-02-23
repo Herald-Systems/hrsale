@@ -534,8 +534,8 @@ class Employees extends BaseController {
      } 
 	// |||add record|||
 	public function add_employee() {
-		
-		$validation =  \Config\Services::validation();
+
+        $validation =  \Config\Services::validation();
 		$session = \Config\Services::session();
 		$request = \Config\Services::request();
 		$usession = $session->get('sup_username');
@@ -699,7 +699,10 @@ class Employees extends BaseController {
 			$salay_type = $this->request->getPost('salay_type',FILTER_SANITIZE_STRING);
 			$options = array('cost' => 12);
 			$password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
-			
+
+//            $occupancy = json_encode($this->request->getPost('occupancy'))
+//
+//            $this->logger->error($this->request->getPost('occupancy',FILTER_SANITIZE_STRING));
 			
 			$EmailtemplatesModel = new EmailtemplatesModel();
 			$xin_system = $SystemModel->where('setting_id', 1)->first();
@@ -722,6 +725,10 @@ class Employees extends BaseController {
 				'gender' => $gender,
 				'company_name' => $user_info['company_name'],
 				'trading_name' => '',
+                'occupancy' => json_encode($this->request->getPost('occupancy')),
+                'resident' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
+                'dependant_declaration_logged' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
+                'number_of_children' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
 				'registration_no' => '',
 				'government_tax' => '',
 				'company_type_id'  => 0,
@@ -1761,7 +1768,11 @@ class Employees extends BaseController {
 				'state'  => $state,
 				'zipcode' => $zipcode,
 				'gender' => $gender,
-				'is_active'  => $status
+				'is_active'  => $status,
+                'occupancy' => json_encode($this->request->getPost('occupancy')),
+                'resident' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
+                'dependant_declaration_logged' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
+                'number_of_children' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
 			];
 			$result = $UsersModel->update($id, $data);
 			// employee details

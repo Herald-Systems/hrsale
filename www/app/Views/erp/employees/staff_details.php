@@ -889,6 +889,52 @@ $idesignations = $DesignationModel->where('designation_id',$employee_detail['des
                       <input class="form-control" placeholder="<?= lang('Main.xin_address_2');?>" name="address_2" type="text" value="<?= $result['address_2'];?>">
                     </div>
                   </div>
+
+                    <div class="col-sm-4 form-group">
+                        <label for="occupancy">Occupancy</label>
+                        <select multiple name="occupancy[]" id="occupancy" class="form-control" data-plugin="select_hrm">
+                            <option value="Sub Occ" <?php if (isset($result['occupancy']) && is_array($result['occupancy']) && in_array('Sub Occ', $result['occupancy'])) { echo 'selected'; } ?> >Sub Occ</option>
+                            <option value="Con Occ" <?php if (isset($result['occupancy']) && is_array($result['occupancy']) && in_array('Con Occ', $result['occupancy'])) { echo 'selected'; } ?>  >Con Occ</option>
+                            <option value="Acting" <?php if (isset($result['occupancy']) && is_array($result['occupancy']) && in_array('Acting', $result['occupancy'])) { echo 'selected'; } ?>  >Acting</option>
+                            <option value="HDA Occ" <?php if (isset($result['occupancy']) && is_array($result['occupancy']) && in_array('HDA Occ', $result['occupancy'])) { echo 'selected'; } ?>  >HDA Occ</option>
+                            <option value="Support" <?php if (isset($result['occupancy']) && is_array($result['occupancy']) && in_array('Support', $result['occupancy'])) { echo 'selected'; } ?>  >Support</option>
+                            <option value="Special Contract" <?php if (isset($result['occupancy']) && is_array($result['occupancy']) && in_array('Special Contract', $result['occupancy'])) { echo 'selected'; } ?>  >Special Contract</option>
+                            <option value="STC" <?php if (isset($result['occupancy']) && is_array($result['occupancy']) && in_array('STC', $result['occupancy'])) { echo 'selected'; } ?>  >STC</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-4 form-group pt-4">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input input-primary"
+                                   name="resident" id="resident" value="1"
+                                <?php if((int)$result['resident']==1):?>
+                                    checked="checked"
+                                <?php endif;?>>
+                            <label class="custom-control-label" for="resident">
+                                Resident
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 form-group pt-4">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input input-primary"
+                                   name="dependant_declaration_logged" id="dependant_declaration_logged" value="1"
+                                <?php if((int)$result['dependant_declaration_logged']==1):?>
+                                    checked="checked"
+                                <?php endif;?>>
+                            <label class="custom-control-label" for="dependant_declaration_logged">
+                                Dependent Declaration Logged
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 form-group">
+                        <label>
+                            Number of Children
+                        </label>
+                        <input type="text" class="form-control" name="number_of_children" placeholder="Number of Children" value="<?= $result['number_of_children'];?>">
+                    </div>
                 </div>
               </div>
             </div>

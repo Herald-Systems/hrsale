@@ -282,20 +282,60 @@ $employee_id = generate_random_employeeid();
                   </div>
                 </div>
                 <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="salay_type">
-                      <?= lang('Employees.xin_employee_type_wages');?>
-                      <i class="text-danger">*</i></label>
-                    <select name="salay_type" id="salay_type" class="form-control" data-plugin="select_hrm">
-                      <option value="1">
-                      <?= lang('Membership.xin_per_month');?>
-                      </option>
-                      <?php /*?><option value="2">
+                    <div class="form-group">
+                        <label for="salay_type">
+                            <?= lang('Employees.xin_employee_type_wages');?>
+                            <i class="text-danger">*</i></label>
+                        <select name="salay_type" id="salay_type" class="form-control" data-plugin="select_hrm">
+                            <option value="1">
+                                <?= lang('Membership.xin_per_month');?>
+                            </option>
+                            <?php /*?><option value="2">
                       <?= lang('Membership.xin_per_hour');?>
                       </option><?php */?>
-                    </select>
-                  </div>
+                        </select>
+                    </div>
                 </div>
+
+                <div class="col-sm-4 form-group">
+                    <label for="occupancy">Occupancy</label>
+                    <select multiple name="occupancy[]" id="occupancy" class="form-control" data-plugin="select_hrm">
+                        <option value="Sub Occ">Sub Occ</option>
+                        <option value="Con Occ">Con Occ</option>
+                        <option value="Acting">Acting</option>
+                        <option value="HDA Occ">HDA Occ</option>
+                        <option value="Support">Support</option>
+                        <option value="Special Contract">Special Contract</option>
+                        <option value="STC">STC</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4 form-group pt-4">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input input-primary"
+                                   name="resident" id="resident" value="1">
+                            <label class="custom-control-label" for="resident">
+                                Resident
+                            </label>
+                        </div>
+                    </div>
+
+                <div class="col-sm-4 form-group pt-4">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input input-primary"
+                                   name="dependant_declaration_logged" id="dependant_declaration_logged" value="1">
+                            <label class="custom-control-label" for="dependant_declaration_logged">
+                                Dependent Declaration Logged
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 form-group">
+                        <label>
+                            Number of Children
+                        </label>
+                            <input type="text" class="form-control" name="number_of_children" placeholder="Number of Children" value="0">
+                    </div>
             </div>
           </div>
           <div class="card-footer text-right">
@@ -378,6 +418,7 @@ $employee_id = generate_random_employeeid();
             <th><?= lang('Employees.dashboard_employee_id');?></th>
             <th><?= lang('Dashboard.left_department');?></th>
             <th><?= lang('Dashboard.left_designation');?></th>
+            <th><?= lang('Main.xin_employee_phone');?></th>
             <th><?= lang('Main.xin_employee_gender');?></th>
             <th><?= lang('Main.xin_employee_role');?></th>
             <th><?= lang('Main.dashboard_xin_status');?></th>

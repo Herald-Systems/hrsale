@@ -99,6 +99,7 @@ return [
 	'xin_gender_male' => "Male",
 	'xin_gender_female' => "Female",
 	'xin_employee_gender' => "Gender",
+	'xin_employee_phone' => "Phone Number",
 	'xin_employee_role' => "Role",
 	'xin_multi_language' => "Multi Language",
 	'xin_employee_error_first_name' => "The first name field is required.",

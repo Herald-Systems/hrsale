@@ -87,7 +87,7 @@ $employee_id = generate_random_employeeid();
           <div class="card-header">
             <h5>
               <?= lang('Main.xin_add_new');?>
-              <?= lang('Dashboard.dashboard_employee');?>
+              <?= lang('Dashboard.dashboard_employee');?>...
             </h5>
             <div class="card-header-right"> <a  data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn btn-sm waves-effect waves-light btn-primary m-0"> <i data-feather="minus"></i>
               <?= lang('Main.xin_hide');?>
@@ -99,7 +99,7 @@ $employee_id = generate_random_employeeid();
                 <div class="form-group">
                   <label for="company_name">
                     <?= lang('Main.xin_employee_first_name');?>
-                    <span class="text-danger">*</span> </label>
+                    <span class="text-danger">*...</span> </label>
                   <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
                     <input type="text" class="form-control" placeholder="<?= lang('Main.xin_employee_first_name');?>" name="first_name">
