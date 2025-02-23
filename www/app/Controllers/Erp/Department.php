@@ -129,6 +129,7 @@ class Department extends BaseController {
 			}
 			$data[] = array(
 				$department_name,
+                $r['c_level'],
 				$name,
 				$created_at
 			);
@@ -153,16 +154,23 @@ class Department extends BaseController {
 			$Return['csrf_hash'] = csrf_hash();
 			// set rules
 			$rules = [
-				'department_name' => [
-					'rules'  => 'required',
-					'errors' => [
-						'required' => lang('Main.xin_error_field_text')
-					]
-				]
+                'department_name' => [
+                    'rules'  => 'required',
+                    'errors' => [
+                        'required' => lang('Main.xin_error_field_text')
+                    ]
+                ],
+                'c_level' => [
+                    'rules'  => 'required',
+                    'errors' => [
+                        'required' => lang('Main.xin_error_field_text')
+                    ]
+                ]
 			];
 			if(!$this->validate($rules)){
 				$ruleErrors = [
-                    "department_name" => $validation->getError('department_name')
+                    "department_name" => $validation->getError('department_name'),
+                    "c_level" => $validation->getError('c_level')
                 ];
 				foreach($ruleErrors as $err){
 					$Return['error'] = $err;
@@ -172,6 +180,7 @@ class Department extends BaseController {
 				}
 			} else {
 				$department_name = $this->request->getPost('department_name',FILTER_SANITIZE_STRING);			
+				$c_level = $this->request->getPost('c_level',FILTER_SANITIZE_STRING);
 				$UsersModel = new UsersModel();
 				$user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 				if($user_info['user_type'] == 'staff'){
@@ -187,6 +196,7 @@ class Department extends BaseController {
 				$data = [
 					'company_id'  => $company_id,
 					'department_name' => $department_name,
+					'c_level' => $c_level,
 					'department_head'  => $staff_id,
 					'added_by'  => $company_id,
 					'created_at' => date('d-m-Y h:i:s')
@@ -225,11 +235,18 @@ class Department extends BaseController {
 					'errors' => [
 						'required' => lang('Main.xin_error_field_text')
 					]
-				]
+				],
+                'c_level' => [
+                    'rules'  => 'required',
+                    'errors' => [
+                        'required' => lang('Main.xin_error_field_text')
+                    ]
+                ]
 			];
 			if(!$this->validate($rules)){
 				$ruleErrors = [
-                    "department_name" => $validation->getError('department_name')
+                    "department_name" => $validation->getError('department_name'),
+                    "c_level" => $validation->getError('c_level')
                 ];
 				foreach($ruleErrors as $err){
 					$Return['error'] = $err;
@@ -238,8 +255,9 @@ class Department extends BaseController {
 					}
 				}
 			} else {
-				$department_name = $this->request->getPost('department_name',FILTER_SANITIZE_STRING);			
-				$UsersModel = new UsersModel();
+				$department_name = $this->request->getPost('department_name',FILTER_SANITIZE_STRING);
+                $c_level = $this->request->getPost('c_level',FILTER_SANITIZE_STRING);
+                $UsersModel = new UsersModel();
 				$user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 				if($user_info['user_type'] == 'staff'){
 					$staff_id = 0;
@@ -255,7 +273,8 @@ class Department extends BaseController {
 				$data = [
 					'company_id'  => $company_id,
 					'department_name' => $department_name,
-					'department_head'  => $staff_id
+                    'c_level' => $c_level,
+                    'department_head'  => $staff_id
 				];
 				$DepartmentModel = new DepartmentModel();
 				$result = $DepartmentModel->update($id, $data);

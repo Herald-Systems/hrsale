@@ -195,6 +195,7 @@ return [
 	'xin_manage_shifts' => 'Manage Shifts',
 	'xin_edit_news' => 'Edit Annoucement',
 	'xin_name' => 'Name',
+	'xin_c_level' => 'CLevel',
 	'xin_department_head' => 'Department Head',
 	'xin_department_name' => 'Department Name',
 	'dashboard_core_hr' => 'Core HR',

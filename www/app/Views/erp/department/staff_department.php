@@ -70,12 +70,18 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
         <?php $attributes = array('name' => 'add_department', 'id' => 'xin-form', 'autocomplete' => 'off');?>
         <?php $hidden = array('user_id' => 1);?>
         <?php echo form_open('erp/department/add_department', $attributes, $hidden);?>
-        <div class="form-group">
-          <label for="name">
-            <?= lang('Dashboard.xin_name');?> <span class="text-danger">*</span>
-          </label>
-          <input type="text" class="form-control" name="department_name" placeholder="<?= lang('Dashboard.xin_name');?>">
-        </div>
+          <div class="form-group">
+              <label for="name">
+                  <?= lang('Dashboard.xin_name');?> <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="department_name" placeholder="<?= lang('Dashboard.xin_name');?>">
+          </div>
+          <div class="form-group">
+              <label for="c_level">
+                  <?= lang('Dashboard.xin_c_level');?> <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="c_level" placeholder="<?= lang('Dashboard.xin_c_level');?>">
+          </div>
         <?php if($user_info['user_type'] == 'company'){?>
         <?php $staff_info = $UsersModel->where('company_id', $usession['sup_user_id'])->where('user_type','staff')->findAll();?>
         <div class="row">
@@ -122,6 +128,7 @@ $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
             <thead>
               <tr>
                 <th><?= lang('Dashboard.xin_department_name');?></th>
+                <th><?= lang('Dashboard.xin_c_level');?></th>
                 <th><i class="fa fa-user small"></i>
                   <?= lang('Dashboard.xin_department_head');?></th>
                 <th><i class="far fa-calendar-alt small"></i>
