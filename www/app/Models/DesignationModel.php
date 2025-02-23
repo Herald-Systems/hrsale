@@ -10,7 +10,23 @@ class DesignationModel extends Model {
     protected $primaryKey = 'designation_id';
     
 	// get all fields of table
-    protected $allowedFields = ['designation_id','department_id','company_id','designation_name','description','created_at'];
+    protected $allowedFields = [
+        'designation_id',
+        'department_id',
+        'company_id',
+        'designation_name',
+        'description',
+        'position_number',
+        'frz',
+        'reference',
+        'funding',
+        'account',
+        'award',
+        'category',
+        'class',
+        'step',
+        'created_at'
+    ];
 	
 	protected $validationRules = [];
 	protected $validationMessages = [];

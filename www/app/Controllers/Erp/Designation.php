@@ -100,6 +100,7 @@ class Designation extends BaseController {
 			$created_at = set_date_format($r['created_at']);
 			$department = $DepartmentModel->where('department_id', $r['department_id'])->first();
 			$idesignation_name = $r['designation_name'];
+			$frz = $r['frz'] == 1 ? 'Yes' : 'No';
 			$combhr = $edit.$delete;
 			if(in_array('designation3',staff_role_resource()) || in_array('designation4',staff_role_resource()) || $user_info['user_type'] == 'company') {
 				$iidesignation_name = '
@@ -113,8 +114,17 @@ class Designation extends BaseController {
 			}
 			$data[] = array(
 				$iidesignation_name,
-				$department['department_name']
-			);	
+				$department['department_name'],
+                $r['position_number'],
+                $frz,
+                $r['reference'],
+                $r['funding'],
+                $r['account'],
+                $r['award'],
+                $r['category'],
+                $r['class'],
+                $r['step'],
+			);
 			
 		}
           $output = array(
@@ -176,6 +186,15 @@ class Designation extends BaseController {
 					'department_id' => $department,
 					'designation_name'  => $designation_name,
 					'description'  => $description,
+                    'position_number' => $this->request->getPost('position_number',FILTER_SANITIZE_STRING),
+                    'frz' => $this->request->getPost('frz',FILTER_SANITIZE_NUMBER_INT),
+                    'reference' => $this->request->getPost('reference',FILTER_SANITIZE_STRING),
+                    'funding' => $this->request->getPost('funding',FILTER_SANITIZE_STRING),
+                    'account' => $this->request->getPost('account',FILTER_SANITIZE_STRING),
+                    'award' => $this->request->getPost('award',FILTER_SANITIZE_STRING),
+                    'category' => $this->request->getPost('category',FILTER_SANITIZE_STRING),
+                    'class' => $this->request->getPost('class',FILTER_SANITIZE_STRING),
+                    'step' => $this->request->getPost('step',FILTER_SANITIZE_STRING),
 					'created_at' => date('d-m-Y h:i:s')
 				];
 				$DesignationModel = new DesignationModel();
@@ -239,7 +258,16 @@ class Designation extends BaseController {
 				$data = [
 					'department_id' => $department,
 					'designation_name'  => $designation_name,
-					'description'  => $description
+					'description'  => $description,
+                    'position_number' => $this->request->getPost('position_number',FILTER_SANITIZE_STRING),
+                    'frz' => $this->request->getPost('frz',FILTER_SANITIZE_NUMBER_INT),
+                    'reference' => $this->request->getPost('reference',FILTER_SANITIZE_STRING),
+                    'funding' => $this->request->getPost('funding',FILTER_SANITIZE_STRING),
+                    'account' => $this->request->getPost('account',FILTER_SANITIZE_STRING),
+                    'award' => $this->request->getPost('award',FILTER_SANITIZE_STRING),
+                    'category' => $this->request->getPost('category',FILTER_SANITIZE_STRING),
+                    'class' => $this->request->getPost('class',FILTER_SANITIZE_STRING),
+                    'step' => $this->request->getPost('step',FILTER_SANITIZE_STRING),
 				];
 				$DesignationModel = new DesignationModel();
 				$result = $DesignationModel->update($id, $data);

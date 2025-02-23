@@ -77,7 +77,9 @@ $get_animate ='';
         <?php $attributes = array('name' => 'add_designation', 'id' => 'xin-form', 'autocomplete' => 'off');?>
         <?php $hidden = array('user_id' => 1);?>
         <?php echo form_open('erp/designation/add_designation', $attributes, $hidden);?>
-        <div class="form-group" id="department_ajax">
+
+          <div class="row">
+              <div class="form-group col-md-12" id="department_ajax">
           <label for="name">
             <?= lang('Dashboard.left_department');?> <span class="text-danger">*</span>
           </label>
@@ -90,18 +92,113 @@ $get_animate ='';
             <?php } ?>
           </select>
         </div>
-        <div class="form-group">
-          <label for="name">
-            <?= lang('Dashboard.left_designation_name');?> <span class="text-danger">*</span>
-          </label>
-          <input type="text" class="form-control" name="designation_name" placeholder="<?= lang('Dashboard.left_designation_name');?>">
-        </div>
-        <div class="form-group">
+              <div class="form-group col-md-12">
+              <label for="name">
+                  <?= lang('Dashboard.left_designation_name');?> <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="designation_name" placeholder="<?= lang('Dashboard.left_designation_name');?>">
+          </div>
+              <div class="form-group col-md-12">
+              <label for="position_number">
+                  <?= lang('Dashboard.designation_position_number');?>
+              </label>
+              <input type="text" class="form-control" name="position_number" placeholder="<?= lang('Dashboard.designation_position_number');?>">
+          </div>
+              <div class="form-group col-md-6">
+              <div class="form-group mt-4">
+                  <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input input-primary"
+                             name="frz" id="frz" value="1">
+                      <label class="custom-control-label" for="frz">
+                          <?= lang('Dashboard.designation_frz'); ?>
+                      </label>
+                  </div>
+              </div>
+          </div>
+
+              <div class="form-group col-md-6">
+              <label for="reference">
+                  <?= lang('Dashboard.designation_reference');?>
+              </label>
+              <input type="text" class="form-control" name="reference" placeholder="<?= lang('Dashboard.designation_reference');?>">
+          </div>
+              <div class="form-group col-md-6">
+              <label for="reference">
+                  <?= lang('Dashboard.designation_funding');?>
+              </label>
+              <select class="form-control" name="funding" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.designation_funding');?>">
+                  <option></option>
+                  <option value="PF">PF</option>
+                  <option value="FF">FF</option>
+              </select>
+          </div>
+              <div class="form-group col-md-6">
+              <label for="account">
+                  <?= lang('Dashboard.designation_account');?>
+              </label>
+              <input type="text" class="form-control" name="account" placeholder="584-02-201-111">
+          </div>
+
+              <div class="form-group col-md-6">
+              <label for="award">
+                  <?= lang('Dashboard.designation_award');?>
+              </label>
+              <select class="form-control" name="award" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.designation_award');?>">
+                  <option></option>
+                  <option value="EXL">EXL</option>
+                  <option value="PUB">PUB</option>
+                  <option value="PUBC">PUBC</option>
+              </select>
+          </div>
+
+              <div class="form-group col-md-6">
+              <label for="category">
+                  <?= lang('Dashboard.designation_category');?>
+              </label>
+              <select class="form-control" name="category" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.designation_category');?>">
+                  <option></option>
+                  <option value="A1">A1</option>
+                  <option value="A2">A2</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+              </select>
+          </div>
+              <div class="form-group col-md-6">
+              <label for="class">
+                  <?= lang('Dashboard.designation_class');?>
+              </label>
+              <select class="form-control" name="class" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.designation_class');?>">
+                  <option></option>
+                  <?php for($i = 0; $i < 20; $i++) {?>
+                      <option value="PS<?= $i + 1;?>">
+                          PS<?= $i + 1;?>
+                      </option>
+                  <?php } ?>
+              </select>
+          </div>
+
+              <div class="form-group col-md-6">
+              <label for="class">
+                  <?= lang('Dashboard.designation_step');?>
+              </label>
+              <select class="form-control" name="step" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.designation_step');?>">
+                  <option></option>
+                  <?php for($i = 0; $i < 5; $i++) {?>
+                      <option value="<?= $i + 1;?>">
+                          <?= $i + 1;?>
+                      </option>
+                  <?php } ?>
+              </select>
+          </div>
+
+              <div class="form-group col-md-12">
           <label for="description">
             <?= lang('Main.xin_description');?>
           </label>
           <textarea type="text" class="form-control" name="description" placeholder="<?= lang('Main.xin_description');?>"></textarea>
         </div>
+          </div>
       </div>
       <div class="card-footer text-right">
         <button type="submit" class="btn btn-primary">
@@ -129,6 +226,15 @@ $get_animate ='';
               <tr>
                 <th><?= lang('Dashboard.left_designation');?></th>
                 <th><?= lang('Dashboard.left_department');?></th>
+                <th><?= lang('Dashboard.designation_position_number');?></th>
+                <th><?= lang('Dashboard.designation_frz');?></th>
+                <th><?= lang('Dashboard.designation_reference');?></th>
+                <th><?= lang('Dashboard.designation_funding');?></th>
+                <th><?= lang('Dashboard.designation_account');?></th>
+                <th><?= lang('Dashboard.designation_award');?></th>
+                <th><?= lang('Dashboard.designation_category');?></th>
+                <th><?= lang('Dashboard.designation_class');?></th>
+                <th><?= lang('Dashboard.designation_step');?></th>
               </tr>
             </thead>
           </table>
