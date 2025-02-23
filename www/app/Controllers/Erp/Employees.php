@@ -254,7 +254,15 @@ class Employees extends BaseController {
 				$r['contact_number'],
 				$gender,
 				$role_name,
-				$status
+				$status,
+				isset($r['occupancy']) ? implode(', ', json_decode($r['occupancy'])) : '',
+                isset($r['resident']) ? ($r['resident'] == 1 ? 'Yes' : 'No') : '',
+                isset($r['dependant_declaration_logged']) ? ($r['dependant_declaration_logged'] == 1 ? 'Yes' : 'No') : '',
+                $r['number_of_children'] ?? '',
+                $idesignations['award'],
+                $idesignations['category'],
+                $idesignations['class'],
+                $idesignations['step'],
 			);
 		}
           $output = array(

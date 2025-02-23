@@ -422,6 +422,14 @@ $employee_id = generate_random_employeeid();
             <th><?= lang('Main.xin_employee_gender');?></th>
             <th><?= lang('Main.xin_employee_role');?></th>
             <th><?= lang('Main.dashboard_xin_status');?></th>
+            <th>Occupancy</th>
+            <th>Resident</th>
+            <th>Dependent declaration lodged?</th>
+            <th>Number of children?</th>
+            <th>Award</th>
+            <th>Category</th>
+            <th>Class</th>
+            <th>Step</th>
           </tr>
         </thead>
       </table>
