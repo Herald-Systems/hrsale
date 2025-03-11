@@ -128,19 +128,6 @@ if($user_info['user_type'] == 'staff'){
             </div>
 
             <div class="form-group col-md-6">
-                <label for="category">
-                    <?= lang('Dashboard.designation_category');?>
-                </label>
-                <select class="form-control" name="category" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.designation_category');?>">
-                    <option></option>
-                    <option value="A1" <?php if ($result['category'] == 'A1') {echo 'selected'; } ?> >A1</option>
-                    <option value="A2" <?php if ($result['category'] == 'A2') {echo 'selected'; } ?> >A2</option>
-                    <option value="B" <?php if ($result['category'] == 'B') {echo 'selected'; } ?> >B</option>
-                    <option value="C" <?php if ($result['category'] == 'C') {echo 'selected'; } ?> >C</option>
-                    <option value="D" <?php if ($result['category'] == 'D') {echo 'selected'; } ?> >D</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
                 <label for="class">
                     <?= lang('Dashboard.designation_class');?>
                 </label>
@@ -154,19 +141,7 @@ if($user_info['user_type'] == 'staff'){
                 </select>
             </div>
 
-            <div class="form-group col-md-6">
-                <label for="step">
-                    <?= lang('Dashboard.designation_step');?>
-                </label>
-                <select class="form-control" name="step" data-plugin="select_hrm" data-placeholder="<?= lang('Dashboard.designation_step');?>">
-                    <option></option>
-                    <?php for($i = 0; $i < 5; $i++) {?>
-                        <option value="<?= $i + 1;?>" <?php if ($result['step'] == $i + 1) {echo 'selected'; } ?>>
-                            <?= $i + 1;?>
-                        </option>
-                    <?php } ?>
-                </select>
-            </div>
+
             <div class="form-group col-md-12">
                 <label for="description">
                     <?= lang('Main.xin_description');?>

@@ -121,9 +121,7 @@ class Designation extends BaseController {
                 $r['funding'],
                 $r['account'],
                 $r['award'],
-                $r['category'],
                 $r['class'],
-                $r['step'],
 			);
 			
 		}
@@ -192,9 +190,7 @@ class Designation extends BaseController {
                     'funding' => $this->request->getPost('funding',FILTER_SANITIZE_STRING),
                     'account' => $this->request->getPost('account',FILTER_SANITIZE_STRING),
                     'award' => $this->request->getPost('award',FILTER_SANITIZE_STRING),
-                    'category' => $this->request->getPost('category',FILTER_SANITIZE_STRING),
                     'class' => $this->request->getPost('class',FILTER_SANITIZE_STRING),
-                    'step' => $this->request->getPost('step',FILTER_SANITIZE_STRING),
 					'created_at' => date('d-m-Y h:i:s')
 				];
 				$DesignationModel = new DesignationModel();
@@ -265,9 +261,7 @@ class Designation extends BaseController {
                     'funding' => $this->request->getPost('funding',FILTER_SANITIZE_STRING),
                     'account' => $this->request->getPost('account',FILTER_SANITIZE_STRING),
                     'award' => $this->request->getPost('award',FILTER_SANITIZE_STRING),
-                    'category' => $this->request->getPost('category',FILTER_SANITIZE_STRING),
                     'class' => $this->request->getPost('class',FILTER_SANITIZE_STRING),
-                    'step' => $this->request->getPost('step',FILTER_SANITIZE_STRING),
 				];
 				$DesignationModel = new DesignationModel();
 				$result = $DesignationModel->update($id, $data);

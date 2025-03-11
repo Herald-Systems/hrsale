@@ -38,6 +38,8 @@ class UsersModel extends Model {
         'resident',
         'dependant_declaration_logged',
         'number_of_children',
+        'category',
+        'step',
         'last_login_date',
         'last_logout_date',
         'last_login_ip',

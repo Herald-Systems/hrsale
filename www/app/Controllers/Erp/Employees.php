@@ -260,9 +260,7 @@ class Employees extends BaseController {
                 isset($r['dependant_declaration_logged']) ? ($r['dependant_declaration_logged'] == 1 ? 'Yes' : 'No') : '',
                 $r['number_of_children'] ?? '',
                 $idesignations['award'],
-                $idesignations['category'],
                 $idesignations['class'],
-                $idesignations['step'],
 			);
 		}
           $output = array(
@@ -2354,6 +2352,8 @@ class Employees extends BaseController {
 				'salay_type' => $salay_type,
 				'date_of_leaving' => $date_of_leaving,
 				'role_description' => $role_description,
+				'step' => $this->request->getPost('step',FILTER_SANITIZE_STRING),
+				'category' => $this->request->getPost('category',FILTER_SANITIZE_STRING),
 			];
 			$MainModel = new MainModel();
 			$result = $MainModel->update_employee_record($data2,$id);

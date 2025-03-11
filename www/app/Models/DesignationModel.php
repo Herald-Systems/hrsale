@@ -22,9 +22,7 @@ class DesignationModel extends Model {
         'funding',
         'account',
         'award',
-        'category',
         'class',
-        'step',
         'created_at'
     ];
 	
