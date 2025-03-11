@@ -1006,18 +1006,11 @@ class Employees extends BaseController
                     'required' => lang('Main.xin_error_field_text')
                 ]
             ],
-            'pos_voluntary_amount' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => lang('Main.xin_error_field_text')
-                ]
-            ]
         ];
         if (!$this->validate($rules)) {
             $ruleErrors = [
                 "nambawan_super" => $validation->getError('nambawan_super'),
                 "posf_super" => $validation->getError('posf_super'),
-                "pos_voluntary_amount" => $validation->getError('pos_voluntary_amount')
             ];
             foreach ($ruleErrors as $err) {
                 $Return['error'] = $err;
