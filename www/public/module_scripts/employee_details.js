@@ -31,17 +31,17 @@ $(document).ready(function() {
     });
 	// On page load 
 	var xin_table_allowances_ad = $('#xin_table_all_allowances').dataTable({
-        "bDestroy": true,
+		"bDestroy": true,
 		"ajax": {
-            url : main_url+"employees/allowances_list/"+$('#user_id').val(),
-            type : 'GET'
-        },
+			url : main_url+"employees/allowances_list/"+$('#user_id').val(),
+			type : 'GET'
+		},
 		"language": {
-            "lengthMenu": dt_lengthMenu,
-            "zeroRecords": dt_zeroRecords,
-            "info": dt_info,
-            "infoEmpty": dt_infoEmpty,
-            "infoFiltered": dt_infoFiltered,
+			"lengthMenu": dt_lengthMenu,
+			"zeroRecords": dt_zeroRecords,
+			"info": dt_info,
+			"infoEmpty": dt_infoEmpty,
+			"infoFiltered": dt_infoFiltered,
 			"search": dt_search,
 			"paginate": {
 				"first": dt_first,
@@ -49,11 +49,59 @@ $(document).ready(function() {
 				"next": dt_next,
 				"last": dt_last
 			},
-        },
+		},
 		"fnDrawCallback": function(settings){
-		$('[data-toggle="tooltip"]').tooltip();          
+			$('[data-toggle="tooltip"]').tooltip();
 		}
-    });
+	});
+	var xin_table_all_loans = $('#xin_table_all_loans').dataTable({
+		"bDestroy": true,
+		"ajax": {
+			url : main_url+"employees/loans_list/"+$('#user_id').val(),
+			type : 'GET'
+		},
+		"language": {
+			"lengthMenu": dt_lengthMenu,
+			"zeroRecords": dt_zeroRecords,
+			"info": dt_info,
+			"infoEmpty": dt_infoEmpty,
+			"infoFiltered": dt_infoFiltered,
+			"search": dt_search,
+			"paginate": {
+				"first": dt_first,
+				"previous": dt_previous,
+				"next": dt_next,
+				"last": dt_last
+			},
+		},
+		"fnDrawCallback": function(settings){
+			$('[data-toggle="tooltip"]').tooltip();
+		}
+	});
+	var xin_table_all_superannuation = $('#xin_table_all_superannuation').dataTable({
+		"bDestroy": true,
+		"ajax": {
+			url : main_url+"employees/superannuation_list/"+$('#user_id').val(),
+			type : 'GET'
+		},
+		"language": {
+			"lengthMenu": dt_lengthMenu,
+			"zeroRecords": dt_zeroRecords,
+			"info": dt_info,
+			"infoEmpty": dt_infoEmpty,
+			"infoFiltered": dt_infoFiltered,
+			"search": dt_search,
+			"paginate": {
+				"first": dt_first,
+				"previous": dt_previous,
+				"next": dt_next,
+				"last": dt_last
+			},
+		},
+		"fnDrawCallback": function(settings){
+			$('[data-toggle="tooltip"]').tooltip();
+		}
+	});
 	var xin_table_commissions_ad = $('#xin_table_all_commissions').dataTable({
         "bDestroy": true,
 		"ajax": {
@@ -443,6 +491,81 @@ $(document).ready(function() {
 			} 	        
 	   });
 	});
+	$("#user_loan").submit(function(e){
+		var fd = new FormData(this);
+		var obj = $(this), action = obj.attr('name');
+		fd.append("is_ajax", 1);
+		fd.append("type", 'add_record');
+		fd.append("form", action);
+		e.preventDefault();
+		$.ajax({
+			url: e.target.action,
+			type: "POST",
+			data:  fd,
+			contentType: false,
+			cache: false,
+			processData:false,
+			success: function(JSON)
+			{
+				if (JSON.error != '') {
+					toastr.error(JSON.error);
+					$('input[name="csrf_token"]').val(JSON.csrf_hash);
+					Ladda.stopAll();
+				} else {
+					toastr.success(JSON.result);
+					xin_table_all_loans.api().ajax.reload(function(){
+						Ladda.stopAll();
+						$('input[name="csrf_token"]').val(JSON.csrf_hash);
+					}, true);
+					jQuery('#user_loan')[0].reset(); // To reset form fields
+				}
+			},
+			error: function()
+			{
+				toastr.error(JSON.error);
+				$('input[name="csrf_token"]').val(JSON.csrf_hash);
+				Ladda.stopAll();
+			}
+		});
+	});
+
+	$("#user_superannuation").submit(function(e){
+		var fd = new FormData(this);
+		var obj = $(this), action = obj.attr('name');
+		fd.append("is_ajax", 1);
+		fd.append("type", 'add_record');
+		fd.append("form", action);
+		e.preventDefault();
+		$.ajax({
+			url: e.target.action,
+			type: "POST",
+			data:  fd,
+			contentType: false,
+			cache: false,
+			processData:false,
+			success: function(JSON)
+			{
+				if (JSON.error != '') {
+					toastr.error(JSON.error);
+					$('input[name="csrf_token"]').val(JSON.csrf_hash);
+					Ladda.stopAll();
+				} else {
+					toastr.success(JSON.result);
+					xin_table_all_superannuation.api().ajax.reload(function(){
+						Ladda.stopAll();
+						$('input[name="csrf_token"]').val(JSON.csrf_hash);
+					}, true);
+					jQuery('#user_superannuation')[0].reset(); // To reset form fields
+				}
+			},
+			error: function()
+			{
+				toastr.error(JSON.error);
+				$('input[name="csrf_token"]').val(JSON.csrf_hash);
+				Ladda.stopAll();
+			}
+		});
+	});
 	/* Add info */
 	$("#user_allowance").submit(function(e){
 		var fd = new FormData(this);
@@ -640,6 +763,10 @@ $(document).ready(function() {
 		var field_tpe = button.data('field_type');
 		if(field_tpe == 'document'){
 			var field_add = '&data=user_document&type=user_document&';
+		} else if(field_tpe == 'loans'){
+			var field_add = '&data=user_loan&type=user_loan&';
+		} else if(field_tpe == 'superannuation'){
+			var field_add = '&data=user_superannuation&type=user_superannuation&';
 		} else if(field_tpe == 'allowances'){
 			var field_add = '&data=user_allowance&type=user_allowance&';
 		} else if(field_tpe == 'commissions'){
@@ -666,6 +793,12 @@ $(document).ready(function() {
 		var tk_type = $('#token_type').val();
 		
 		if(tk_type == 'document'){
+			var field_add = '&data=delete_record&type=delete_record&';
+			var tb_name = 'xin_table_'+tk_type;
+		} else if(tk_type == 'all_loans'){
+			var field_add = '&data=delete_record&type=delete_record&';
+			var tb_name = 'xin_table_'+tk_type;
+		} else if(tk_type == 'all_superannuation'){
 			var field_add = '&data=delete_record&type=delete_record&';
 			var tb_name = 'xin_table_'+tk_type;
 		} else if(tk_type == 'all_allowances'){

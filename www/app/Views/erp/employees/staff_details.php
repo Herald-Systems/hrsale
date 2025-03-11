@@ -188,6 +188,16 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                                         aria-controls="pills-contract" aria-selected="true">
                                         <?= lang('Employees.xin_contract'); ?>
                                     </a></li>
+                                <li class="nav-item"><a class="nav-link" id="pills-loans-tab"
+                                                        data-toggle="pill" href="#pills-loans" role="tab"
+                                                        aria-controls="pills-loans" aria-selected="true">
+                                        Loans
+                                    </a></li>
+                                <li class="nav-item"><a class="nav-link" id="pills-superannuation-tab"
+                                                        data-toggle="pill" href="#pills-superannuation" role="tab"
+                                                        aria-controls="pills-superannuation" aria-selected="true">
+                                        Superannuation
+                                    </a></li>
                                 <li class="nav-item"><a class="nav-link" id="pills-allowances-tab" data-toggle="pill"
                                                         href="#pills-allowances" role="tab"
                                                         aria-controls="pills-allowances" aria-selected="false">
@@ -396,8 +406,8 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                                         <option></option>
                                                         <?php for ($i = 0; $i < 5; $i++) { ?>
                                                             <option
-                                                            value="<?= $i + 1; ?>"
-                                                            <?php if ($employee_detail['step'] == $i + 1): ?> selected="selected"<?php endif; ?> >
+                                                                    value="<?= $i + 1; ?>"
+                                                                <?php if ($employee_detail['step'] == $i + 1): ?> selected="selected"<?php endif; ?> >
                                                                 <?= $i + 1; ?>
                                                             </option>
                                                         <?php } ?>
@@ -409,14 +419,25 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                                     <label for="category">
                                                         <?= lang('Dashboard.designation_category'); ?>
                                                     </label>
-                                                    <select class="form-control" name="category" data-plugin="select_hrm"
+                                                    <select class="form-control" name="category"
+                                                            data-plugin="select_hrm"
                                                             data-placeholder="<?= lang('Dashboard.designation_category'); ?>">
                                                         <option></option>
-                                                        <option value="A1" <?php if ($employee_detail['category'] == "A1"): ?> selected="selected"<?php endif; ?> >A1</option>
-                                                        <option value="A2" <?php if ($employee_detail['category'] == "A2"): ?> selected="selected"<?php endif; ?> >A2</option>
-                                                        <option value="B" <?php if ($employee_detail['category'] == "B"): ?> selected="selected"<?php endif; ?> >B</option>
-                                                        <option value="C" <?php if ($employee_detail['category'] == "C"): ?> selected="selected"<?php endif; ?> >C</option>
-                                                        <option value="D" <?php if ($employee_detail['category'] == "D"): ?> selected="selected"<?php endif; ?> >D</option>
+                                                        <option value="A1" <?php if ($employee_detail['category'] == "A1"): ?> selected="selected"<?php endif; ?> >
+                                                            A1
+                                                        </option>
+                                                        <option value="A2" <?php if ($employee_detail['category'] == "A2"): ?> selected="selected"<?php endif; ?> >
+                                                            A2
+                                                        </option>
+                                                        <option value="B" <?php if ($employee_detail['category'] == "B"): ?> selected="selected"<?php endif; ?> >
+                                                            B
+                                                        </option>
+                                                        <option value="C" <?php if ($employee_detail['category'] == "C"): ?> selected="selected"<?php endif; ?> >
+                                                            C
+                                                        </option>
+                                                        <option value="D" <?php if ($employee_detail['category'] == "D"): ?> selected="selected"<?php endif; ?> >
+                                                            D
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -435,6 +456,142 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                     <div class="card-footer text-right">
                                         <button type="submit" class="btn btn-primary">
                                             <?= lang('Employees.xin_update_contract'); ?>
+                                        </button>
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
+                                <div class="tab-pane fade" id="pills-loans" role="tabpanel"
+                                     aria-labelledby="pills-loans-tab">
+                                    <div class="card-body user-profile-list">
+                                        <h5 class="mt-1 mb-3 pb-3 border-bottom">
+                                            <?= lang('Main.xin_list_all'); ?>
+                                            Loans
+                                        </h5>
+                                        <div class="box-datatable table-responsive">
+                                            <table class="table table-striped table-bordered dataTable"
+                                                   id="xin_table_all_loans" style="width:100%;">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Loan ID</th>
+                                                    <th>Institution</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <?php $attributes = array('name' => 'user_loan', 'id' => 'user_loan', 'autocomplete' => 'off'); ?>
+                                    <?php $hidden = array('token' => $segment_id); ?>
+                                    <?= form_open('erp/employees/add_loan', $attributes, $hidden); ?>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="loan_id">
+                                                        Loan ID
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input class="form-control"
+                                                           placeholder="Loan ID" id="loan_id"
+                                                           name="loan_id" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="institution">
+                                                        Institution
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input class="form-control"
+                                                           placeholder="Institution" id="institution"
+                                                           name="institution" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="amount">
+                                                        Amount
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input class="form-control"
+                                                           placeholder="Amount" id="amount"
+                                                           name="amount" type="number">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <button type="submit" class="btn btn-primary">
+                                            <?= lang('Main.xin_save'); ?>
+                                        </button>
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
+                                <div class="tab-pane fade" id="pills-superannuation" role="tabpanel"
+                                     aria-labelledby="pills-superannuation-tab">
+                                    <div class="card-body user-profile-list">
+                                        <h5 class="mt-1 mb-3 pb-3 border-bottom">
+                                            <?= lang('Main.xin_list_all'); ?>
+                                            Superannuation
+                                        </h5>
+                                        <div class="box-datatable table-responsive">
+                                            <table class="table table-striped table-bordered dataTable"
+                                                   id="xin_table_all_superannuation" style="width:100%;">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nambawan Super</th>
+                                                    <th>POSF Super</th>
+                                                    <th>POS Voluntary</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <?php $attributes = array('name' => 'user_superannuation', 'id' => 'user_superannuation', 'autocomplete' => 'off'); ?>
+                                    <?php $hidden = array('token' => $segment_id); ?>
+                                    <?= form_open('erp/employees/add_superannuation', $attributes, $hidden); ?>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="loan_id">
+                                                        Nambawan Super(%)
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input class="form-control"
+                                                           placeholder="Nambawan Super" id="nambawan_super"
+                                                           name="nambawan_super" type="number" value="8.4" step=".1">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="posf_super">
+                                                        POSF Super(%)
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input class="form-control"
+                                                           placeholder=" POSF Super" id="posf_super"
+                                                           name="posf_super" type="number" value="6" step=".1">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="pos_voluntary_amount">
+                                                        POS Voluntary
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input class="form-control"
+                                                           placeholder="POS Voluntary Amount" id="pos_voluntary_amount"
+                                                           name="pos_voluntary_amount" type="number" step="1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <button type="submit" class="btn btn-primary">
+                                            <?= lang('Main.xin_save'); ?>
                                         </button>
                                     </div>
                                     <?= form_close(); ?>
