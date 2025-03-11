@@ -196,7 +196,6 @@ if ($request->getGet('data') === 'user_loan' && $request->getGet('field_id')) {
                 <div class="form-group">
                     <label for="pos_voluntary_amount">
                         POS Voluntary
-                        <span class="text-danger">*</span>
                     </label>
                     <input class="form-control" value="<?= $result['pos_voluntary_amount']; ?>"
                            placeholder="POS Voluntary Amount" id="pos_voluntary_amount"

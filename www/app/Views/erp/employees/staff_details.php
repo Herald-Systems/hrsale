@@ -580,7 +580,6 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                                 <div class="form-group">
                                                     <label for="pos_voluntary_amount">
                                                         POS Voluntary
-                                                        <span class="text-danger">*</span>
                                                     </label>
                                                     <input class="form-control"
                                                            placeholder="POS Voluntary Amount" id="pos_voluntary_amount"
