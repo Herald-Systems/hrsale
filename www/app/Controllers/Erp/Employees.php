@@ -255,13 +255,15 @@ class Employees extends BaseController {
 				$gender,
 				$role_name,
 				$status,
-				isset($r['occupancy']) ? implode(', ', json_decode($r['occupancy'])) : '',
+				isset($employee_detail['occupancy']) ? implode(', ', json_decode($employee_detail['occupancy'])) : '',
                 isset($r['resident']) ? ($r['resident'] == 1 ? 'Yes' : 'No') : '',
                 isset($r['dependant_declaration_logged']) ? ($r['dependant_declaration_logged'] == 1 ? 'Yes' : 'No') : '',
                 $r['number_of_children'] ?? '',
                 $idesignations['award'],
+                $employee_detail['category'],
                 $idesignations['class'],
-			);
+                $employee_detail['step'],
+            );
 		}
           $output = array(
                //"draw" => $draw,
@@ -706,10 +708,6 @@ class Employees extends BaseController {
 			$options = array('cost' => 12);
 			$password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
-//            $occupancy = json_encode($this->request->getPost('occupancy'))
-//
-//            $this->logger->error($this->request->getPost('occupancy',FILTER_SANITIZE_STRING));
-			
 			$EmailtemplatesModel = new EmailtemplatesModel();
 			$xin_system = $SystemModel->where('setting_id', 1)->first();
 			$data = [
@@ -731,7 +729,6 @@ class Employees extends BaseController {
 				'gender' => $gender,
 				'company_name' => $user_info['company_name'],
 				'trading_name' => '',
-                'occupancy' => json_encode($this->request->getPost('occupancy')),
                 'resident' => $this->request->getPost('resident',FILTER_SANITIZE_NUMBER_INT),
                 'dependant_declaration_logged' => $this->request->getPost('dependant_declaration_logged',FILTER_SANITIZE_NUMBER_INT),
                 'number_of_children' => $this->request->getPost('number_of_children',FILTER_SANITIZE_NUMBER_INT),
@@ -2352,7 +2349,8 @@ class Employees extends BaseController {
 				'salay_type' => $salay_type,
 				'date_of_leaving' => $date_of_leaving,
 				'role_description' => $role_description,
-				'step' => $this->request->getPost('step',FILTER_SANITIZE_STRING),
+                'occupancy' => json_encode($this->request->getPost('occupancy')),
+                'step' => $this->request->getPost('step',FILTER_SANITIZE_STRING),
 				'category' => $this->request->getPost('category',FILTER_SANITIZE_STRING),
 			];
 			$MainModel = new MainModel();

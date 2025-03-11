@@ -34,7 +34,6 @@ class UsersModel extends Model {
         'state',
         'zipcode',
         'country',
-        'occupancy',
         'resident',
         'dependant_declaration_logged',
         'number_of_children',

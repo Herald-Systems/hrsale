@@ -45,6 +45,7 @@ class StaffdetailsModel extends Model {
         'contact_email',
         'contact_address',
         'created_at',
+        'occupancy',
         'category',
         'step',
     ];

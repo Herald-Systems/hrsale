@@ -29,8 +29,8 @@ $request = \Config\Services::request();
 $segment_id = $request->uri->getSegment(3);
 $user_id = udecode($segment_id);
 $result = $UsersModel->where('user_id', $user_id)->first();
-$occupancy = isset($result['occupancy']) ? json_decode($result['occupancy']) : null;
 $employee_detail = $StaffdetailsModel->where('user_id', $result['user_id'])->first();
+$occupancy = isset($employee_detail['occupancy']) ? json_decode($employee_detail['occupancy']) : null;
 
 $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
 if ($user_info['user_type'] == 'staff') {
@@ -351,6 +351,40 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                                                         class="fas fa-calendar-alt"></i></span></div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-4 form-group">
+                                                <label for="occupancy">Occupancy</label>
+                                                <select multiple name="occupancy[]" id="occupancy" class="form-control"
+                                                        data-plugin="select_hrm">
+                                                    <option value="Sub Occ" <?php if (isset($occupancy) && in_array('Sub Occ', $occupancy)) {
+                                                        echo 'selected';
+                                                    } ?> >Sub Occ
+                                                    </option>
+                                                    <option value="Con Occ" <?php if (isset($occupancy) && in_array('Con Occ', $occupancy)) {
+                                                        echo 'selected';
+                                                    } ?> >Con Occ
+                                                    </option>
+                                                    <option value="Acting" <?php if (isset($occupancy) && in_array('Acting', $occupancy)) {
+                                                        echo 'selected';
+                                                    } ?> >Acting
+                                                    </option>
+                                                    <option value="HDA Occ" <?php if (isset($occupancy) && in_array('HDA Occ', $occupancy)) {
+                                                        echo 'selected';
+                                                    } ?> >HDA Occ
+                                                    </option>
+                                                    <option value="Support" <?php if (isset($occupancy) && in_array('Support', $occupancy)) {
+                                                        echo 'selected';
+                                                    } ?> >Support
+                                                    </option>
+                                                    <option value="Special Contract" <?php if (isset($occupancy) && in_array('Special Contract', $occupancy)) {
+                                                        echo 'selected';
+                                                    } ?> >Special Contract
+                                                    </option>
+                                                    <option value="STC" <?php if (isset($occupancy) && in_array('STC', $occupancy)) {
+                                                        echo 'selected';
+                                                    } ?> >STC
+                                                    </option>
+                                                </select>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
@@ -1064,41 +1098,6 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                                        placeholder="<?= lang('Main.xin_address_2'); ?>" name="address_2"
                                                        type="text" value="<?= $result['address_2']; ?>">
                                             </div>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label for="occupancy">Occupancy</label>
-                                            <select multiple name="occupancy[]" id="occupancy" class="form-control"
-                                                    data-plugin="select_hrm">
-                                                <option value="Sub Occ" <?php if (isset($occupancy) && in_array('Sub Occ', $occupancy)) {
-                                                    echo 'selected';
-                                                } ?> >Sub Occ
-                                                </option>
-                                                <option value="Con Occ" <?php if (isset($occupancy) && in_array('Con Occ', $occupancy)) {
-                                                    echo 'selected';
-                                                } ?> >Con Occ
-                                                </option>
-                                                <option value="Acting" <?php if (isset($occupancy) && in_array('Acting', $occupancy)) {
-                                                    echo 'selected';
-                                                } ?> >Acting
-                                                </option>
-                                                <option value="HDA Occ" <?php if (isset($occupancy) && in_array('HDA Occ', $occupancy)) {
-                                                    echo 'selected';
-                                                } ?> >HDA Occ
-                                                </option>
-                                                <option value="Support" <?php if (isset($occupancy) && in_array('Support', $occupancy)) {
-                                                    echo 'selected';
-                                                } ?> >Support
-                                                </option>
-                                                <option value="Special Contract" <?php if (isset($occupancy) && in_array('Special Contract', $occupancy)) {
-                                                    echo 'selected';
-                                                } ?> >Special Contract
-                                                </option>
-                                                <option value="STC" <?php if (isset($occupancy) && in_array('STC', $occupancy)) {
-                                                    echo 'selected';
-                                                } ?> >STC
-                                                </option>
-                                            </select>
                                         </div>
 
                                         <div class="col-sm-4 form-group pt-4">
