@@ -362,6 +362,15 @@ $idesignations = $DesignationModel->where('designation_id', $employee_detail['de
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4 form-group pt-4">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input input-primary"
+                                                           name="calculate_payroll" id="calculate_payroll" value="1" <?php if ($employee_detail['calculate_payroll'] == 1): ?> checked="checked"<?php endif; ?> >
+                                                    <label class="custom-control-label" for="calculate_payroll">
+                                                        Calculate Payroll
+                                                    </label>
+                                                </div>
+                                            </div>
                                             <div class="col-sm-4 form-group">
                                                 <label for="occupancy">Occupancy</label>
                                                 <select multiple name="occupancy[]" id="occupancy" class="form-control"

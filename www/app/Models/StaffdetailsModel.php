@@ -46,6 +46,7 @@ class StaffdetailsModel extends Model {
         'contact_address',
         'created_at',
         'occupancy',
+        'calculate_payroll',
         'category',
         'step',
     ];

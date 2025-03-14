@@ -297,6 +297,15 @@ $employee_id = generate_random_employeeid();
                     </div>
                 </div>
 
+                <div class="col-sm-4 form-group pt-4">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input input-primary"
+                               name="calculate_payroll" id="calculate_payroll" value="1">
+                        <label class="custom-control-label" for="calculate_payroll">
+                            Calculate Payroll
+                        </label>
+                    </div>
+                </div>
                 <div class="col-sm-4 form-group">
                     <label for="occupancy">Occupancy</label>
                     <select multiple name="occupancy[]" id="occupancy" class="form-control" data-plugin="select_hrm">
