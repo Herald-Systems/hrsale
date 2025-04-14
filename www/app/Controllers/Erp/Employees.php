@@ -48,11 +48,11 @@ class Employees extends BaseController
     public function index()
     {
         $RolesModel = new RolesModel();
-//        $UsersModel = new UsersModel();
-//        $SystemModel = new SystemModel();
-//        //$AssetsModel = new AssetsModel();
-//        $session = Services::session();
-//        $usession = $session->get('sup_username');
+        $UsersModel = new UsersModel();
+        $SystemModel = new SystemModel();
+        //$AssetsModel = new AssetsModel();
+        $session = Services::session();
+        $usession = $session->get('sup_username');
         $user_info = $UsersModel->where('user_id', $usession['sup_user_id'])->first();
         if (!$session->has('sup_username')) {
             $session->setFlashdata('err_not_logged_in', lang('Dashboard.err_not_logged_in'));
