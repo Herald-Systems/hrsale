@@ -72,13 +72,19 @@ class Auth extends BaseController
 					}
 				}
 			} else {
-				$username = $this->request->getPost('iusername',FILTER_SANITIZE_STRING);
+				$username = $this->request->getPost('iusername',FILTER_SANITIZE_STRING) . '-0';
 				$password = $this->request->getPost('password',FILTER_SANITIZE_STRING);		
 				
 				$data = array(
 					'username' => $username,
 					'password' => $password
 				);
+
+//                $iuser = $UsersModel->where('username', $username)->where('is_active',1)->first();
+//
+//                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+//                $UsersModel->update($iuser->id, ['password' => $hashedPassword]);
+
 
 //				$throttler = \Config\Services::throttler();
 				$is_allow = true;
