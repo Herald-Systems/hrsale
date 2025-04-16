@@ -108,7 +108,7 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
           <?= $result['email'];?>
           </span> </li>
       </ul>
-      <div class="nav flex-column nav-pills list-group list-group-flush list-pills" id="user-set-tab" role="tablist" aria-orientation="vertical"> <a class="nav-link list-group-item list-group-item-action active" id="user-set-salary-tab" data-toggle="pill" href="#user-set-salary" role="tab" aria-controls="user-set-salary" aria-selected="false"> <span class="f-w-500"><i class="feather icon-lock m-r-10 h5 "></i>
+      <div class="nav flex-column nav-pills list-group list-group-flush list-pills" id="user-set-tab" role="tablist" aria-orientation="vertical"> <a class="nav-link list-group-item list-group-item-action" id="user-set-salary-tab" data-toggle="pill" href="#user-set-salary" role="tab" aria-controls="user-set-salary" aria-selected="false"> <span class="f-w-500"><i class="feather icon-lock m-r-10 h5 "></i>
         <?= lang('Employees.xin_contract');?>
         </span> <span class="float-right"><i class="feather icon-chevron-right"></i></span> </a> 
         <?php if(in_array('hr_basic_info',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
@@ -116,11 +116,18 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
         <?= lang('Main.xin_employee_basic_title');?>
         </span> <span class="float-right"><i class="feather icon-chevron-right"></i></span> </a>
         <?php }?>
-        <?php if(in_array('hr_personal_info',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
-         <a class="nav-link list-group-item list-group-item-action" id="user-set-information-tab" data-toggle="pill" href="#user-set-information" role="tab" aria-controls="user-set-information" aria-selected="false"> <span class="f-w-500"><i class="feather icon-user m-r-10 h5 "></i>
+          <?php if(in_array('hr_personal_info',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
+              <a class="nav-link list-group-item list-group-item-action" id="user-set-information-tab" data-toggle="pill" href="#user-set-information" role="tab" aria-controls="user-set-information" aria-selected="false"> <span class="f-w-500"><i class="feather icon-user m-r-10 h5 "></i>
         <?= lang('Main.xin_personal_info');?>
-        </span> <span class="float-right"><i class="feather icon-chevron-right"></i></span> </a> 
-        <?php } ?>
+        </span> <span class="float-right"><i class="feather icon-chevron-right"></i></span> </a>
+          <?php } ?>
+          <?php if(in_array('hr_personal_info',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
+              <a class="nav-link list-group-item list-group-item-action" id="user-payslip-tab"
+                 data-toggle="pill" href="#user-payslip" role="tab" aria-controls="user-payslip" aria-selected="false">
+                  <span class="f-w-500"><i class="feather icon-dollar-sign m-r-10 h5 "></i>
+        Go To Payslip
+        </span> <span class="float-right"><i class="feather icon-chevron-right"></i></span> </a>
+          <?php } ?>
         <?php if(in_array('hr_picture',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
         <a class="nav-link list-group-item list-group-item-action" id="user-set-picture-tab" data-toggle="pill" href="#user-set-picture" role="tab" aria-controls="user-set-picture" aria-selected="false"> <span class="f-w-500"><i class="feather icon-image m-r-10 h5 "></i>
         <?= lang('Main.xin_e_details_profile_picture');?>
@@ -147,7 +154,90 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
   <input type="hidden" id="user_id" value="<?= udecode($segment_id);?>" />
   <div class="col-lg-8">
     <div class="tab-content" id="user-set-tabContent">
-      <div class="tab-pane fade show active" id="user-set-salary" role="tabpanel" aria-labelledby="user-set-salary-tab">
+      <div class="tab-pane fade show" id="user-payslip" role="tabpanel" aria-labelledby="user-payslip-tab">
+          <div class="card">
+              <div class="card-header">
+                  <h5>
+                      <i data-feather="dollar-sign" class="icon-svg-primary wid-20"></i>
+                      <span class="p-l-5">Payslip</span>
+                  </h5>
+              </div>
+              <div class="card-body">
+                  <style>
+                      body {
+                          font-family: Arial, sans-serif;
+                          margin: 2rem;
+                      }
+                      table {
+                          border-collapse: collapse;
+                          width: 100%;
+                          margin-bottom: 1rem;
+                      }
+                      th, td {
+                          padding: 10px;
+                          border: 1px solid #ddd;
+                      }
+                      th {
+                          background-color: #f2f2f2;
+                          text-align: left;
+                      }
+                      .section-header {
+                          background-color: #e0e0e0;
+                          font-weight: bold;
+                      }
+                  </style>
+                  <div class="form-group">
+                      <label>Month</label>
+                      <select class="form-control">
+                          <option>April 2025</option>
+                      </select>
+                  </div>
+                  <table>
+                      <tr class="section-header">
+                          <th colspan="2">Employee Information</th>
+                      </tr>
+                      <tr><th>Base Salary</th><td>K <span id="baseSalary">0.00</span></td></tr>
+                      <tr><th>Total Allowances</th><td>K <span id="totalAllowances">0.00</span></td></tr>
+                      <tr><th>Dependants</th><td><span id="dependants">0</span></td></tr>
+                      <tr><th>Resident Status</th><td><span id="residencyStatus">Resident</span></td></tr>
+
+                      <tr class="section-header">
+                          <th colspan="2">Salary Breakdown</th>
+                      </tr>
+                      <tr><th>Fortnight Salary</th><td>K <span id="fortnightSalary">0.00</span></td></tr>
+                      <tr><th>Gross Salary (Fortnight + Allowances)</th><td>K <span id="grossSalary">0.00</span></td></tr>
+                      <tr><th>Overtime Rate</th><td>K <span id="overtimeRate">0.00</span></td></tr>
+
+                      <tr class="section-header">
+                          <th colspan="2">Tax Computation</th>
+                      </tr>
+                      <tr><th>Gross Tax</th><td>K <span id="grossTax">0.00</span></td></tr>
+                      <tr><th>Dependent Rebate</th><td>K <span id="dependentRebate">0.00</span></td></tr>
+                      <tr><th>Net Tax (per Fortnight)</th><td>K <span id="netTax">0.00</span></td></tr>
+
+                      <tr class="section-header">
+                          <th colspan="2">Superannuation</th>
+                      </tr>
+                      <tr><th>POSF Employer (8.4%)</th><td>K <span id="posfEmployer">0.00</span></td></tr>
+                      <tr><th>POSF Employee (6%)</th><td>K <span id="posfEmployee">0.00</span></td></tr>
+                      <tr><th>POS Voluntary</th><td>K <span id="posfVoluntary">0.00</span></td></tr>
+                      <tr><th>Total Superannuation</th><td>K <span id="totalSuper">0.00</span></td></tr>
+
+                      <tr class="section-header">
+                          <th colspan="2">Financial Institution Deductions</th>
+                      </tr>
+                      <tr><th>Loan Repayment / Other</th><td>K <span id="financialDeduction">0.00</span></td></tr>
+
+                      <tr class="section-header">
+                          <th colspan="2">Net Pay</th>
+                      </tr>
+                      <tr><th>Net Salary</th><td><strong>K <span id="netSalary">0.00</span></strong></td></tr>
+                  </table>
+
+              </div>
+          </div>
+      </div>
+      <div class="tab-pane fade show" id="user-set-salary" role="tabpanel" aria-labelledby="user-set-salary-tab">
         <div class="alert alert-info alert-dismissible" role="alert">
           <h5 class="alert-heading"><i class="feather icon-alert-circle mr-2"></i>
             <?= lang('Employees.xin_contract_option');?>
