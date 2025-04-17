@@ -72,8 +72,8 @@ class Auth extends BaseController
 					}
 				}
 			} else {
-				$username = $this->request->getPost('iusername',FILTER_SANITIZE_STRING) . '-0';
-				$password = $this->request->getPost('password',FILTER_SANITIZE_STRING)	 . '-0';
+				$username = $this->request->getPost('iusername',FILTER_SANITIZE_STRING);
+				$password = $this->request->getPost('password',FILTER_SANITIZE_STRING);
 				
 				$data = array(
 					'username' => $username,
