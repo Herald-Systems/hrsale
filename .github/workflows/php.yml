@@ -91,7 +91,7 @@ jobs:
             
             echo "Installing Composer dependencies..."
             # Use --no-dev for production, optimize autoloader
-            composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+            # composer install --no-dev --optimize-autoloader --no-interaction --no-progress
             
             echo "Running CodeIgniter migrations..."
             php7.4 spark migrate --all # Use --all if you manage namespaces
