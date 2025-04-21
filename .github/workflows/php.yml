@@ -17,23 +17,104 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4' # Specify your PHP version
+        extensions: mbstring, xml, gd, zip, intl # Add extensions required by CodeIgniter/your app
+        coverage: none
+
+      # --- Composer commands run inside ./www ---
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
+      working-directory: ./www # <--- Working directory
 
     - name: Cache Composer packages
       id: composer-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        path: www/vendor # <--- Path updated to include www
+        key: ${{ runner.os }}-php-${{ hashFiles('www/composer.lock') }} # <--- Hash file path updated
         restore-keys: |
           ${{ runner.os }}-php-
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+      working-directory: ./www # <--- Working directory
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     # - name: Run test suite
     #   run: composer run-script test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # Only run deployment on push to the main branch
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e # Exit immediately if a command exits with a non-zero status.
+            echo "Starting deployment..."
+            cd ${{ secrets.WORKER_PATH }}
+            echo "Navigated to ${{ secrets.WORKER_PATH }}"
+            
+            echo "Pulling latest code from main branch..."
+            git checkout main # Ensure we are on the main branch
+            git fetch origin main # Fetch the latest changes
+            git reset --hard origin/main # Force update to the latest version
+            git pull origin main # Pull latest code (may be redundant after reset, but safe)
+
+            echo "Activating virtual environment..."
+            source venv/bin/activate
+            
+            # Check if requirements.txt exists for Python tasks
+            if [ -f "requirements.txt" ]; then
+              echo "Installing Python dependencies..."
+              # Assuming python3 and pip are available and configured
+              # You might need to specify python3 -m pip or activate a virtual environment first
+              pip install -r requirements.txt
+            else
+              echo "requirements.txt not found, skipping pip install."
+            fi
+            
+            cd ${{ secrets.PHP_PATH }}
+            echo "Navigated to ${{ secrets.PHP_PATH }}"
+            
+            echo "Installing Composer dependencies..."
+            # Use --no-dev for production, optimize autoloader
+            # composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+            
+            echo "Running CodeIgniter migrations..."
+            php7.4 spark migrate --all # Use --all if you manage namespaces
+            
+            echo "Clearing CodeIgniter cache..."
+            php7.4 spark cache:clear
+            
+            # --- Add application-specific commands below ---
+            
+            # Example: Set permissions (adjust owner/group and paths as needed)
+            # echo "Setting permissions..."
+            # sudo chown -R www-data:www-data ${{ secrets.PHP_PATH }}
+            # sudo find ${{ secrets.PHP_PATH }}/writable -type d -exec chmod 755 {} \;
+            # sudo find ${{ secrets.PHP_PATH }}/writable -type f -exec chmod 644 {} \;
+            
+            # Example: Restart PHP-FPM (if used)
+            echo "Restarting PHP-FPM..."
+            sudo systemctl restart php7.4-fpm # Adjust version if needed
+            
+            # Example: Restart Python task workers (e.g., Celery)
+            echo "Restarting Celery workers..."
+            sudo systemctl restart celery_beat.service
+            sudo systemctl restart celery_flower.service
+            sudo systemctl restart celery_worker.service
+            
+            echo "Deployment finished successfully!"
