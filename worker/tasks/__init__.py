@@ -1,9 +1,7 @@
 import logging, os
 from celery import Celery
 
-from tasks.payslips import fetch_tasks, split_file_by_page, mark_task_as_processed
-
-from worker.tasks.payslips import fetch_employees
+from tasks.payslips import fetch_tasks, split_file_by_page, mark_task_as_processed, fetch_employees
 
 # Create a Celery application instance
 app = Celery('tasks', broker='redis://localhost:6379/0')
