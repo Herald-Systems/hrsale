@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -91,7 +91,7 @@ jobs:
             
             echo "Installing Composer dependencies..."
             # Use --no-dev for production, optimize autoloader
-            # composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+            composer install --no-dev --optimize-autoloader --no-interaction --no-progress
             
             echo "Running CodeIgniter migrations..."
             php7.4 spark migrate --all # Use --all if you manage namespaces
