@@ -3,6 +3,8 @@ from celery import Celery
 
 from tasks.payslips import fetch_tasks, split_file_by_page, mark_task_as_processed
 
+from worker.tasks.payslips import fetch_employees
+
 # Create a Celery application instance
 app = Celery('tasks', broker='redis://localhost:6379/0')
 app.conf.update(
@@ -17,7 +19,7 @@ logger = logging.getLogger(__name__)
 # Use dotenv to load environment variables if necessary
 from dotenv import load_dotenv
 
-# Load environment variables from .env file if present
+# Load environment variables from the .env file if present
 load_dotenv()
 
 current_directory = os.getcwd()
@@ -47,6 +49,14 @@ def process_tasks():
                 logger.error(f"Error processing file {input_file_url} for task {task_id}: {e}", exc_info=True)
     except Exception as e:
         logger.error(f"Error fetching or processing tasks: {e}", exc_info=True)
+
+
+@app.task(name="process_payslips")
+def process_payslips():
+    logger.info("Processing payslips")
+    employees = fetch_employees()
+    for employee in employees:
+        logger.info(f"Processing payslip for employee {employee['employee']} ({employee['first_name']})")
 
 
 @app.on_after_configure.connect

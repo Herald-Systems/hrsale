@@ -22,6 +22,18 @@ def connect_to_db():
         port=int(os.environ.get('DB_PORT', 3306)),
     )
 
+def fetch_employees():
+    try:
+        conn = connect_to_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT ci_erp_users.user_id, ci_erp_users.user_type, ci_erp_users.first_name, ci_erp_users.last_name, ci_erp_users.email, ci_erp_users_details.* FROM ci_erp_users, ci_erp_users_details where ci_erp_users.user_type = 'staff' AND ci_erp_users.user_id = ci_erp_users_details.user_id AND ci_erp_users_details.calculate_payroll = 1")
+        employees = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return employees
+    except pymysql.MySQLError as e:
+        logger.error(f"Database error: {e}")
+        return []
 
 def fetch_tasks():
     try:
