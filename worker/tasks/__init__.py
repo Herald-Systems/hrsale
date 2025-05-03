@@ -1,7 +1,7 @@
 import logging, os
 from celery import Celery
 
-from tasks.payslips import fetch_tasks, split_file_by_page, mark_task_as_processed, fetch_employees
+from tasks.payslips import fetch_tasks, split_file_by_page, mark_task_as_processed, fetch_employees, process_payslip
 
 # Create a Celery application instance
 app = Celery('tasks', broker='redis://localhost:6379/0')
@@ -54,7 +54,7 @@ def process_payslips():
     logger.info("Processing payslips")
     employees = fetch_employees()
     for employee in employees:
-        logger.info(f"Processing payslip for employee {employee['employee']} ({employee['first_name']})")
+        process_payslip(employee)
 
 
 @app.on_after_configure.connect
@@ -62,5 +62,11 @@ def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(
         60.0,
         process_tasks.s(),
+        name='add every 5 minutes'
+    )
+
+    sender.add_periodic_task(
+        60.0,
+        process_payslips.s(),
         name='add every 5 minutes'
     )
