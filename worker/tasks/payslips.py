@@ -89,17 +89,22 @@ def calculate_dependent_rebate(dependents, gross_tax, fortnight_salary):
     # Please clarify if the K17.31/K28.85/K40.38 part should be added/subtracted here.
 
     if dependents == 1:
-        rebate = max(Decimal(45), min(Decimal(0.15) * gross_tax, Decimal(450)))
-        # if fortnight_salary > 1269:
-        #     rebate += 17.31 # Or some other logic based on clarification
+        if fortnight_salary > 1269:
+            rebate = Decimal(17.31)
+        else:
+            rebate = max(Decimal(45), min(Decimal(0.15) * gross_tax, Decimal(450)))
     elif dependents == 2:
-        rebate = max(Decimal(75), min(Decimal(0.25) * gross_tax, Decimal(750)))
-        # if fortnight_salary > 1269:
-        #     rebate += 28.85 # Or some other logic
+        if fortnight_salary > 1269:
+            rebate = Decimal(28.85)
+        else:
+            rebate = max(Decimal(75), min(Decimal(0.25) * gross_tax, Decimal(750)))
+
     elif dependents >= 3:
-        rebate = max(Decimal(105), min(Decimal(0.35) * gross_tax, Decimal(1050)))
-        # if fortnight_salary > 1269:
-        #     rebate += 40.38 # Or some other logic
+        if fortnight_salary > 1269:
+            rebate += Decimal(40.38)
+        else:
+            rebate = max(Decimal(105), min(Decimal(0.35) * gross_tax, Decimal(1050)))
+
 
     # Ensure rebate is not negative
     return max(Decimal(0), rebate)
@@ -108,12 +113,12 @@ def calculate_dependent_rebate(dependents, gross_tax, fortnight_salary):
 def process_payslip(employee, pay_date):
     # pay_date = datetime.strptime(pay_date, '%Y-%m-%d')
 
-    logger.info(f"Processing payslip for employee {employee.get('first_name')} For {pay_date.strftime('%B %Y')}")
+    logger.info(f"Processing payslip for employee {employee['first_name']} For {pay_date.strftime('%B %Y')}")
 
     annual_salary = employee.get('basic_salary', 0)
     total_allowances = Decimal(0)
-    is_resident = bool(employee.get('resident', False))
-    dependent_declaration_logged = bool(employee.get('dependent_declaration_logged', False))
+    is_resident = bool(employee.get('resident', 0))
+    dependent_declaration_logged = bool(employee.get('dependant_declaration_logged', 0))
     dependents = int(employee.get('number_of_children', 0))
     pos_voluntary_super = employee.get('pos_voluntary_super', 0)
     loan_amount = Decimal(0)
@@ -124,7 +129,6 @@ def process_payslip(employee, pay_date):
         loan_amount += loan.get('amount', 0)
 
     # --- Calculations ---
-    # annual_salary = employee.get('basic_salary', 0) * 12
     fortnight_salary = (annual_salary * 10) / 261 if annual_salary > 0 else 0
     # Overtime is defined but not added to Gross Salary per the rules provided.
     # overtime = (annual_salary / 261) * (10 / 73.5) if annual_salary > 0 else 0
@@ -133,6 +137,8 @@ def process_payslip(employee, pay_date):
     gross_tax = 0
     net_tax = 0
     dependent_rebate = 0
+
+    logger.info(f"Annual Salary: {annual_salary}, Is Resident: {is_resident}, Dependant Decla: {dependent_declaration_logged}, Dependents: {dependents}")
 
     if is_resident:
         if dependent_declaration_logged:
@@ -143,11 +149,14 @@ def process_payslip(employee, pay_date):
             dependent_rebate = calculate_dependent_rebate(dependents, gross_tax, fortnight_salary)
             # Ensure gross_tax after rebate is not negative before division
             net_tax = max(Decimal(0), gross_tax - dependent_rebate) / 26
+
+            logger.info(f"N Resident: {n_resident}, Gross Tax: {gross_tax}, Dependant Rebat: {dependent_rebate}, Net Tax: {net_tax}")
         else:
             # Dependent Declaration Logged (No) logic
             income_no_declaration = (fortnight_salary * Decimal(26))
             gross_tax = income_no_declaration * Decimal(0.42) # Direct calculation as per rule
             net_tax = gross_tax / 26
+
     else:
         # Non-Resident Tax Calculation
         n_non_resident = fortnight_salary * Decimal(26)
