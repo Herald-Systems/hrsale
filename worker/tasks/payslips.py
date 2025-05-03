@@ -138,8 +138,6 @@ def process_payslip(employee, pay_date):
     net_tax = 0
     dependent_rebate = 0
 
-    logger.info(f"Annual Salary: {annual_salary}, Is Resident: {is_resident}, Dependant Decla: {dependent_declaration_logged}, Dependents: {dependents}")
-
     if is_resident:
         if dependent_declaration_logged:
             # Calculate N for resident tax
@@ -149,8 +147,6 @@ def process_payslip(employee, pay_date):
             dependent_rebate = calculate_dependent_rebate(dependents, gross_tax, fortnight_salary)
             # Ensure gross_tax after rebate is not negative before division
             net_tax = max(Decimal(0), gross_tax - dependent_rebate) / 26
-
-            logger.info(f"N Resident: {n_resident}, Gross Tax: {gross_tax}, Dependant Rebat: {dependent_rebate}, Net Tax: {net_tax}")
         else:
             # Dependent Declaration Logged (No) logic
             income_no_declaration = (fortnight_salary * Decimal(26))
