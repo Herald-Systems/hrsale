@@ -29,7 +29,7 @@ def process_tasks():
     try:
         tasks = fetch_tasks()
         for task in tasks:
-            task_id, file_path = task['task_id'], task['file_path']
+            task_id, file_path = task['id'], task['file']
             logger.info(f"Processing task {task_id} with file path: {file_path}")
 
             prefix = "https://espahrp.echadconsultants.com/writable/uploads/"
