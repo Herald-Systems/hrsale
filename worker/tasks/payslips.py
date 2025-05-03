@@ -105,8 +105,10 @@ def calculate_dependent_rebate(dependents, gross_tax, fortnight_salary):
     return max(Decimal(0), rebate)
 
 
-def process_payslip(employee):
-    logger.info(f"Processing payslip for employee {employee}")
+def process_payslip(employee, pay_date):
+    pay_date = datetime.strptime(pay_date, '%Y-%m-%d')
+
+    logger.info(f"Processing payslip for employee {employee} For {pay_date.strftime('%B %Y')}")
 
     annual_salary = employee.get('basic_salary', 0) * 12
     total_allowances = Decimal(0)
@@ -167,10 +169,10 @@ def process_payslip(employee):
     net_salary = gross_salary - total_deductions
 
     payslip = {
-        'payslip_key': f"{employee.get('employee_id', 'KEY_ERR')}_{datetime.now().strftime('%Y%m')}", # Unique key
+        'payslip_key': f"{employee.get('employee_id', 'KEY_ERR')}_{pay_date.strftime('%Y%m')}", # Unique key
         'company_id': employee.get('company_id'),
         'staff_id': employee.get('user_id'), # Assuming this maps to the employee being processed
-        'salary_month': datetime.now().strftime('%B %Y'), # Dynamic month/year
+        'salary_month': pay_date.strftime('%B %Y'), # Dynamic month/year
         'wages_type': 1, # Assuming 1 means salary
         'payslip_type': 'Fortnightly', # Changed from 'Full Monthly' based on calculations
         'basic_salary': fortnight_salary, # Using fortnight salary as basic for this period
@@ -241,7 +243,7 @@ def fetch_tasks():
     try:
         conn = connect_to_db()
         cursor = conn.cursor()
-        cursor.execute("SELECT id, file FROM ci_payslip_batches where processed = 0 LIMIT 1")
+        cursor.execute("SELECT id, file, pay_date FROM ci_payslip_batches where processed = 0 LIMIT 1")
         tasks = cursor.fetchall()
         cursor.close()
         conn.close()
