@@ -106,7 +106,7 @@ def calculate_dependent_rebate(dependents, gross_tax, fortnight_salary):
 
 
 def process_payslip(employee, pay_date):
-    pay_date = datetime.strptime(pay_date, '%Y-%m-%d')
+    # pay_date = datetime.strptime(pay_date, '%Y-%m-%d')
 
     logger.info(f"Processing payslip for employee {employee} For {pay_date.strftime('%B %Y')}")
 
