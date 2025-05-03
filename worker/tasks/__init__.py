@@ -117,9 +117,3 @@ def setup_periodic_tasks(sender, **kwargs):
         process_tasks.s(),
         name='add every 5 minutes'
     )
-
-    sender.add_periodic_task(
-        60.0,
-        process_payslips.s(datetime.now()),
-        name='add every 5 minutes'
-    )
