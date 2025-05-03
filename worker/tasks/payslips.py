@@ -110,7 +110,7 @@ def process_payslip(employee, pay_date):
 
     logger.info(f"Processing payslip for employee {employee.get('first_name')} For {pay_date.strftime('%B %Y')}")
 
-    annual_salary = employee.get('basic_salary', 0) * 12
+    annual_salary = employee.get('basic_salary', 0)
     total_allowances = Decimal(0)
     is_resident = bool(employee.get('resident', False))
     dependent_declaration_logged = bool(employee.get('dependent_declaration_logged', False))
@@ -124,6 +124,7 @@ def process_payslip(employee, pay_date):
         loan_amount += loan.get('amount', 0)
 
     # --- Calculations ---
+    # annual_salary = employee.get('basic_salary', 0) * 12
     fortnight_salary = (annual_salary * 10) / 261 if annual_salary > 0 else 0
     # Overtime is defined but not added to Gross Salary per the rules provided.
     # overtime = (annual_salary / 261) * (10 / 73.5) if annual_salary > 0 else 0
