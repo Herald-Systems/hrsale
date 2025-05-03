@@ -108,7 +108,7 @@ def calculate_dependent_rebate(dependents, gross_tax, fortnight_salary):
 def process_payslip(employee, pay_date):
     # pay_date = datetime.strptime(pay_date, '%Y-%m-%d')
 
-    logger.info(f"Processing payslip for employee {employee} For {pay_date.strftime('%B %Y')}")
+    logger.info(f"Processing payslip for employee {employee.get('first_name')} For {pay_date.strftime('%B %Y')}")
 
     annual_salary = employee.get('basic_salary', 0) * 12
     total_allowances = Decimal(0)

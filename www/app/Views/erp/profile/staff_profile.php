@@ -121,13 +121,7 @@ $status_label = '<i class="fas fa-certificate text-success bg-icon"></i><i class
         <?= lang('Main.xin_personal_info');?>
         </span> <span class="float-right"><i class="feather icon-chevron-right"></i></span> </a>
           <?php } ?>
-          <?php if(in_array('hr_personal_info',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
-              <a class="nav-link list-group-item list-group-item-action" id="user-payslip-tab"
-                 data-toggle="pill" href="#user-payslip" role="tab" aria-controls="user-payslip" aria-selected="false">
-                  <span class="f-w-500"><i class="feather icon-dollar-sign m-r-10 h5 "></i>
-        Go To Payslip
-        </span> <span class="float-right"><i class="feather icon-chevron-right"></i></span> </a>
-          <?php } ?>
+
         <?php if(in_array('hr_picture',staff_role_resource()) || $user_info['user_type'] == 'company') { ?>
         <a class="nav-link list-group-item list-group-item-action" id="user-set-picture-tab" data-toggle="pill" href="#user-set-picture" role="tab" aria-controls="user-set-picture" aria-selected="false"> <span class="f-w-500"><i class="feather icon-image m-r-10 h5 "></i>
         <?= lang('Main.xin_e_details_profile_picture');?>

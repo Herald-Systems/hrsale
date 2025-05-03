@@ -7,7 +7,7 @@ Type=simple
 User=www-data
 WorkingDirectory=/var/www/html/worker
 ExecStartPre=/var/www/html/worker/venv/bin/celery --app=tasks purge -f
-ExecStart=/var/www/html/worker/venv/bin/celery --app=tasks worker --loglevel=INFO --logfile=/var/www/html/worker/logs/celery_worker.log
+ExecStart=/var/www/html/worker/venv/bin/celery --app=tasks worker
 Restart=always
 
 [Install]
