@@ -653,6 +653,8 @@ class Payroll extends BaseController {
 				$smonth = date('F, Y',$smonth);
 				$salary_month = set_date_format($r['salary_month']);
 				$net_salary = '<h6 class="text-success">'.number_to_currency($inet_salary, $xin_system['default_currency'],null,2).'</h6>';
+				$gross_salary = '<h6 class="text-success">'.number_to_currency($r['gross_salary'], $xin_system['default_currency'],null,2).'</h6>';
+				$total_deductions = '<h6 class="text-success">'.number_to_currency($r['total_deductions'], $xin_system['default_currency'],null,2).'</h6>';
 				$combhr = $view;
 				$links = '
 					'.$uname.'
@@ -662,9 +664,10 @@ class Payroll extends BaseController {
 				';					 			  				
 				$data[] = array(
 					$links,
-					$net_salary,
-					$smonth,
-					$net_salary
+                    $smonth,
+                    $gross_salary,
+                    $total_deductions,
+                    $net_salary,
 				);
 			}
           $output = array(

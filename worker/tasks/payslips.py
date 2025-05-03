@@ -192,7 +192,7 @@ def process_payslip(employee):
         'total_deductions': total_deductions, # All deductions summed up
         'net_salary': net_salary, # Final calculated net salary
         'payment_method': 1, # Default or from employee data
-        'pay_comments': 'Calculated based on provided rules.',
+        'pay_comments': '...',
         'is_payment': True, # Assuming payment is made
         'year_to_date': 0, # This would typically require fetching previous payslips
         'is_advance_salary_deduct': False,

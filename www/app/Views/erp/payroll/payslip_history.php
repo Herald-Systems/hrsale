@@ -76,9 +76,10 @@ $locale = service('request')->getLocale();
         <thead>
           <tr>
             <th><?= lang('Dashboard.dashboard_employee');?></th>
-            <th><?= lang('Payroll.xin_net_payable');?></th>
             <th><?= lang('Payroll.xin_salary_month');?></th>
-            <th><?= lang('Payroll.xin_pay_date');?></th>
+              <th>Gross Salary</th>
+              <th>Total Deductions</th>
+              <th><?= lang('Payroll.xin_net_payable');?></th>
           </tr>
         </thead>
       </table>
